@@ -2,8 +2,10 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, Check } from "lucide-react";
+import { Reveal } from "../../../components/Reveal";
 import { SiteFooter } from "../../../components/SiteFooter";
 import { SiteHeader } from "../../../components/SiteHeader";
+import { StatCounter } from "../../../components/StatCounter";
 import { caseStudies, getCaseStudy } from "../../../lib/case-studies";
 import { pageMetadata } from "../../../lib/seo";
 
@@ -38,7 +40,7 @@ export default async function CaseStudyDetailPage({ params }: PageProps) {
           <p className="mt-12 text-xs font-bold uppercase tracking-[.18em] text-[#FF8A90]">{caseStudy.label}</p>
           <h1 className="mt-6 max-w-5xl text-4xl font-semibold leading-[1.02] tracking-[-.055em] sm:text-6xl">{caseStudy.title}</h1>
           <p className="mt-7 max-w-3xl text-lg leading-8 text-white/65">{caseStudy.summary}</p>
-          <div className={`mt-12 grid gap-px overflow-hidden rounded-2xl border border-white/15 bg-white/10 ${caseStudy.metrics.length === 2 ? "sm:grid-cols-2" : caseStudy.metrics.length === 3 ? "sm:grid-cols-3" : "sm:grid-cols-2 lg:grid-cols-4"}`}>{caseStudy.metrics.map((metric) => <div key={metric.label} className="bg-[#081B38] p-5"><p className="text-3xl font-semibold tracking-tight text-white">{metric.value}</p><p className="mt-2 text-sm leading-5 text-white/55">{metric.label}</p></div>)}</div>
+          <div className={`mt-12 grid gap-px overflow-hidden rounded-2xl border border-white/15 bg-white/10 ${caseStudy.metrics.length === 2 ? "sm:grid-cols-2" : caseStudy.metrics.length === 3 ? "sm:grid-cols-3" : "sm:grid-cols-2 lg:grid-cols-4"}`}>{caseStudy.metrics.map((metric, index) => <Reveal key={metric.label} delay={index * 90}><div className="bg-[#081B38] p-5"><p className="text-3xl font-semibold tracking-tight text-white"><StatCounter value={metric.value} /></p><p className="mt-2 text-sm leading-5 text-white/55">{metric.label}</p></div></Reveal>)}</div>
         </div>
       </section>
 

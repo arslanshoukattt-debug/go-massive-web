@@ -25,5 +25,5 @@ export function Reveal({ children, className = "", delay = 0 }: RevealProps) {
     return () => observer.disconnect();
   }, []);
 
-  return <div ref={ref} style={{ transitionDelay: `${delay}ms` }} className={`gm-reveal ${visible ? "gm-reveal--visible" : ""} ${className}`}>{children}</div>;
+  return <div ref={ref} style={{ animationDelay: `${delay}ms` }} className={`gm-reveal ${visible ? "gm-reveal--visible" : ""} ${className}`}>{children}</div>;
 }

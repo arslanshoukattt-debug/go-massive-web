@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, BarChart3, Check, Layers3, Search, Target, TrendingUp } from "lucide-react";
+import { Reveal } from "../../../components/Reveal";
 import { SiteFooter } from "../../../components/SiteFooter";
 import { SiteHeader } from "../../../components/SiteHeader";
 import { pageMetadata } from "../../../lib/seo";
@@ -61,7 +62,7 @@ export default function GoogleAdsPage() {
 
       <section id="what-we-manage" className="bg-white py-24 sm:py-32"><div className="mx-auto max-w-[1440px] px-6 lg:px-10">
         <div className="grid gap-10 lg:grid-cols-[.8fr_1.2fr] lg:items-end"><div><p className="text-xs font-bold uppercase tracking-[.18em] text-[#E91A24]">What we manage</p><h2 className="mt-5 text-4xl font-semibold tracking-[-.055em] sm:text-6xl">A Google Ads account built around real intent.</h2></div><p className="max-w-2xl text-lg leading-8 text-[#596475]">Paid search should do more than generate activity. Each campaign should have a defined role in helping the right customer find the right offer at the right moment.</p></div>
-        <div className="mt-16 grid gap-4 md:grid-cols-2 xl:grid-cols-4">{pillars.map(({ number, title, copy, icon: Icon }) => <article key={title} className="min-h-[340px] rounded-3xl border border-[#020D1F]/10 bg-[#F7F8FA] p-7 transition hover:-translate-y-1 hover:border-[#E91A24]/50 hover:bg-white hover:shadow-xl"><div className="flex items-start justify-between"><span className="text-sm font-bold tracking-[.16em] text-[#E91A24]">{number}</span><Icon size={24} /></div><h3 className="mt-14 text-2xl font-semibold tracking-tight">{title}</h3><p className="mt-4 leading-7 text-[#596475]">{copy}</p></article>)}</div>
+        <div className="mt-16 grid gap-4 md:grid-cols-2 xl:grid-cols-4">{pillars.map(({ number, title, copy, icon: Icon }, index) => <Reveal key={title} delay={index * 90}><article className="min-h-[340px] rounded-3xl border border-[#020D1F]/10 bg-[#F7F8FA] p-7 transition hover:-translate-y-1 hover:border-[#E91A24]/50 hover:bg-white hover:shadow-xl"><div className="flex items-start justify-between"><span className="text-sm font-bold tracking-[.16em] text-[#E91A24]">{number}</span><Icon size={24} /></div><h3 className="mt-14 text-2xl font-semibold tracking-tight">{title}</h3><p className="mt-4 leading-7 text-[#596475]">{copy}</p></article></Reveal>)}</div>
       </div></section>
 
       <section className="bg-[#0A1830] py-24 text-white sm:py-32"><div className="mx-auto grid max-w-[1440px] gap-12 px-6 lg:grid-cols-2 lg:items-center lg:px-10">
