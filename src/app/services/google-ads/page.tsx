@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { ViewTransition } from "react";
 import { ArrowRight, BarChart3, Check, Layers3, Search, Target, TrendingUp } from "lucide-react";
 import { Reveal } from "../../../components/Reveal";
 import { SiteFooter } from "../../../components/SiteFooter";
@@ -31,7 +32,7 @@ export default function GoogleAdsPage() {
   return (
     <main className="overflow-hidden bg-[#F7F8FA] text-[#020D1F]">
       <SiteHeader />
-
+      <ViewTransition name="page-content" share="auto" enter="auto" default="none">
       <section className="relative isolate bg-[#020D1F] py-20 text-white sm:py-28 lg:py-32">
         <div className="absolute inset-0 -z-10 opacity-35 [background-image:linear-gradient(rgba(255,255,255,.07)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.07)_1px,transparent_1px)] [background-size:56px_56px]" />
         <div className="absolute -right-32 top-0 -z-10 h-[640px] w-[640px] rounded-full border border-[#E91A24]/35" />
@@ -72,6 +73,7 @@ export default function GoogleAdsPage() {
 
       <section className="bg-[#E91A24] py-16 text-white sm:py-20"><div className="mx-auto flex max-w-[1440px] flex-col gap-8 px-6 lg:flex-row lg:items-end lg:justify-between lg:px-10"><div><p className="text-xs font-bold uppercase tracking-[.18em] text-white/65">Start with an audit</p><h2 className="mt-4 max-w-2xl text-4xl font-semibold tracking-[-.045em] sm:text-5xl">Find the Google Ads opportunities worth acting on.</h2></div><Link href="/growth-audit" className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-[#020D1F] px-6 py-4 font-semibold transition hover:bg-white hover:text-[#020D1F]">Book a Growth Audit <ArrowRight size={18} /></Link></div></section>
 
+      </ViewTransition>
       <SiteFooter />
     </main>
   );

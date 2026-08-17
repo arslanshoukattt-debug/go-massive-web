@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ViewTransition } from "react";
 import { Check, Mail } from "lucide-react";
 import { HubSpotGrowthAuditForm } from "../../components/HubSpotGrowthAuditForm";
 import { SiteFooter } from "../../components/SiteFooter";
@@ -22,7 +23,7 @@ export default function GrowthAuditPage() {
   return (
     <main className="overflow-hidden bg-[#F7F8FA] text-[#020D1F]">
       <SiteHeader />
-
+      <ViewTransition name="page-content" share="auto" enter="auto" default="none">
       <section className="py-20 sm:py-28"><div className="mx-auto grid max-w-[1440px] gap-14 px-6 lg:grid-cols-[.85fr_1.15fr] lg:items-start lg:px-10">
         <div>
           <p className="text-xs font-bold uppercase tracking-[.18em] text-[#E91A24]">Growth Audit</p>
@@ -38,6 +39,7 @@ export default function GrowthAuditPage() {
         <HubSpotGrowthAuditForm />
       </div></section>
 
+      </ViewTransition>
       <SiteFooter />
     </main>
   );

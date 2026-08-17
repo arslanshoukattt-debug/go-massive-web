@@ -14,7 +14,7 @@ const navItems = [
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
   return (
-    <header className="sticky top-0 z-50 border-b border-white/20 bg-[#07090A]/95 text-white backdrop-blur">
+    <header className="gm-vt-header sticky top-0 z-50 border-b border-white/20 bg-[#07090A]/95 text-white backdrop-blur">
       <div className="mx-auto flex h-[76px] max-w-[1600px] items-center justify-between px-5 sm:px-8 lg:px-12">
         <Link href="/" className="inline-flex shrink-0" aria-label="Go Massive home">
           <Image src="/go-massive-wordmark-transparent.png" alt="Go Massive" width={220} height={34} priority className="h-8 w-auto brightness-0 invert" />

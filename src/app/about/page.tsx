@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { ViewTransition } from "react";
 import { ArrowRight, Globe2, Target, Users } from "lucide-react";
 import { Reveal } from "../../components/Reveal";
 import { SiteFooter } from "../../components/SiteFooter";
@@ -31,7 +32,7 @@ export default function AboutPage() {
   return (
     <main className="overflow-hidden bg-[#F7F8FA] text-[#020D1F]">
       <SiteHeader />
-
+      <ViewTransition name="page-content" share="auto" enter="auto" default="none">
       <section className="relative isolate overflow-hidden bg-[#020D1F] py-20 text-white sm:py-28 lg:py-32">
         <div className="absolute inset-0 -z-10 opacity-35 [background-image:linear-gradient(rgba(255,255,255,.07)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.07)_1px,transparent_1px)] [background-size:56px_56px]" />
         <div className="absolute -right-32 top-0 -z-10 h-[640px] w-[640px] rounded-full border border-[#E91A24]/35" />
@@ -92,6 +93,7 @@ export default function AboutPage() {
         <Link href="/growth-audit" className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-[#020D1F] px-6 py-4 font-semibold text-white transition hover:bg-white hover:text-[#020D1F]">Request a Growth Audit <ArrowRight size={18} /></Link>
       </div></section>
 
+      </ViewTransition>
       <SiteFooter />
     </main>
   );

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { ViewTransition } from "react";
 import { ArrowRight, BarChart3, Check, CircleDollarSign, Search, ShieldCheck, Target, Workflow } from "lucide-react";
 import { Reveal } from "../../../components/Reveal";
 import { SiteFooter } from "../../../components/SiteFooter";
@@ -63,7 +64,7 @@ export default function AmazonPpcPage() {
   return (
     <main className="overflow-hidden bg-[#F7F8FA] text-[#020D1F]">
       <SiteHeader />
-
+      <ViewTransition name="page-content" share="auto" enter="auto" default="none">
       <section className="relative isolate bg-[#020D1F] py-20 text-white sm:py-28 lg:py-32">
         <div className="absolute inset-0 -z-10 opacity-35 [background-image:linear-gradient(rgba(255,255,255,.07)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.07)_1px,transparent_1px)] [background-size:56px_56px]" />
         <div className="absolute -right-32 top-0 -z-10 h-[640px] w-[640px] rounded-full border border-[#E91A24]/35" />
@@ -107,6 +108,7 @@ export default function AmazonPpcPage() {
       <section className="bg-white py-24 sm:py-32"><div className="mx-auto grid max-w-[1440px] gap-12 px-6 lg:grid-cols-[1fr_.9fr] lg:items-center lg:px-10"><div><p className="text-xs font-bold uppercase tracking-[.18em] text-[#E91A24]">Start with the real constraint</p><h2 className="mt-5 max-w-3xl text-4xl font-semibold tracking-[-.055em] sm:text-6xl">An audit should clarify the next decision before it adds more activity.</h2><p className="mt-7 max-w-xl text-lg leading-8 text-[#596475]">We review the account you have, establish the opportunity and the constraints, then identify the scope and priorities that could make the clearest commercial difference.</p><Link href="/growth-audit" className="mt-10 inline-flex items-center gap-2 rounded-full bg-[#E91A24] px-6 py-4 font-semibold text-white transition hover:bg-[#C9141D]">Request an Amazon PPC Audit <ArrowRight size={18}/></Link></div><div className="rounded-3xl border border-[#020D1F]/10 bg-[#F7F8FA] p-7 sm:p-9"><p className="text-xs font-bold uppercase tracking-[.16em] text-[#596475]">An audit looks at</p><ul className="mt-8 space-y-5">{auditChecks.map(item => <li key={item} className="flex gap-3 leading-7 text-[#394457]"><Check className="mt-1 shrink-0 text-[#E91A24]" size={18} strokeWidth={3}/>{item}</li>)}</ul></div></div></section>
 
       <section className="bg-[#E91A24] py-20 text-white"><div className="mx-auto flex max-w-[1440px] flex-col gap-8 px-6 lg:flex-row lg:items-end lg:justify-between lg:px-10"><div><p className="text-xs font-bold uppercase tracking-[.18em] text-white/65">Start with clarity</p><h2 className="mt-5 max-w-3xl text-4xl font-semibold tracking-[-.055em] sm:text-6xl">Find the Amazon PPC opportunity worth acting on first.</h2></div><Link href="/growth-audit" className="inline-flex shrink-0 items-center gap-2 rounded-full bg-[#020D1F] px-6 py-4 font-semibold transition hover:bg-white hover:text-[#020D1F]">Get a Growth Audit <ArrowRight size={18}/></Link></div></section>
+      </ViewTransition>
       <SiteFooter />
     </main>
   );

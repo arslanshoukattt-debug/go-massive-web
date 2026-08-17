@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { ViewTransition } from "react";
 import { ArrowRight, Check, Layers3, Megaphone, Search } from "lucide-react";
 import { Reveal } from "../../components/Reveal";
 import { SiteFooter } from "../../components/SiteFooter";
@@ -33,6 +34,7 @@ const commerceServices = [
 export default function ServicesPage() {
   return <main className="bg-[#F7F8FA] text-[#020D1F]">
     <SiteHeader />
+    <ViewTransition name="page-content" share="auto" enter="auto" default="none">
     <section className="bg-[#020D1F] py-20 text-white sm:py-28"><div className="mx-auto max-w-[1440px] px-6 lg:px-10">
       <p className="text-xs font-bold uppercase tracking-[.18em] text-[#FF8A90]">Marketplace growth, connected</p>
       <div className="mt-6 grid gap-10 lg:grid-cols-[1.1fr_.9fr] lg:items-end"><h1 className="max-w-5xl text-5xl font-semibold leading-[.97] tracking-[-.06em] sm:text-7xl">Every commercial lever. One accountable growth system.</h1><p className="max-w-xl text-lg leading-8 text-white/65">We do not treat marketplace management, acquisition, conversion, and expansion as separate jobs. They are one system—and each decision should strengthen the next.</p></div>
@@ -49,6 +51,7 @@ export default function ServicesPage() {
 
     <section className="bg-white py-24 sm:py-32"><div className="mx-auto max-w-[1440px] px-6 lg:px-10"><div className="grid gap-12 lg:grid-cols-2 lg:items-center"><div className="rounded-3xl bg-[#020D1F] p-8 text-white sm:p-11"><Layers3 className="text-[#E91A24]" size={28}/><p className="mt-16 text-xs font-bold uppercase tracking-[.18em] text-[#FF8A90]">How we work</p><h2 className="mt-5 text-4xl font-semibold tracking-[-.055em]">The work connects. Your reporting should too.</h2><p className="mt-6 leading-8 text-white/60">One commercial view is better than a collection of channel updates. We focus on product priorities, constraints, decisions, and what deserves attention next.</p></div><div><p className="text-xs font-bold uppercase tracking-[.18em] text-[#E91A24]">Choose the right starting point</p><ul className="mt-8 space-y-5">{["Start with the revenue channel closest to your immediate constraint.","Bring in adjacent services when they clearly improve the commercial outcome.","Keep a single operating rhythm across delivery, decisions, and reporting."].map(item=><li key={item} className="flex gap-4 text-lg leading-8 text-[#596475]"><Check className="mt-1.5 shrink-0 text-[#E91A24]" size={19} strokeWidth={3}/>{item}</li>)}</ul><Link href="/growth-audit" className="mt-10 inline-flex items-center gap-2 rounded-full bg-[#E91A24] px-6 py-4 font-semibold text-white transition hover:bg-[#C9141D]">Get a Growth Audit <ArrowRight size={18}/></Link></div></div></div></section>
 
+    </ViewTransition>
     <SiteFooter />
   </main>;
 }

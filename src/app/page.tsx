@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ViewTransition } from "react";
 import { ArrowDownRight, ArrowRight, Check } from "lucide-react";
 import { CommerceSystemMap } from "../components/CommerceSystemMap";
 import { Reveal } from "../components/Reveal";
@@ -18,7 +19,7 @@ export default function Home() {
   return (
     <main className="overflow-hidden bg-[#f4f3ef] text-[#020d1f]">
       <SiteHeader />
-
+      <ViewTransition name="page-content" share="auto" enter="auto" default="none">
       <section className="gm-hero relative bg-[#020d1f] text-white">
         <div className="gm-hero-grid" />
         <div className="relative mx-auto grid min-h-[690px] max-w-[1600px] lg:grid-cols-[1.03fr_.97fr]">
@@ -86,6 +87,7 @@ export default function Home() {
       </section>
 
       <section className="gm-closing bg-[#e91a24] px-5 py-20 text-white sm:px-8 lg:px-12 lg:py-28"><Reveal className="mx-auto grid max-w-[1600px] gap-12 lg:grid-cols-[1.3fr_.7fr] lg:items-end"><div><p className="gm-eyebrow text-white/70">Start with a growth audit</p><h2 className="mt-7 max-w-5xl text-[clamp(3.8rem,7vw,8rem)] font-semibold uppercase leading-[.78] tracking-[-.105em]">Find the move worth making next.</h2></div><div><p className="text-xl leading-8 text-white/85">Tell us where the business is constrained. We’ll establish the clearest opportunity—and whether Go Massive is the right team to act on it.</p><Link href="/growth-audit" className="gm-button gm-button--dark mt-9">Request a growth audit <ArrowRight size={16} /></Link></div></Reveal></section>
+      </ViewTransition>
       <SiteFooter />
     </main>
   );

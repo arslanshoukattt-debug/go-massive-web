@@ -7,7 +7,7 @@ const columns = [
 ];
 
 export function SiteFooter() {
-  return <footer className="bg-[#07090A] text-white">
+  return <footer className="gm-vt-footer bg-[#07090A] text-white">
     <div className="mx-auto max-w-[1600px] px-5 py-16 sm:px-8 lg:px-12 lg:py-20">
       <div className="grid gap-16 border-b border-white/20 pb-14 lg:grid-cols-[1.4fr_.6fr_1fr] lg:gap-10">
         <div><Link href="/" aria-label="Go Massive home" className="inline-flex"><Image src="/go-massive-wordmark-transparent.png" alt="Go Massive" width={260} height={40} className="h-9 w-auto brightness-0 invert" /></Link><p className="mt-7 max-w-md text-xl leading-8 tracking-[-.03em] text-white/65">The commercial operating system for brands that expect more from every marketplace.</p></div>
