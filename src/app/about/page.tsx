@@ -1,32 +1,20 @@
 import type { Metadata } from "next";
-import Image from "next/image";
-import { ArrowRight, Check, Globe2, Target, Users } from "lucide-react";
+import Link from "next/link";
+import { ArrowRight, Globe2, Target, Users } from "lucide-react";
+import { SiteFooter } from "../../components/SiteFooter";
+import { SiteHeader } from "../../components/SiteHeader";
+import { agencyStats } from "../../lib/case-studies";
 
 export const metadata: Metadata = {
-  title: "About Go Massive | eCommerce Growth Partner",
+  title: "About Go Massive | The Commercial Operating Layer for eCommerce Brands",
   description:
-    "Go Massive is a paid-media and eCommerce growth partner for ambitious brands and manufacturers.",
+    "Go Massive is a commercial operating partner for ambitious eCommerce brands and manufacturers, connecting marketplace operations, demand capture, conversion and expansion.",
 };
 
 const principles = [
-  {
-    title: "Commercial context first",
-    description:
-      "We begin with your goals, margins, market position, and constraints—not a standard agency checklist.",
-    icon: Target,
-  },
-  {
-    title: "Hands-on accountability",
-    description:
-      "Strategy, execution, and reporting stay connected, with a clear owner behind every meaningful decision.",
-    icon: Users,
-  },
-  {
-    title: "Built for modern commerce",
-    description:
-      "We understand the relationship between marketplaces, paid media, and the wider systems required for sustainable growth.",
-    icon: Globe2,
-  },
+  { title: "Commercial context first", description: "We begin with your goals, margins, market position, and constraints—not a standard agency checklist.", icon: Target },
+  { title: "Hands-on accountability", description: "Strategy, execution, and reporting stay connected, with a clear owner behind every meaningful decision.", icon: Users },
+  { title: "Built for modern commerce", description: "We understand the relationship between marketplaces, paid media, and the wider systems required for sustainable growth.", icon: Globe2 },
 ];
 
 const operatingPrinciples = [
@@ -37,138 +25,68 @@ const operatingPrinciples = [
 
 export default function AboutPage() {
   return (
-    <main className="min-h-screen bg-white text-[#020D1F]">
-      <header className="border-b border-[#020D1F]/10 bg-white">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-6 lg:px-8">
-          <a href="/" aria-label="Go Massive home">
-            <Image
-              src="/go-massive-wordmark-transparent.png"
-              alt="Go Massive"
-              width={210}
-              height={32}
-              priority
-              className="h-8 w-auto"
-            />
-          </a>
-          <nav className="hidden items-center gap-8 text-sm font-medium text-[#354052] md:flex" aria-label="Main navigation">
-            <a className="transition hover:text-[#E91A24]" href="/services">Services</a>
-            <a className="transition hover:text-[#E91A24]" href="/case-studies">Case studies</a>
-            <a className="text-[#E91A24]" href="/about">About</a>
-          </nav>
-          <a href="/growth-audit" className="rounded-full bg-[#E91A24] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#C9141D]">
-            Book a Growth Audit
-          </a>
-        </div>
-      </header>
+    <main className="overflow-hidden bg-[#F7F8FA] text-[#020D1F]">
+      <SiteHeader />
 
-      <section className="relative isolate overflow-hidden border-b border-[#020D1F]/10 bg-white py-20 sm:py-24 lg:py-28">
-        <div className="absolute inset-y-0 right-0 -z-10 hidden w-[34%] bg-[#F6F7F9] lg:block" />
-        <div className="mx-auto grid max-w-7xl gap-12 px-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-end lg:px-8">
-          <div>
-            <p className="inline-flex border-l-2 border-[#E91A24] pl-3 text-xs font-bold uppercase tracking-[0.18em] text-[#5D6675]">
-              The Go Massive difference
-            </p>
-            <h1 className="mt-6 max-w-4xl text-5xl font-semibold tracking-[-0.055em] sm:text-6xl">
-              A growth partner built for the work behind the numbers.
-            </h1>
-          </div>
-          <p className="max-w-xl text-lg leading-8 text-[#505A6A]">
-            Go Massive helps ambitious brands and manufacturers make better paid-media decisions across the marketplaces and channels that drive modern commerce.
-          </p>
-        </div>
-      </section>
-
-      <section className="py-20 sm:py-24">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
+      <section className="relative isolate overflow-hidden bg-[#020D1F] py-20 text-white sm:py-28 lg:py-32">
+        <div className="absolute inset-0 -z-10 opacity-35 [background-image:linear-gradient(rgba(255,255,255,.07)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.07)_1px,transparent_1px)] [background-size:56px_56px]" />
+        <div className="absolute -right-32 top-0 -z-10 h-[640px] w-[640px] rounded-full border border-[#E91A24]/35" />
+        <div className="absolute -right-8 top-28 -z-10 h-[410px] w-[410px] rounded-full border border-white/15" />
+        <div className="mx-auto max-w-[1440px] px-6 lg:px-10">
+          <div className="grid gap-12 lg:grid-cols-[1.1fr_.9fr] lg:items-end">
             <div>
-              <p className="inline-flex border-l-2 border-[#E91A24] pl-3 text-xs font-bold uppercase tracking-[0.18em] text-[#5D6675]">
-                Our point of view
-              </p>
-              <h2 className="mt-5 text-4xl font-semibold tracking-[-0.045em] sm:text-5xl">
-                Growth gets easier when the work is connected.
-              </h2>
+              <p className="text-xs font-bold uppercase tracking-[.18em] text-[#FF8A90]">The Go Massive difference</p>
+              <h1 className="mt-6 max-w-4xl text-5xl font-semibold leading-[.97] tracking-[-.06em] sm:text-6xl lg:text-7xl">A growth partner built for the work behind the numbers.</h1>
             </div>
-            <div className="max-w-2xl text-lg leading-8 text-[#505A6A]">
-              <p>
-                Brands do not need another supplier creating activity in isolation. They need a team that can connect channel strategy to commercial priorities, execute with discipline, and explain what should happen next.
-              </p>
-              <p className="mt-6">
-                That is the role Go Massive is built to play: making the systems behind growth more focused, measurable, and useful to the people accountable for the business.
-              </p>
-            </div>
+            <p className="max-w-xl text-lg leading-8 text-white/65">Go Massive helps ambitious brands and manufacturers make better commercial decisions across the marketplaces and channels that drive modern commerce.</p>
           </div>
-
-          <div className="mt-16 grid gap-px overflow-hidden rounded-2xl border border-[#020D1F]/10 bg-[#020D1F]/10 md:grid-cols-3">
-            {principles.map((principle) => {
-              const Icon = principle.icon;
-              return (
-                <article className="bg-white p-7 sm:p-8" key={principle.title}>
-                  <span className="grid h-11 w-11 place-items-center rounded-xl bg-[#FFF1F2] text-[#E91A24]">
-                    <Icon size={21} />
-                  </span>
-                  <h3 className="mt-6 text-xl font-semibold tracking-tight">{principle.title}</h3>
-                  <p className="mt-3 leading-7 text-[#5D6675]">{principle.description}</p>
-                </article>
-              );
-            })}
+          <div className="mt-16 grid grid-cols-2 gap-px overflow-hidden rounded-3xl border border-white/10 bg-white/10 sm:grid-cols-4">
+            {agencyStats.map((stat) => <div key={stat.label} className="bg-[#081B38] p-6"><p className="text-3xl font-semibold tracking-[-.04em] sm:text-4xl">{stat.value}</p><p className="mt-2 text-sm leading-5 text-white/55">{stat.label}</p></div>)}
           </div>
         </div>
       </section>
 
-      <section className="bg-[#020D1F] py-20 text-white sm:py-24">
-        <div className="mx-auto grid max-w-7xl gap-12 px-6 lg:grid-cols-2 lg:items-center lg:px-8">
-          <div>
-            <p className="inline-flex border-l-2 border-[#E91A24] pl-3 text-xs font-bold uppercase tracking-[0.18em] text-white/55">
-              How we work
-            </p>
-            <h2 className="mt-5 max-w-xl text-4xl font-semibold tracking-[-0.045em] sm:text-5xl">
-              Clear priorities. Direct communication. Better decisions.
-            </h2>
-          </div>
-          <ul className="space-y-5">
-            {operatingPrinciples.map((item) => (
-              <li className="flex gap-4 text-lg leading-8 text-white/75" key={item}>
-                <Check className="mt-1 shrink-0 text-[#E91A24]" size={20} strokeWidth={3} />
-                {item}
-              </li>
-            ))}
-          </ul>
+      <section className="bg-white py-24 sm:py-32"><div className="mx-auto max-w-[1440px] px-6 lg:px-10">
+        <div className="grid gap-10 lg:grid-cols-[.75fr_1.25fr] lg:items-end">
+          <div><p className="text-xs font-bold uppercase tracking-[.18em] text-[#E91A24]">Our point of view</p><h2 className="mt-5 text-4xl font-semibold tracking-[-.055em] sm:text-6xl">Growth gets easier when the work is connected.</h2></div>
+          <div className="max-w-2xl text-lg leading-8 text-[#596475]"><p>Brands do not need another supplier creating activity in isolation. They need a team that can connect channel strategy to commercial priorities, execute with discipline, and explain what should happen next.</p><p className="mt-6">That is the role Go Massive is built to play: making the systems behind growth more focused, measurable, and useful to the people accountable for the business.</p></div>
         </div>
-      </section>
+        <div className="mt-16 grid gap-px overflow-hidden rounded-3xl border border-[#020D1F]/10 bg-[#020D1F]/10 md:grid-cols-3">
+          {principles.map((principle, index) => {
+            const Icon = principle.icon;
+            return (
+              <article key={principle.title} className={index === 0 ? "bg-[#020D1F] p-7 text-white sm:p-8" : "bg-white p-7 sm:p-8"}>
+                <span className={index === 0 ? "text-sm font-bold tracking-[.16em] text-[#FF8A90]" : "text-sm font-bold tracking-[.16em] text-[#E91A24]"}>0{index + 1}</span>
+                <Icon className={index === 0 ? "mt-8 text-[#FF8A90]" : "mt-8 text-[#E91A24]"} size={24} />
+                <h3 className="mt-5 text-2xl font-semibold tracking-tight">{principle.title}</h3>
+                <p className={index === 0 ? "mt-4 leading-7 text-white/60" : "mt-4 leading-7 text-[#596475]"}>{principle.description}</p>
+              </article>
+            );
+          })}
+        </div>
+      </div></section>
 
-      <section className="border-b border-[#020D1F]/10 bg-[#F6F7F9] py-16 sm:py-20">
-        <div className="mx-auto grid max-w-7xl gap-8 px-6 sm:grid-cols-2 lg:px-8">
-          <div>
-            <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#E91A24]">Where we work</p>
-            <h2 className="mt-4 text-3xl font-semibold tracking-[-0.04em] sm:text-4xl">Built for international commerce.</h2>
-          </div>
+      <section className="bg-[#0A1830] py-24 text-white sm:py-32"><div className="mx-auto grid max-w-[1440px] gap-14 px-6 lg:grid-cols-[.85fr_1.15fr] lg:items-start lg:px-10">
+        <div><p className="text-xs font-bold uppercase tracking-[.18em] text-[#FF8A90]">How we work</p><h2 className="mt-5 max-w-xl text-4xl font-semibold tracking-[-.055em] sm:text-6xl">Clear priorities. Direct communication. Better decisions.</h2></div>
+        <div className="grid gap-3">{operatingPrinciples.map((item, index) => <div key={item} className="flex gap-4 rounded-2xl border border-white/10 bg-white/[.045] p-5"><span className="text-sm font-bold text-[#FF8A90]">{String(index + 1).padStart(2, "0")}</span><p className="font-semibold leading-6 text-white/85">{item}</p></div>)}</div>
+      </div></section>
+
+      <section className="bg-[#F7F8FA] py-20 sm:py-24"><div className="mx-auto max-w-[1440px] px-6 lg:px-10">
+        <div className="grid gap-8 sm:grid-cols-2">
+          <div><p className="text-xs font-bold uppercase tracking-[.18em] text-[#E91A24]">Where we work</p><h2 className="mt-4 text-3xl font-semibold tracking-[-.04em] sm:text-4xl">Built for international commerce.</h2></div>
           <div className="grid gap-4 sm:grid-cols-2">
-            <div className="rounded-xl border border-[#020D1F]/10 bg-white p-5">
-              <p className="text-sm font-semibold">Austin, Texas</p>
-              <p className="mt-1 text-sm text-[#5D6675]">United States</p>
-            </div>
-            <div className="rounded-xl border border-[#020D1F]/10 bg-white p-5">
-              <p className="text-sm font-semibold">Lahore, Punjab</p>
-              <p className="mt-1 text-sm text-[#5D6675]">Pakistan</p>
-            </div>
+            <div className="rounded-2xl border border-[#020D1F]/10 bg-white p-5"><p className="text-sm font-semibold">Austin, Texas</p><p className="mt-1 text-sm text-[#596475]">United States</p></div>
+            <div className="rounded-2xl border border-[#020D1F]/10 bg-white p-5"><p className="text-sm font-semibold">Lahore, Punjab</p><p className="mt-1 text-sm text-[#596475]">Pakistan</p></div>
           </div>
         </div>
-      </section>
+      </div></section>
 
-      <section className="bg-[#E91A24] py-16 text-white sm:py-20">
-        <div className="mx-auto flex max-w-7xl flex-col gap-8 px-6 lg:flex-row lg:items-end lg:justify-between lg:px-8">
-          <div>
-            <p className="text-xs font-bold uppercase tracking-[0.18em] text-white/65">A clearer next step</p>
-            <h2 className="mt-4 max-w-2xl text-4xl font-semibold tracking-[-0.045em] sm:text-5xl">
-              Start with the opportunity in front of you.
-            </h2>
-          </div>
-          <a href="/growth-audit" className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-white px-6 py-4 font-semibold text-[#020D1F] transition hover:bg-[#020D1F] hover:text-white">
-            Book a Growth Audit <ArrowRight size={18} />
-          </a>
-        </div>
-      </section>
+      <section className="bg-[#E91A24] py-16 text-white sm:py-20"><div className="mx-auto flex max-w-[1440px] flex-col gap-8 px-6 lg:flex-row lg:items-end lg:justify-between lg:px-10">
+        <div><p className="text-xs font-bold uppercase tracking-[.18em] text-white/65">A clearer next step</p><h2 className="mt-4 max-w-2xl text-4xl font-semibold tracking-[-.045em] sm:text-5xl">Start with the opportunity in front of you.</h2></div>
+        <Link href="/growth-audit" className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-[#020D1F] px-6 py-4 font-semibold text-white transition hover:bg-white hover:text-[#020D1F]">Request a Growth Audit <ArrowRight size={18} /></Link>
+      </div></section>
+
+      <SiteFooter />
     </main>
   );
 }
