@@ -3,11 +3,13 @@ import { ArrowRight } from "lucide-react";
 import { SiteFooter } from "../../components/SiteFooter";
 import { SiteHeader } from "../../components/SiteHeader";
 import { agencyStats, caseStudies } from "../../lib/case-studies";
+import { pageMetadata } from "../../lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "eCommerce Growth Case Studies | Go Massive",
   description: "Privacy-safe eCommerce growth case studies across Amazon and European marketplaces.",
-};
+  path: "/case-studies",
+});
 
 export default function CaseStudiesPage() {
   return (

@@ -4,12 +4,14 @@ import { ArrowRight, Globe2, Target, Users } from "lucide-react";
 import { SiteFooter } from "../../components/SiteFooter";
 import { SiteHeader } from "../../components/SiteHeader";
 import { agencyStats } from "../../lib/case-studies";
+import { pageMetadata } from "../../lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "About Go Massive | The Commercial Operating Layer for eCommerce Brands",
   description:
     "Go Massive is a commercial operating partner for ambitious eCommerce brands and manufacturers, connecting marketplace operations, demand capture, conversion and expansion.",
-};
+  path: "/about",
+});
 
 const principles = [
   { title: "Commercial context first", description: "We begin with your goals, margins, market position, and constraints—not a standard agency checklist.", icon: Target },

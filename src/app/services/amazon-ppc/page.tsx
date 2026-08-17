@@ -3,12 +3,14 @@ import Link from "next/link";
 import { ArrowRight, BarChart3, Check, CircleDollarSign, Search, ShieldCheck, Target, Workflow } from "lucide-react";
 import { SiteFooter } from "../../../components/SiteFooter";
 import { SiteHeader } from "../../../components/SiteHeader";
+import { pageMetadata } from "../../../lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Amazon PPC Management | Go Massive",
   description:
     "Amazon PPC management that connects campaign architecture, search-term intelligence, catalogue priorities, and commercial reporting.",
-};
+  path: "/services/amazon-ppc",
+});
 
 const pillars = [
   {

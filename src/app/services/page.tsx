@@ -3,11 +3,13 @@ import Link from "next/link";
 import { ArrowRight, Check, Layers3, Megaphone, Search } from "lucide-react";
 import { SiteFooter } from "../../components/SiteFooter";
 import { SiteHeader } from "../../components/SiteHeader";
+import { pageMetadata } from "../../lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Marketplace Growth Services | Go Massive",
   description: "Amazon growth, performance marketing, and commerce operations for brands that need an integrated eCommerce growth system.",
-};
+  path: "/services",
+});
 
 const amazonServices = [
   ["Amazon Account Management", "Operational ownership across catalogue, account health, commercial priorities, and reporting."],

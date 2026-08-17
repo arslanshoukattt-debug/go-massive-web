@@ -5,6 +5,7 @@ import { ArrowLeft, ArrowRight, Check } from "lucide-react";
 import { SiteFooter } from "../../../components/SiteFooter";
 import { SiteHeader } from "../../../components/SiteHeader";
 import { caseStudies, getCaseStudy } from "../../../lib/case-studies";
+import { pageMetadata } from "../../../lib/seo";
 
 type PageProps = { params: Promise<{ slug: string }> };
 
@@ -16,7 +17,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { slug } = await params;
   const caseStudy = getCaseStudy(slug);
   if (!caseStudy) return {};
-  return { title: `${caseStudy.label} Case Study | Go Massive`, description: caseStudy.summary };
+  return pageMetadata({
+    title: `${caseStudy.label} Case Study | Go Massive`,
+    description: caseStudy.summary,
+    path: `/case-studies/${slug}`,
+  });
 }
 
 export default async function CaseStudyDetailPage({ params }: PageProps) {

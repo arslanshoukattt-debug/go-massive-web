@@ -3,12 +3,14 @@ import Link from "next/link";
 import { ArrowRight, BarChart3, Check, Layers3, Search, Target, TrendingUp } from "lucide-react";
 import { SiteFooter } from "../../../components/SiteFooter";
 import { SiteHeader } from "../../../components/SiteHeader";
+import { pageMetadata } from "../../../lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Google Ads Management for eCommerce Brands | Go Massive",
   description:
     "Google Ads management for brands and manufacturers that want to capture high-intent demand with clearer strategy and disciplined execution.",
-};
+  path: "/services/google-ads",
+});
 
 const pillars = [
   { number: "01", title: "Demand capture strategy", copy: "Campaign priorities shaped around how customers search, compare, and decide between products and brands.", icon: Target },

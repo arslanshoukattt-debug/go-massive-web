@@ -3,12 +3,14 @@ import Link from "next/link";
 import { ArrowRight, BarChart3, Check, Layers3, Megaphone, Sparkles, Target, Users } from "lucide-react";
 import { SiteFooter } from "../../../components/SiteFooter";
 import { SiteHeader } from "../../../components/SiteHeader";
+import { pageMetadata } from "../../../lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Meta Ads Management for eCommerce Brands | Go Massive",
   description:
     "Meta Ads management for brands that want to create demand, improve acquisition efficiency, and connect creative with commercial growth.",
-};
+  path: "/services/meta-ads",
+});
 
 const pillars = [
   { number: "01", title: "Creative testing strategy", copy: "A more deliberate approach to the messages, formats, and angles that earn attention from the right audience.", icon: Megaphone },

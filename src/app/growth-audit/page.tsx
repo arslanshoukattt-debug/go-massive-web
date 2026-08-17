@@ -3,12 +3,14 @@ import { Check, Mail } from "lucide-react";
 import { HubSpotGrowthAuditForm } from "../../components/HubSpotGrowthAuditForm";
 import { SiteFooter } from "../../components/SiteFooter";
 import { SiteHeader } from "../../components/SiteHeader";
+import { pageMetadata } from "../../lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Book a Growth Audit | Go Massive",
   description:
     "Start a conversation with Go Massive about your Amazon, Google Ads, Meta Ads, or wider eCommerce growth opportunity.",
-};
+  path: "/growth-audit",
+});
 
 const auditIncludes = [
   "A focused view of the highest-value opportunities",
