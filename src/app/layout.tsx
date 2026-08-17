@@ -12,10 +12,41 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const SITE_URL = "https://go-massive.com";
+const SITE_TITLE = "Go Massive | The Commercial Operating Layer for eCommerce Brands";
+const SITE_DESCRIPTION =
+  "Go Massive connects marketplace operations, demand capture, conversion, and expansion into one accountable commercial system for ambitious eCommerce brands.";
+
 export const metadata: Metadata = {
-  title: "Go Massive | Paid Media for Ambitious Brands",
-  description:
-    "Amazon PPC, Google Ads, and Meta Ads management for brands ready to grow profitably.",
+  metadataBase: new URL(SITE_URL),
+  title: SITE_TITLE,
+  description: SITE_DESCRIPTION,
+  openGraph: {
+    type: "website",
+    url: SITE_URL,
+    siteName: "Go Massive",
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+  },
+};
+
+const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Go Massive",
+  url: SITE_URL,
+  logo: `${SITE_URL}/go-massive-logo.png`,
+  description: SITE_DESCRIPTION,
+  sameAs: ["https://www.linkedin.com/company/go-massive/"],
+  address: [
+    { "@type": "PostalAddress", addressLocality: "Austin", addressRegion: "TX", addressCountry: "US" },
+    { "@type": "PostalAddress", addressLocality: "Lahore", addressRegion: "Punjab", addressCountry: "PK" },
+  ],
 };
 
 export default function RootLayout({
@@ -28,7 +59,13 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+        />
+        {children}
+      </body>
     </html>
   );
 }
