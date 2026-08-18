@@ -1,38 +1,61 @@
+const CENTER = { x: 380, y: 240 };
+const RADIUS = 190;
+
 const nodes = [
-  { label: "DEMAND", x: 146, y: 118, tone: "red" },
-  { label: "MEDIA", x: 420, y: 72, tone: "light" },
-  { label: "MARKETPLACE", x: 616, y: 222, tone: "light" },
-  { label: "CONVERSION", x: 390, y: 370, tone: "red" },
-  { label: "REPEAT", x: 132, y: 328, tone: "light" },
+  { label: "MARKETPLACE", angle: -90 },
+  { label: "DEMAND", angle: -30 },
+  { label: "CONVERSION", angle: 30 },
+  { label: "RETENTION", angle: 90 },
+  { label: "CREATIVE", angle: 150 },
+  { label: "STOCK", angle: 210 },
 ];
+
+function pointOn(angleDeg: number) {
+  const rad = (angleDeg * Math.PI) / 180;
+  return { x: CENTER.x + RADIUS * Math.cos(rad), y: CENTER.y + RADIUS * Math.sin(rad) };
+}
+
+function labelAnchor(angleDeg: number): "start" | "middle" | "end" {
+  const cos = Math.cos((angleDeg * Math.PI) / 180);
+  if (cos > 0.35) return "start";
+  if (cos < -0.35) return "end";
+  return "middle";
+}
 
 export function CommerceSystemMap() {
   return (
-    <div className="gm-system-map" aria-label="A connected commerce system spanning demand, media, marketplace, conversion and repeat purchase.">
+    <div className="gm-system-map" aria-label="Marketplace, demand, conversion, retention, creative and stock operating separately, connecting through the Go Massive operating layer at the centre.">
       <div className="gm-map-label"><span className="gm-pulse" /> LIVE COMMERCIAL SYSTEM</div>
-      <svg viewBox="0 0 760 460" role="img" aria-hidden="true">
-        <defs>
-          <linearGradient id="gm-line" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stopColor="#ff4a52" stopOpacity=".85" />
-            <stop offset="100%" stopColor="#ffffff" stopOpacity=".15" />
-          </linearGradient>
-          <filter id="gm-glow"><feGaussianBlur stdDeviation="5" result="blur" /><feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge></filter>
-        </defs>
-        <g className="gm-map-lines">
-          <path d="M146 118 L420 72 L616 222 L390 370 L132 328 Z" />
-          <path d="M146 118 L390 370 M420 72 L132 328 M616 222 L132 328" />
+      <svg viewBox="0 0 760 480" role="img" aria-hidden="true">
+        {nodes.map((node, index) => {
+          const p = pointOn(node.angle);
+          const anchor = labelAnchor(node.angle);
+          const labelOffset = anchor === "start" ? 26 : anchor === "end" ? -26 : 0;
+          const labelY = node.angle === 90 ? 32 : node.angle === -90 ? -22 : 5;
+          const d = `M ${p.x} ${p.y} L ${CENTER.x} ${CENTER.y}`;
+          return (
+            <g key={node.label}>
+              <path className="gm-map-spoke" style={{ animationDelay: `${index * 150}ms` }} d={d} />
+              <circle
+                className="gm-map-pulse"
+                r="4"
+                style={{ offsetPath: `path("${d}")`, animationDelay: `${1.1 + index * 0.55}s` }}
+              />
+              <g className="gm-map-node" style={{ animationDelay: `${index * 150}ms` }} transform={`translate(${p.x} ${p.y})`}>
+                <circle className="gm-map-node-ring" r="18" />
+                <circle className="gm-map-node-core" r="4.5" />
+                <text textAnchor={anchor} x={labelOffset} y={labelY}>{node.label}</text>
+              </g>
+            </g>
+          );
+        })}
+        <g className="gm-map-center" transform={`translate(${CENTER.x} ${CENTER.y})`}>
+          <rect x="-70" y="-34" width="140" height="68" />
+          <text textAnchor="middle" y="-3">GO MASSIVE</text>
+          <text className="gm-map-center-sub" textAnchor="middle" y="16">OPERATING LAYER</text>
         </g>
-        <g className="gm-map-sweep"><circle cx="380" cy="225" r="154" /><circle cx="380" cy="225" r="96" /></g>
-        <g className="gm-map-orbit"><circle cx="380" cy="225" r="5" filter="url(#gm-glow)" /></g>
-        {nodes.map((node) => (
-          <g className={`gm-map-node gm-map-node--${node.tone}`} key={node.label} transform={`translate(${node.x} ${node.y})`}>
-            <circle r="19" /><circle className="gm-map-node-core" r="5" />
-            <text x="30" y="4">{node.label}</text>
-          </g>
-        ))}
-        <g className="gm-map-center" transform="translate(380 225)"><rect x="-68" y="-34" width="136" height="68" /><text textAnchor="middle" y="-3">GO MASSIVE</text><text className="gm-map-center-sub" textAnchor="middle" y="16">OPERATING LAYER</text></g>
       </svg>
-      <p>One joined-up view of the work that moves revenue—not a stack of isolated channel reports.</p>
+      <p>Six functions that used to report separately, coordinated through one operating layer.</p>
     </div>
   );
 }

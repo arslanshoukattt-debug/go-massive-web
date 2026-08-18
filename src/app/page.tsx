@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ViewTransition } from "react";
-import { ArrowDownRight, ArrowRight, Check } from "lucide-react";
+import { ArrowDownRight, ArrowRight } from "lucide-react";
 import { CommerceSystemMap } from "../components/CommerceSystemMap";
 import { Reveal } from "../components/Reveal";
 import { SiteFooter } from "../components/SiteFooter";
@@ -35,7 +35,7 @@ export default function Home() {
               <Link href="/growth-audit" className="gm-button gm-button--red whitespace-nowrap">Get a growth audit <ArrowRight size={16} /></Link>
             </div>
           </div>
-          <div className="relative hidden min-h-full border-l border-white/15 lg:block"><CommerceSystemMap /><div className="gm-hero-index">01 / 05</div></div>
+          <div className="relative hidden min-h-full border-l border-white/15 lg:block"><CommerceSystemMap /></div>
         </div>
       </section>
 
@@ -50,15 +50,15 @@ export default function Home() {
       <section className="px-5 py-20 sm:px-8 lg:px-12 lg:py-28">
         <Reveal className="mx-auto max-w-[1600px]">
           <div className="grid gap-10 border-b border-[#020d1f]/20 pb-12 lg:grid-cols-[.64fr_1.36fr] lg:items-end">
-            <p className="gm-eyebrow">How we create momentum</p>
+            <div><p className="gm-eyebrow">How we create momentum</p><p className="gm-section-support">Four operating layers, one accountable system — each connected to the next, not run as separate workstreams.</p></div>
             <h2 className="max-w-5xl text-[clamp(3.3rem,6.8vw,7.4rem)] font-semibold uppercase leading-[.81] tracking-[-.1em]">The whole system is the growth strategy.</h2>
           </div>
           <div className="gm-layer-list">
             {operatingLayers.map((layer, index) => <Reveal key={layer.number} delay={index * 90}><article className="gm-layer">
-              <div className="gm-layer-number">{layer.number}</div>
+              <div className="gm-layer-number gm-num-editorial">{layer.number}</div>
               <div><h3>{layer.name}</h3><p>{layer.detail}</p></div>
-              <ul>{layer.tags.map(tag => <li key={tag}><Check size={14} /> {tag}</li>)}</ul>
-              <span className="gm-layer-arrow"><ArrowDownRight size={25} /></span>
+              <ul className="gm-layer-caps">{layer.tags.map(tag => <li key={tag}>{tag}</li>)}</ul>
+              <span className="gm-layer-arrow"><ArrowDownRight size={20} /></span>
               <div className="gm-layer-progress" style={{ animationDelay: `${index * 130}ms` }} />
             </article></Reveal>)}
           </div>
@@ -68,7 +68,17 @@ export default function Home() {
       <section className="border-y border-[#020d1f]/15 bg-white px-5 py-20 sm:px-8 lg:px-12 lg:py-28">
         <Reveal className="mx-auto grid max-w-[1600px] gap-14 lg:grid-cols-[.8fr_1.2fr] lg:items-end">
           <div><p className="gm-eyebrow">Marketplace growth</p><h2 className="mt-7 text-[clamp(3.6rem,6.5vw,7.2rem)] font-semibold uppercase leading-[.79] tracking-[-.1em]">Stop managing channels.<br /><span className="text-[#e91a24]">Start directing</span> a business.</h2></div>
-          <div className="gm-editorial-copy"><p>Amazon performance does not come from a better bid alone. It comes from the decisions between stock, catalogue, creative, advertising and reporting—made quickly, then measured honestly.</p><Link href="/services/amazon-ppc" className="gm-text-link">Explore Amazon growth <ArrowRight size={16} /></Link></div>
+          <div className="gm-editorial-copy">
+            <p>Amazon performance does not come from a better bid alone. It comes from the decisions between stock, catalogue, creative, advertising and reporting—made quickly, then measured honestly.</p>
+            <div className="gm-flow" aria-hidden="true">
+              <span className="gm-flow-node">Stock</span><span className="gm-flow-sep">→</span>
+              <span className="gm-flow-node">Catalogue</span><span className="gm-flow-sep">→</span>
+              <span className="gm-flow-node">Creative</span><span className="gm-flow-sep">→</span>
+              <span className="gm-flow-node">Advertising</span><span className="gm-flow-sep">→</span>
+              <span className="gm-flow-node">Reporting</span>
+            </div>
+            <Link href="/services/amazon-ppc" className="gm-text-link">Explore Amazon growth <ArrowRight size={16} /></Link>
+          </div>
         </Reveal>
       </section>
 
@@ -83,7 +93,7 @@ export default function Home() {
       </section>
 
       <section className="bg-[#f4f3ef] px-5 py-20 sm:px-8 lg:px-12 lg:py-28">
-        <Reveal className="mx-auto max-w-[1600px]"><div className="grid gap-10 lg:grid-cols-[.64fr_1.36fr] lg:items-end"><p className="gm-eyebrow">The Go Massive record</p><h2 className="text-[clamp(3.4rem,6.3vw,6.9rem)] font-semibold uppercase leading-[.8] tracking-[-.1em]">Serious growth needs a team built to stay accountable.</h2></div><div className="mt-14 grid border-l border-t border-[#020d1f]/20 sm:grid-cols-2 lg:grid-cols-4">{agencyStats.map((stat, index) => <Reveal key={stat.label} delay={index * 90}><div className="gm-stat"><span>0{index + 1}</span><p><StatCounter value={stat.value} /></p><small>{stat.label}</small></div></Reveal>)}</div></Reveal>
+        <Reveal className="mx-auto max-w-[1600px]"><div className="grid gap-10 lg:grid-cols-[.64fr_1.36fr] lg:items-end"><p className="gm-eyebrow">The Go Massive record</p><h2 className="text-[clamp(3.4rem,6.3vw,6.9rem)] font-semibold uppercase leading-[.8] tracking-[-.1em]">Serious growth needs a team built to stay accountable.</h2></div><div className="mt-14 grid border-l border-t border-[#020d1f]/20 sm:grid-cols-2 lg:grid-cols-4">{agencyStats.map((stat, index) => <Reveal key={stat.label} delay={index * 90}><div className="gm-stat"><span className="gm-num-editorial">0{index + 1}</span><p><StatCounter value={stat.value} /></p><small>{stat.label}</small></div></Reveal>)}</div></Reveal>
       </section>
 
       <section className="gm-closing bg-[#e91a24] px-5 py-20 text-white sm:px-8 lg:px-12 lg:py-28"><Reveal className="mx-auto grid max-w-[1600px] gap-12 lg:grid-cols-[1.3fr_.7fr] lg:items-end"><div><p className="gm-eyebrow text-white/70">Start with a growth audit</p><h2 className="mt-7 max-w-5xl text-[clamp(3.8rem,7vw,8rem)] font-semibold uppercase leading-[.78] tracking-[-.105em]">Find the move worth making next.</h2></div><div><p className="text-xl leading-8 text-white/85">Tell us where the business is constrained. We’ll establish the clearest opportunity—and whether Go Massive is the right team to act on it.</p><Link href="/growth-audit" className="gm-button gm-button--dark mt-9">Request a growth audit <ArrowRight size={16} /></Link></div></Reveal></section>
