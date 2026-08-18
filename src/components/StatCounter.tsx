@@ -1,7 +1,7 @@
 "use client";
 
-import { animate, useInView } from "motion/react";
-import { useEffect, useRef, useState } from "react";
+import { animate, useInView, useReducedMotion } from "motion/react";
+import { useEffect, useMemo, useRef } from "react";
 
 type ParsedStat = { prefix: string; target: number; decimals: number; suffix: string };
 
@@ -21,24 +21,43 @@ function format(value: number, parsed: ParsedStat) {
 }
 
 export function StatCounter({ value, className }: { value: string; className?: string }) {
-  const parsed = parseStat(value);
+  // Memoized on the value string itself, not recreated every render - a fresh
+  // object here would change the effect's dependency on every animation
+  // frame and force the count to restart from zero before it can progress.
+  const parsed = useMemo(() => parseStat(value), [value]);
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true, margin: "-10% 0px" });
-  const [display, setDisplay] = useState(() => (parsed ? format(0, parsed) : value));
+  const reduceMotion = useReducedMotion();
+  const startText = parsed ? format(0, parsed) : value;
+  const finalText = parsed ? format(parsed.target, parsed) : value;
 
   useEffect(() => {
-    if (!inView || !parsed) return;
+    const node = ref.current;
+    if (!inView || !parsed || !node) return;
+    if (reduceMotion) {
+      node.textContent = finalText;
+      return;
+    }
+    // Written straight to the DOM node rather than through setState, so the
+    // ~90 updates over the animation's duration never trigger a React
+    // re-render (and can't re-trigger this effect).
     const controls = animate(0, parsed.target, {
       duration: 1.5,
       ease: [0.16, 1, 0.3, 1],
-      onUpdate: (latest) => setDisplay(format(latest, parsed)),
+      onUpdate: (latest) => {
+        node.textContent = format(latest, parsed);
+      },
     });
     return () => controls.stop();
-  }, [inView, parsed]);
+  }, [inView, parsed, reduceMotion, finalText]);
 
   return (
-    <span ref={ref} className={className}>
-      {display}
+    <span
+      ref={ref}
+      className={className}
+      style={{ fontVariantNumeric: "tabular-nums", display: "inline-block", minWidth: `${finalText.length}ch` }}
+    >
+      {startText}
     </span>
   );
 }
