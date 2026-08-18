@@ -44,8 +44,8 @@ export default function GoogleAdsPage() {
             <h1 className="mt-6 max-w-3xl text-5xl font-semibold leading-[.96] tracking-[-.065em] sm:text-7xl">Be there when customers are <span className="text-[#FF6E76]">looking for you.</span></h1>
             <p className="mt-8 max-w-xl text-lg leading-8 text-white/65">Go Massive helps eCommerce brands capture high-intent demand through Google Ads strategies that connect search behaviour, product priorities, and commercial objectives.</p>
             <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-              <Link href="/growth-audit" className="inline-flex items-center justify-center gap-2 rounded-full bg-[#E91A24] px-6 py-4 font-semibold transition hover:bg-[#C9141D]">Get your Google Ads Audit <ArrowRight size={18} /></Link>
-              <a href="#what-we-manage" className="inline-flex items-center justify-center rounded-full border border-white/20 px-6 py-4 font-semibold transition hover:bg-white hover:text-[#020D1F]">See what we manage</a>
+              <Link href="/growth-audit" className="gm-button gm-button--red">Get your Google Ads Audit <ArrowRight size={18} /></Link>
+              <a href="#what-we-manage" className="gm-button gm-button--ghost">See what we manage</a>
             </div>
           </div>
 
@@ -63,7 +63,8 @@ export default function GoogleAdsPage() {
 
       <section id="what-we-manage" className="bg-white py-24 sm:py-32"><div className="mx-auto max-w-[1440px] px-6 lg:px-10">
         <div className="grid gap-10 lg:grid-cols-[.8fr_1.2fr] lg:items-end"><div><p className="text-xs font-bold uppercase tracking-[.18em] text-[#E91A24]">What we manage</p><h2 className="mt-5 text-4xl font-semibold tracking-[-.055em] sm:text-6xl">A Google Ads account built around real intent.</h2></div><p className="max-w-2xl text-lg leading-8 text-[#596475]">Paid search should do more than generate activity. Each campaign should have a defined role in helping the right customer find the right offer at the right moment.</p></div>
-        <div className="mt-16 grid gap-4 md:grid-cols-2 xl:grid-cols-4">{pillars.map(({ number, title, copy, icon: Icon }, index) => <Reveal key={title} delay={index * 90}><article className="min-h-[340px] rounded-3xl border border-[#020D1F]/10 bg-[#F7F8FA] p-7 transition hover:-translate-y-1 hover:border-[#E91A24]/50 hover:bg-white hover:shadow-xl"><div className="flex items-start justify-between"><span className="text-sm font-bold tracking-[.16em] text-[#E91A24]">{number}</span><Icon size={24} /></div><h3 className="mt-14 text-2xl font-semibold tracking-tight">{title}</h3><p className="mt-4 leading-7 text-[#596475]">{copy}</p></article></Reveal>)}</div>
+        <p className="mt-16 text-xs font-bold uppercase tracking-[.2em] text-[#596475]">Signal <span className="text-[#E91A24]">→</span> Structure <span className="text-[#E91A24]">→</span> Control <span className="text-[#E91A24]">→</span> Conversion</p>
+        <div className="mt-6 border-t border-[#020D1F]/15">{pillars.map(({ number, title, copy, icon: Icon }, index) => <Reveal key={title} delay={index * 90}><div className="flex flex-col gap-5 border-b border-[#020D1F]/15 py-9 sm:flex-row sm:items-center sm:gap-10"><span className="gm-num-editorial w-16 shrink-0">{number}</span><Icon className="hidden shrink-0 text-[#E91A24] sm:block" size={26} /><div className="flex-1"><h3 className="text-2xl font-semibold tracking-tight">{title}</h3><p className="mt-2 max-w-2xl leading-7 text-[#596475]">{copy}</p></div></div></Reveal>)}</div>
       </div></section>
 
       <section className="bg-[#0A1830] py-24 text-white sm:py-32"><div className="mx-auto grid max-w-[1440px] gap-12 px-6 lg:grid-cols-2 lg:items-center lg:px-10">
@@ -71,7 +72,7 @@ export default function GoogleAdsPage() {
         <div><p className="text-xs font-bold uppercase tracking-[.18em] text-[#FF8A90]">The Go Massive standard</p><h2 className="mt-5 text-4xl font-semibold tracking-[-.055em] sm:text-6xl">Demand capture with a clearer point of view.</h2><p className="mt-6 max-w-xl text-lg leading-8 text-white/60">We bring search expertise and a performance mindset together, then turn that work into straightforward recommendations for your next move.</p><div className="mt-8 flex items-center gap-3 text-sm font-semibold"><TrendingUp className="text-[#E91A24]" size={19} /> Strategy, execution, and reporting in one operating rhythm.</div></div>
       </div></section>
 
-      <section className="bg-[#E91A24] py-16 text-white sm:py-20"><div className="mx-auto flex max-w-[1440px] flex-col gap-8 px-6 lg:flex-row lg:items-end lg:justify-between lg:px-10"><div><p className="text-xs font-bold uppercase tracking-[.18em] text-white/65">Start with an audit</p><h2 className="mt-4 max-w-2xl text-4xl font-semibold tracking-[-.045em] sm:text-5xl">Find the Google Ads opportunities worth acting on.</h2></div><Link href="/growth-audit" className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-[#020D1F] px-6 py-4 font-semibold transition hover:bg-white hover:text-[#020D1F]">Book a Growth Audit <ArrowRight size={18} /></Link></div></section>
+      <section className="bg-[#E91A24] py-16 text-white sm:py-20"><div className="mx-auto flex max-w-[1440px] flex-col gap-8 px-6 lg:flex-row lg:items-end lg:justify-between lg:px-10"><div><p className="text-xs font-bold uppercase tracking-[.18em] text-white/65">Start with an audit</p><h2 className="mt-4 max-w-2xl text-4xl font-semibold tracking-[-.045em] sm:text-5xl">Find the Google Ads opportunities worth acting on.</h2></div><Link href="/growth-audit" className="gm-button gm-button--dark">Book a Growth Audit <ArrowRight size={18} /></Link></div></section>
 
       </ViewTransition>
       <SiteFooter />

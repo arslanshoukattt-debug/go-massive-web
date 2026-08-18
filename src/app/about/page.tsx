@@ -62,7 +62,7 @@ export default function AboutPage() {
             return (
               <Reveal key={principle.title} delay={index * 90}>
                 <article className={index === 0 ? "bg-[#020D1F] p-7 text-white sm:p-8" : "bg-white p-7 sm:p-8"}>
-                  <span className={index === 0 ? "text-sm font-bold tracking-[.16em] text-[#FF8A90]" : "text-sm font-bold tracking-[.16em] text-[#E91A24]"}>0{index + 1}</span>
+                  <span className="gm-num-editorial" style={index === 0 ? { color: "#FF8A90" } : undefined}>0{index + 1}</span>
                   <Icon className={index === 0 ? "mt-8 text-[#FF8A90]" : "mt-8 text-[#E91A24]"} size={24} />
                   <h3 className="mt-5 text-2xl font-semibold tracking-tight">{principle.title}</h3>
                   <p className={index === 0 ? "mt-4 leading-7 text-white/60" : "mt-4 leading-7 text-[#596475]"}>{principle.description}</p>
@@ -75,7 +75,7 @@ export default function AboutPage() {
 
       <section className="bg-[#0A1830] py-24 text-white sm:py-32"><div className="mx-auto grid max-w-[1440px] gap-14 px-6 lg:grid-cols-[.85fr_1.15fr] lg:items-start lg:px-10">
         <div><p className="text-xs font-bold uppercase tracking-[.18em] text-[#FF8A90]">How we work</p><h2 className="mt-5 max-w-xl text-4xl font-semibold tracking-[-.055em] sm:text-6xl">Clear priorities. Direct communication. Better decisions.</h2></div>
-        <div className="grid gap-3">{operatingPrinciples.map((item, index) => <Reveal key={item} delay={index * 90}><div className="flex gap-4 rounded-2xl border border-white/10 bg-white/[.045] p-5"><span className="text-sm font-bold text-[#FF8A90]">{String(index + 1).padStart(2, "0")}</span><p className="font-semibold leading-6 text-white/85">{item}</p></div></Reveal>)}</div>
+        <div className="grid gap-3">{operatingPrinciples.map((item, index) => <Reveal key={item} delay={index * 90}><div className="flex gap-4 rounded-2xl border border-white/10 bg-white/[.045] p-5"><span className="gm-num-meta" style={{ color: "#FF8A90" }}>{String(index + 1).padStart(2, "0")}</span><p className="font-semibold leading-6 text-white/85">{item}</p></div></Reveal>)}</div>
       </div></section>
 
       <section className="bg-[#F7F8FA] py-20 sm:py-24"><div className="mx-auto max-w-[1440px] px-6 lg:px-10">
@@ -90,7 +90,7 @@ export default function AboutPage() {
 
       <section className="bg-[#E91A24] py-16 text-white sm:py-20"><div className="mx-auto flex max-w-[1440px] flex-col gap-8 px-6 lg:flex-row lg:items-end lg:justify-between lg:px-10">
         <div><p className="text-xs font-bold uppercase tracking-[.18em] text-white/65">A clearer next step</p><h2 className="mt-4 max-w-2xl text-4xl font-semibold tracking-[-.045em] sm:text-5xl">Start with the opportunity in front of you.</h2></div>
-        <Link href="/growth-audit" className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-[#020D1F] px-6 py-4 font-semibold text-white transition hover:bg-white hover:text-[#020D1F]">Request a Growth Audit <ArrowRight size={18} /></Link>
+        <Link href="/growth-audit" className="gm-button gm-button--dark">Request a Growth Audit <ArrowRight size={18} /></Link>
       </div></section>
 
       </ViewTransition>
