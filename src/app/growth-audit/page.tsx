@@ -50,9 +50,9 @@ export default function GrowthAuditPage() {
       <section className="py-20 sm:py-28"><div className="mx-auto grid max-w-[1440px] gap-14 px-6 lg:grid-cols-[.85fr_1.15fr] lg:items-start lg:px-10">
         <div>
           <p className="text-xs font-bold uppercase tracking-[.18em] text-[#E91A24]">What we look at</p>
-          <ul className="mt-6 space-y-4">
-            {whatWeLookAt.map((item, index) => <Reveal key={item} delay={index * 80}><li className="flex gap-4 border-b border-[#020D1F]/10 pb-4"><span className="gm-num-meta shrink-0">{String(index + 1).padStart(2, "0")}</span><p className="leading-7 text-[#354052]">{item}</p></li></Reveal>)}
-          </ul>
+          <Reveal><ul className="mt-6 space-y-4">
+            {whatWeLookAt.map((item, index) => <li key={item} className="flex gap-4 border-b border-[#020D1F]/10 pb-4"><span className="gm-num-meta shrink-0">{String(index + 1).padStart(2, "0")}</span><p className="leading-7 text-[#354052]">{item}</p></li>)}
+          </ul></Reveal>
 
           <p className="mt-10 text-xs font-bold uppercase tracking-[.18em] text-[#E91A24]">What you get</p>
           <ul className="mt-6 space-y-4 text-sm font-medium text-[#354052]">
