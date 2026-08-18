@@ -1,6 +1,15 @@
 @import "tailwindcss";
 
-:root { --background: #ffffff; --foreground: #020d1f; }
+:root {
+  --background: #ffffff;
+  --foreground: #020d1f;
+  /* Go Massive red stays #E91A24 everywhere it already passes contrast:
+     large display text, buttons, backgrounds, rules, large editorial numbers.
+     Small text needs a surface-specific variant to clear WCAG AA (4.5:1). */
+  --gm-red: #e91a24;
+  --gm-red-safe-light: #db1822; /* small red text on light surfaces (F7F8FA, F4F3EF) - 4.5:1+ on all three */
+  --gm-red-safe-dark: #ff8a90;  /* small red text on dark surfaces (navy family, near-black footer) - 7:1+ on all */
+}
 @theme inline { --color-background: var(--background); --color-foreground: var(--foreground); --font-sans: var(--font-geist-sans); --font-mono: var(--font-geist-mono); }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
@@ -46,11 +55,22 @@ body { margin: 0; background: var(--background); color: var(--foreground); font-
 .gm-ticker-cell { min-height:102px; display:flex; flex-direction:column; justify-content:center; gap:9px; padding:22px 32px; border-right:1px solid rgba(255,255,255,.28); }.gm-ticker-cell:last-child { border:0; }.gm-ticker-cell span { font-size:10px; font-weight:600; letter-spacing:.14em; opacity:.7; text-transform:uppercase; }.gm-ticker-cell b { font-size:16px; font-weight:600; letter-spacing:-.03em; }
 
 /* Numeric system: three tiers.
-   .gm-num-editorial - sequencing/structure markers (section rows, process steps)
+   .gm-num-editorial - sequencing/structure markers (section rows, process steps).
+     Always >=24px bold, so brand red clears WCAG large-text contrast (3:1) on
+     every light surface in production - no safe variant needed by default.
    .gm-num-proof     - dominant outcome numbers (already large via inline clamp, kept as-is)
-   .gm-num-meta      - small numbers inside supporting/detail content */
-.gm-num-editorial { font: 700 clamp(1.5rem,2.4vw,2.35rem) var(--font-geist-mono); letter-spacing:-.02em; font-variant-numeric: tabular-nums; color:#e91a24; line-height:1; }
-.gm-num-meta { font: 700 13px var(--font-geist-mono); letter-spacing:.02em; font-variant-numeric: tabular-nums; color:#e91a24; }
+   .gm-num-meta      - small numbers inside supporting/detail content.
+     Below the large-text threshold, so it needs the light-safe red by default. */
+.gm-num-editorial { font: 700 clamp(1.5rem,2.4vw,2.35rem) var(--font-geist-mono); letter-spacing:-.02em; font-variant-numeric: tabular-nums; color:var(--gm-red); line-height:1; }
+.gm-num-editorial--on-dark { color:var(--gm-red-safe-dark); }
+.gm-num-meta { font: 700 13px var(--font-geist-mono); letter-spacing:.02em; font-variant-numeric: tabular-nums; color:var(--gm-red-safe-light); }
+.gm-num-meta--on-dark { color:var(--gm-red-safe-dark); }
+
+/* Small red foreground text (eyebrows, labels, in-context links) on light
+   vs. dark surfaces - use instead of text-[#E91A24] wherever the text sits
+   below the ~18.66px-bold / 24px-regular WCAG large-text threshold. */
+.gm-text-red-safe { color: var(--gm-red-safe-light); }
+.gm-text-red-safe--on-dark { color: var(--gm-red-safe-dark); }
 
 .gm-section-support { max-width:23rem; margin-top:1.1rem; font-size:15px; line-height:1.6; color:rgba(2,13,31,.62); }
 .gm-section-support--dark { color:rgba(255,255,255,.55); }
@@ -77,7 +97,7 @@ body { margin: 0; background: var(--background); color: var(--foreground); font-
 .gm-flow-node { font-size:12px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:#020d1f; }
 .gm-flow-sep { color:#e91a24; opacity:.65; font-size:13px; }
 
-.gm-case-number,.gm-case-detail { display:flex; min-height:470px; flex-direction:column; justify-content:space-between; padding:34px; background:#020d1f; }.gm-case-number > div span { display:block; font-size:clamp(7rem,12vw,13rem); font-weight:600; line-height:.65; letter-spacing:-.12em; color:#e91a24; }.gm-case-number > div p { margin:28px 0 0; font-size:20px; }.gm-case-detail { background:#121f36; }.gm-case-detail > div p { display:flex; gap:16px; max-width:480px; border-top:1px solid rgba(255,255,255,.2); margin:0; padding:15px 0; font-size:16px; line-height:1.55; color:rgba(255,255,255,.72); }.gm-case-detail b { color:#e91a24; font:700 13px var(--font-geist-mono); font-variant-numeric: tabular-nums; }
+.gm-case-number,.gm-case-detail { display:flex; min-height:470px; flex-direction:column; justify-content:space-between; padding:34px; background:#020d1f; }.gm-case-number > div span { display:block; font-size:clamp(7rem,12vw,13rem); font-weight:600; line-height:.65; letter-spacing:-.12em; color:#e91a24; }.gm-case-number > div p { margin:28px 0 0; font-size:20px; }.gm-case-detail { background:#121f36; }.gm-case-detail > div p { display:flex; gap:16px; max-width:480px; border-top:1px solid rgba(255,255,255,.2); margin:0; padding:15px 0; font-size:16px; line-height:1.55; color:rgba(255,255,255,.72); }.gm-case-detail b { color:var(--gm-red-safe-dark); font:700 13px var(--font-geist-mono); font-variant-numeric: tabular-nums; }
 .gm-stat { border-right:1px solid rgba(2,13,31,.2); border-bottom:1px solid rgba(2,13,31,.2); padding:28px 24px; }.gm-stat p { margin:16px 0 8px; font-size:clamp(3rem,4.6vw,4.8rem); font-weight:600; line-height:.8; letter-spacing:-.1em; }.gm-stat small { display:block; max-width:180px; font-size:14px; line-height:1.5; color:rgba(2,13,31,.68); }.gm-closing { position:relative; }.gm-closing:after { position:absolute; right:-12%; bottom:-120px; width:50%; height:300px; border:1px solid rgba(255,255,255,.3); content:""; transform:rotate(-12deg); }
 
 @media (max-width: 1023px) { .gm-layer { grid-template-columns:48px 1fr 36px; padding:24px 0; }.gm-layer ul { grid-column:2 / 4; }.gm-layer:hover { padding-left:12px; }.gm-hero-grid { mask-image:none; } }

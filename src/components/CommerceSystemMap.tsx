@@ -24,7 +24,7 @@ function labelAnchor(angleDeg: number): "start" | "middle" | "end" {
 
 export function CommerceSystemMap() {
   return (
-    <div className="gm-system-map" aria-label="Marketplace, demand, conversion, retention, creative and stock operating separately, connecting through the Go Massive operating layer at the centre.">
+    <div className="gm-system-map" role="img" aria-label="A diagram showing marketplace, demand, conversion, retention, creative and stock connecting through the Go Massive operating layer at the centre.">
       <div className="gm-map-label"><span className="gm-pulse" /> LIVE COMMERCIAL SYSTEM</div>
       <svg viewBox="0 0 760 480" role="img" aria-hidden="true">
         {nodes.map((node, index) => {

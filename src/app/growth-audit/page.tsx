@@ -49,12 +49,12 @@ export default function GrowthAuditPage() {
 
       <section className="py-20 sm:py-28"><div className="mx-auto grid max-w-[1440px] gap-14 px-6 lg:grid-cols-[.85fr_1.15fr] lg:items-start lg:px-10">
         <div>
-          <p className="text-xs font-bold uppercase tracking-[.18em] text-[#E91A24]">What we look at</p>
+          <p className="text-xs font-bold uppercase tracking-[.18em] gm-text-red-safe">What we look at</p>
           <Reveal><ul className="mt-6 space-y-4">
             {whatWeLookAt.map((item, index) => <li key={item} className="flex gap-4 border-b border-[#020D1F]/10 pb-4"><span className="gm-num-meta shrink-0">{String(index + 1).padStart(2, "0")}</span><p className="leading-7 text-[#354052]">{item}</p></li>)}
           </ul></Reveal>
 
-          <p className="mt-10 text-xs font-bold uppercase tracking-[.18em] text-[#E91A24]">What you get</p>
+          <p className="mt-10 text-xs font-bold uppercase tracking-[.18em] gm-text-red-safe">What you get</p>
           <ul className="mt-6 space-y-4 text-sm font-medium text-[#354052]">
             {auditIncludes.map((item) => <li className="flex gap-3" key={item}><Check className="shrink-0 text-[#E91A24]" size={18} strokeWidth={3} />{item}</li>)}
           </ul>
@@ -66,7 +66,7 @@ export default function GrowthAuditPage() {
           </div>
         </div>
         <div>
-          <p className="text-xs font-bold uppercase tracking-[.18em] text-[#E91A24]">Start the audit</p>
+          <p className="text-xs font-bold uppercase tracking-[.18em] gm-text-red-safe">Start the audit</p>
           <h2 className="mt-3 text-3xl font-semibold tracking-[-.04em]">Tell us about the account.</h2>
           <div className="mt-7"><HubSpotGrowthAuditForm /></div>
         </div>
