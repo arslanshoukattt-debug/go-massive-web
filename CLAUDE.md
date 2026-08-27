@@ -44,7 +44,7 @@ Marketing site for Go Massive, an eCommerce growth agency (7+ years operating). 
 `/` `/services` (anchors: #amazon-growth #performance-marketing #commerce-expansion) `/services/amazon-ppc` `/services/google-ads` `/services/meta-ads` `/case-studies` + 5 `[slug]` details `/about` `/growth-audit` (HubSpot portal 247020931, form 00676a9a-1f88-4c56-8e4b-ef58ee7c2517) `/contact` `/privacy` (needs legal review) + branded `not-found.tsx`, `sitemap.ts`, `robots.ts`, generated `opengraph-image.tsx` (referenced by every page via `lib/seo.ts` `pageMetadata()` — also canonical + OG/Twitter). Schema: Organization (layout), Service+Breadcrumb (service pages), Breadcrumb (case details).
 
 ## Content rules (non-negotiable)
-- Approved numbers ONLY: 7+ years, 50+ brands, 200+ accounts, $200M+ revenue managed, 92% retention; case metrics (2.4x/6mo outdoor, +300% first-season launch, +250% @15% TACoS food, +700% consumer goods EU, 4x furniture). Model description (lean retainer + revenue share) came from the owner.
+- Approved numbers ONLY: 7+ years, 50+ brands, 200+ accounts, $200M+ revenue managed, 92% retention; case metrics (2.4x/6mo outdoor, +300% first-season launch, +250% @15% TACoS food, +700% consumer goods EU, 4x furniture); 4.9 rating / 300+ reviews (owner-provided Aug 2026 for hero trust signals — values live in `components/TrustSignals.tsx`; Trustpilot/Google badges shown at owner's direction, owner to confirm the underlying review profiles exist). Model description (lean retainer + revenue share) came from the owner.
 - Client anonymity: no names/logos/screenshots until owner clears them. No fake testimonials/logos/metrics/dashboards. Structures exist gated on real data.
 - Voice: direct, operator-led, no agency clichés.
 

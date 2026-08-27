@@ -9,6 +9,7 @@ import { SiteFooter } from "../components/SiteFooter";
 import { SiteHeader } from "../components/SiteHeader";
 import { StatCounter } from "../components/StatCounter";
 import { Testimonials } from "../components/Testimonials";
+import { HeroRating, TrustBadges } from "../components/TrustSignals";
 import { caseStudies } from "../lib/case-studies";
 import { ENGINE_NODES } from "../lib/engine-nodes";
 
@@ -62,18 +63,18 @@ export default function Home() {
       {/* 1 — HERO: experience -> problem -> promise -> system -> action, one viewport on desktop */}
       <section className="gm-hero relative flex flex-col bg-white text-[#020d1f] lg:h-[calc(100svh-76px)] lg:max-h-[940px] lg:min-h-[600px]">
         <div className="relative mx-auto grid w-full max-w-[1600px] flex-1 lg:min-h-0 lg:grid-cols-[1.06fr_.94fr]">
-          <div className="flex flex-col justify-between px-5 pb-6 pt-10 sm:px-8 lg:px-12 lg:pt-12">
-            <div>
-              <p className="gm-text-red-safe font-mono text-[15px] font-bold uppercase tracking-[.14em]">7+ Years of Creating eCommerce Growth</p>
-              <h1 className="mt-5 max-w-4xl text-[clamp(3rem,5.6vw,6.5rem)] font-semibold uppercase leading-[.85] tracking-[-.06em]">
-                <span className="gm-hero-line">Make growth feel</span>
-                <span className="gm-hero-line text-[#e91a24]">inevitable.</span>
-              </h1>
-            </div>
-            <div className="gm-hero-copy mt-4 max-w-xl border-t border-[#020d1f]/20 pt-4">
+          <div className="flex flex-col justify-center px-5 pb-8 pt-10 sm:px-8 lg:px-12 lg:py-10">
+            <p className="gm-text-red-safe font-mono text-[15px] font-bold uppercase tracking-[.14em]">7+ Years of Creating eCommerce Growth</p>
+            <HeroRating />
+            <h1 className="mt-5 max-w-4xl text-[clamp(3rem,5.6vw,6.5rem)] font-semibold uppercase leading-[.85] tracking-[-.06em]">
+              <span className="gm-hero-line">Make growth feel</span>
+              <span className="gm-hero-line text-[#e91a24]">inevitable.</span>
+            </h1>
+            <div className="gm-hero-copy mt-5 max-w-xl border-t border-[#020d1f]/20 pt-4">
               <p className="text-lg leading-8 text-[#020d1f]/72 lg:text-[19px]">Fragmented partners get paid whether you grow or not. We run strategy, operations, advertising, creative, and technology as one system — with economics aligned to your growth.</p>
             </div>
-            <div className="gm-hero-ctas mt-6 flex flex-col gap-3 sm:flex-row">
+            <div className="gm-hero-copy mt-6"><TrustBadges /></div>
+            <div className="gm-hero-ctas mt-5 flex flex-col gap-3 sm:flex-row">
               <Link href="/growth-audit" className="gm-button gm-button--red whitespace-nowrap">Book a growth call <ArrowRight size={16} /></Link>
               <a href="#growth-engine" className="gm-button gm-button--ghost whitespace-nowrap">See how we work</a>
             </div>
