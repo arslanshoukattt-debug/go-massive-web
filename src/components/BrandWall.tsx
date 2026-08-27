@@ -74,7 +74,11 @@ export function BrandWall() {
         <div key={index} className={`gm-wall-tile ${swapping === index ? "gm-wall-tile--out" : ""}`}>
           <div className="gm-wall-tile-inner">
             {tile.logo ? (
-              <Image src={tile.logo} alt={tile.title} width={150} height={48} className="h-10 w-auto object-contain" />
+              // Fixed 40px-tall frame; fill + object-contain scales any aspect
+              // ratio (wide wordmark or square mark) without distortion.
+              <span className="relative block h-10 w-full max-w-[150px]">
+                <Image src={tile.logo} alt={tile.title} fill sizes="150px" className="object-contain object-left" />
+              </span>
             ) : (
               <b>{tile.title}</b>
             )}
