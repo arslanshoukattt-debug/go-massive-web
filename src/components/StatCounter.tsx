@@ -27,19 +27,23 @@ function easeOutQuint(t: number) {
 
 const DURATION_MS = 1500;
 
-export function StatCounter({ value, className }: { value: string; className?: string }) {
+export function StatCounter({ value, className, immediate = false }: { value: string; className?: string; immediate?: boolean }) {
   // Memoized on the value string itself, not recreated every render - a fresh
   // object here would change the effect's dependency on every animation
   // frame and force the count to restart from zero before it can progress.
   const parsed = useMemo(() => parseStat(value), [value]);
   const ref = useRef<HTMLSpanElement>(null);
-  const [inView, setInView] = useState(false);
+  const [inView, setInView] = useState(immediate);
   const startText = parsed ? format(0, parsed) : value;
   const finalText = parsed ? format(parsed.target, parsed) : value;
 
   // Plain IntersectionObserver, same pattern as Reveal.tsx - no animation
-  // library needed just to detect a one-time viewport entry.
+  // library needed just to detect a one-time viewport entry. immediate mode
+  // (hero stats strip) starts on mount instead: the strip sits exactly at the
+  // fold, inside the -10% margin, so a non-scrolling visitor would otherwise
+  // never see the numbers arrive.
   useEffect(() => {
+    if (immediate) return;
     const element = ref.current;
     if (!element) return;
     const observer = new IntersectionObserver(
@@ -53,7 +57,7 @@ export function StatCounter({ value, className }: { value: string; className?: s
     );
     observer.observe(element);
     return () => observer.disconnect();
-  }, []);
+  }, [immediate]);
 
   useEffect(() => {
     const node = ref.current;

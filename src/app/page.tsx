@@ -9,7 +9,9 @@ import { SiteFooter } from "../components/SiteFooter";
 import { SiteHeader } from "../components/SiteHeader";
 import { StatCounter } from "../components/StatCounter";
 import { Testimonials } from "../components/Testimonials";
+import { TypeLine } from "../components/TypeLine";
 import { caseStudies } from "../lib/case-studies";
+import { ENGINE_NODES } from "../lib/engine-nodes";
 
 // Contact channels beyond email/audit render only once real links exist -
 // fill these in and the buttons appear in the closing section automatically.
@@ -58,32 +60,41 @@ export default function Home() {
       <SiteHeader />
       <ViewTransition name="page-content" share="auto" enter="auto" default="none">
 
-      {/* 1 — HERO: position + broken-model contrast + proof, diagram carries the system story */}
-      <section className="gm-hero relative bg-[#020d1f] text-white">
+      {/* 1 — HERO: experience -> problem -> promise -> system -> action, one viewport on desktop */}
+      <section className="gm-hero relative flex flex-col bg-[#020d1f] text-white lg:h-[calc(100svh-76px)] lg:max-h-[940px] lg:min-h-[600px]">
         <div className="gm-hero-grid" />
-        <div className="relative mx-auto grid min-h-[640px] max-w-[1600px] lg:grid-cols-[1.03fr_.97fr]">
-          <div className="flex flex-col justify-between px-5 pb-8 pt-14 sm:px-8 lg:px-12 lg:pt-16">
+        <div className="relative mx-auto grid w-full max-w-[1600px] flex-1 lg:min-h-0 lg:grid-cols-[1.06fr_.94fr]">
+          <div className="flex flex-col justify-between px-5 pb-6 pt-10 sm:px-8 lg:px-12 lg:pt-12">
             <div>
-              <p className="gm-hero-kicker gm-eyebrow">7+ years operating eCommerce growth</p>
-              <h1 className="gm-hero-title mt-6 max-w-4xl text-[clamp(2.5rem,12vw,9rem)] font-semibold uppercase leading-[.82] tracking-[-.08em]">
-                Make growth<br />feel <span className="text-[#e91a24]">inevitable.</span>
+              <TypeLine text="7+ YEARS OPERATING ECOMMERCE GROWTH" />
+              <h1 className="mt-5 max-w-4xl text-[clamp(3rem,5.6vw,6.5rem)] font-semibold uppercase leading-[.85] tracking-[-.06em]">
+                <span className="gm-hero-line">Make growth feel</span>
+                <span className="gm-hero-line text-[#e91a24]">inevitable.</span>
               </h1>
             </div>
-            <div className="gm-hero-copy mt-10 max-w-xl border-t border-white/20 pt-6">
-              <p className="text-lg leading-8 text-white/72">Most stalled brands aren&rsquo;t short on effort. They&rsquo;re paying heavy retainers to fragmented partners who get paid either way. Go Massive runs strategy, operations, advertising, creative, and technology as one system — in a model that earns its upside from your growth.</p>
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <Link href="/growth-audit" className="gm-button gm-button--red whitespace-nowrap">Book a growth call <ArrowRight size={16} /></Link>
-                <a href="#growth-engine" className="gm-button gm-button--ghost whitespace-nowrap">See how we work</a>
-              </div>
+            <div className="gm-hero-copy mt-8 max-w-xl border-t border-white/20 pt-5">
+              <p className="text-base leading-7 text-white/72 lg:text-[17px]">Fragmented partners get paid whether you grow or not. We run strategy, operations, advertising, creative, and technology as one system — with economics aligned to your growth.</p>
+            </div>
+            <div className="gm-hero-ctas mt-6 flex flex-col gap-3 sm:flex-row">
+              <Link href="/growth-audit" className="gm-button gm-button--red whitespace-nowrap">Book a growth call <ArrowRight size={16} /></Link>
+              <a href="#growth-engine" className="gm-button gm-button--ghost whitespace-nowrap">See how we work</a>
             </div>
           </div>
           <div className="relative hidden min-h-full border-l border-white/15 lg:block"><CommerceSystemMap /></div>
         </div>
-        <div className="relative border-t border-white/15">
+        <div className="px-5 pb-8 pt-2 sm:px-8 lg:hidden">
+          <p className="gm-eyebrow gm-text-red-safe--on-dark">Go Massive — Operating Layer</p>
+          <div className="gm-engine-strip mt-4" aria-label="The six commercial functions Go Massive coordinates">
+            {ENGINE_NODES.map((node) => (
+              <article key={node.label}><b>{node.label}</b><p>{node.detail}</p></article>
+            ))}
+          </div>
+        </div>
+        <div className="gm-hero-strip relative border-t border-white/15">
           <div className="mx-auto grid max-w-[1600px] grid-cols-2 gap-x-8 px-5 sm:px-8 lg:grid-cols-4 lg:px-12">
             {heroStats.map((stat) => (
               <div key={stat.label} className="gm-hero-stat">
-                <p><StatCounter value={stat.value} /></p>
+                <p><StatCounter value={stat.value} immediate /></p>
                 <small>{stat.label}</small>
               </div>
             ))}
