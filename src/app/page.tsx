@@ -119,21 +119,20 @@ export default function Home() {
         </Reveal>
       </section>
 
-      {/* 2 — PROBLEM: meet the visitor where they're stuck */}
+      {/* 2 — PROBLEM: editorial stacked rows (owner cut the card grid + numbering, Aug 2026) */}
       <section className="px-5 py-20 sm:px-8 lg:px-12 lg:py-28">
         <Reveal className="mx-auto max-w-[1600px]">
           <div className="grid gap-10 border-b border-[#020d1f]/20 pb-12 lg:grid-cols-[.64fr_1.36fr] lg:items-end">
             <div><p className="gm-eyebrow gm-text-red-safe">Where brands get stuck</p><p className="gm-section-support">By the time revenue flattens, the cause is usually spread across the account — and no single-channel partner can see all of it.</p></div>
-            <h2 className="max-w-5xl text-[clamp(2.1rem,8.5vw,6.6rem)] font-semibold uppercase leading-[.87] tracking-[-.05em]">Growth rarely breaks in one place.</h2>
+            <h2 className="max-w-3xl text-[clamp(1.9rem,3.4vw,3.4rem)] font-semibold uppercase leading-[.95] tracking-[-.04em]">Growth rarely breaks in one place.</h2>
           </div>
-          <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div>
             {problems.map((problem, index) => (
-              <Reveal key={problem.title} delay={index * 70}>
-                <article className="gm-problem h-full">
-                  <span className="gm-num-meta">{String(index + 1).padStart(2, "0")}</span>
-                  <h3>{problem.title}</h3>
-                  <p>{problem.detail}</p>
-                </article>
+              <Reveal key={problem.title} delay={index * 60}>
+                <div className="grid gap-2.5 border-b border-[#020d1f]/15 py-7 lg:grid-cols-[.55fr_1fr] lg:gap-12 lg:py-8">
+                  <h3 className="max-w-md text-xl font-semibold leading-snug tracking-[-.03em] sm:text-[22px]">{problem.title}</h3>
+                  <p className="max-w-2xl leading-7 text-[#596475]">{problem.detail}</p>
+                </div>
               </Reveal>
             ))}
           </div>

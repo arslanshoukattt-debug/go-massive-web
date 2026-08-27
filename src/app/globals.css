@@ -149,12 +149,6 @@ section[id] { scroll-margin-top: 90px; }
 .gm-engine-step.is-active h3 { color:#020d1f; }
 .gm-engine-step p { margin:6px 0 0; max-width:500px; font-size:15px; line-height:1.62; color:rgba(2,13,31,.62); }
 
-/* Problem cards */
-.gm-problem { display:flex; flex-direction:column; border:1px solid rgba(2,13,31,.12); background:white; padding:24px; transition:border-color .25s, transform .25s, box-shadow .25s; }
-.gm-problem:hover { border-color:var(--gm-red); transform:translateY(-4px); box-shadow:0 20px 44px -26px rgba(2,13,31,.4); }
-.gm-problem h3 { margin:30px 0 0; font-size:19px; font-weight:600; letter-spacing:-.02em; }
-.gm-problem p { margin:9px 0 0; font-size:14.5px; line-height:1.62; color:#596475; }
-
 /* Channel cards */
 .gm-channel { display:flex; min-height:200px; flex-direction:column; justify-content:space-between; border:1px solid rgba(2,13,31,.12); background:white; padding:24px; transition:transform .25s, background-color .25s, border-color .25s; }
 .gm-channel:hover { transform:translateY(-4px); background:white; border-color:var(--gm-red); }
