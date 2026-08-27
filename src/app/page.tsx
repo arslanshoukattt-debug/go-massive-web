@@ -1,7 +1,7 @@
+import Image from "next/image";
 import Link from "next/link";
 import { ViewTransition } from "react";
 import { ArrowRight, Check, CircleDollarSign, Mail, Package, PieChart, ShoppingCart, TrendingDown, Users } from "lucide-react";
-import { BrandWall } from "../components/BrandWall";
 import { GrowthEngine } from "../components/GrowthEngine";
 import { HeroGrowthVisual } from "../components/HeroGrowthVisual";
 import { Reveal } from "../components/Reveal";
@@ -18,6 +18,20 @@ import { ENGINE_NODES } from "../lib/engine-nodes";
 // fill these in and the buttons appear in the closing section automatically.
 const WHATSAPP_URL = "";
 const MEETING_URL = "";
+
+// Owner-cleared client logos (Aug 2026) - logo cloud in section 3. Logos only,
+// no labels or metrics attached to named brands.
+const brandLogos = [
+  { name: "Hallowood Furniture", src: "/logos/hallowood.png" },
+  { name: "Love & Peanut", src: "/logos/love-and-peanut.png" },
+  { name: "Calzitaly", src: "/logos/calzitaly.png" },
+  { name: "Witt", src: "/logos/witt.png" },
+  { name: "DBZ Beds", src: "/logos/dbz-beds.png" },
+  { name: "Bigfoot Bushcraft", src: "/logos/bigfoot-bushcraft.png" },
+  { name: "Hot Star Honey", src: "/logos/hot-star-honey.png" },
+  { name: "funSLINGER", src: "/logos/funslinger.png" },
+  { name: "Qnaturals", src: "/logos/qnaturals.png" },
+];
 
 // Owner-provided certifications (Aug 2026), rendered in the strip under the hero.
 const certifications = [
@@ -150,18 +164,18 @@ export default function Home() {
         </Reveal>
       </section>
 
-      {/* 3 — CREDIBILITY: rotating portfolio wall (logo-ready) */}
-      <section className="border-y border-[#020d1f]/15 bg-white px-5 py-20 sm:px-8 lg:px-12 lg:py-28">
+      {/* 3 — BRANDS: clean logo cloud, logos only (owner direction, Aug 2026) */}
+      <section className="border-y border-[#020d1f]/15 bg-white px-5 py-16 sm:px-8 lg:px-12 lg:py-20">
         <Reveal className="mx-auto max-w-[1600px]">
-          <div className="grid gap-10 pb-12 lg:grid-cols-[.64fr_1.36fr] lg:items-end">
-            <div><p className="gm-eyebrow gm-text-red-safe">The portfolio</p><p className="gm-section-support">50+ brands and 200+ accounts across categories, marketplaces, and growth stages.</p></div>
-            <h2 className="max-w-5xl text-[clamp(2.1rem,8.5vw,6.6rem)] font-semibold uppercase leading-[.87] tracking-[-.05em]">Seen it before. Fixed it before.</h2>
+          <h2 className="text-center text-[clamp(1.5rem,2.6vw,2.3rem)] font-bold uppercase tracking-[-.03em]">Trusted by leading brands worldwide<span className="text-[#E91A24]">.</span></h2>
+          <div className="mt-12 flex flex-wrap items-center justify-center gap-x-12 gap-y-10 sm:gap-x-16 lg:gap-x-20">
+            {brandLogos.map((brand) => (
+              <span key={brand.name} className="relative block h-10 w-[120px] opacity-60 grayscale transition duration-300 hover:opacity-100 hover:grayscale-0 sm:h-12 sm:w-[145px]">
+                <Image src={brand.src} alt={brand.name} fill sizes="145px" className="object-contain" />
+              </span>
+            ))}
           </div>
-          <BrandWall />
-          <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-            <p className="max-w-xl text-sm leading-6 text-[#596475]">Logos shown with permission. Everything else stays confidential — and every figure above is drawn from a documented engagement.</p>
-            <Link href="/case-studies" className="gm-text-link shrink-0">Read the case studies <ArrowRight size={16} /></Link>
-          </div>
+          <p className="mt-12 text-center text-xs leading-5 text-[#687385]">Logos shown with permission · 50+ brands and 200+ accounts managed across categories, marketplaces, and growth stages</p>
         </Reveal>
       </section>
 
