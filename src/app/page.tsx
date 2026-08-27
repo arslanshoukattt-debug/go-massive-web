@@ -104,15 +104,15 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 1b — RECOGNITIONS & CERTIFICATIONS (owner-provided, Aug 2026) — styled in the site's own hairline-tile idiom */}
-      <section className="border-b border-[#020d1f]/15 bg-white px-5 py-9 sm:px-8 lg:px-12">
-        <Reveal className="mx-auto flex max-w-[1600px] flex-col gap-6 lg:flex-row lg:items-center lg:gap-14">
+      {/* 1b — RECOGNITIONS & CERTIFICATIONS (owner-provided, Aug 2026) — pure typographic row, no containers */}
+      <section className="border-b border-[#020d1f]/10 bg-white px-5 py-8 sm:px-8 lg:px-12">
+        <Reveal className="mx-auto flex max-w-[1600px] flex-col gap-7 lg:flex-row lg:items-center lg:gap-16">
           <p className="gm-eyebrow gm-text-red-safe shrink-0 lg:max-w-[150px]">Recognitions &amp; certifications</p>
-          <div className="grid flex-1 grid-cols-2 gap-2.5 sm:grid-cols-3 xl:grid-cols-5">
+          <div className="flex flex-1 flex-wrap items-center gap-x-12 gap-y-6 lg:justify-between">
             {certifications.map((cert) => (
-              <div key={cert.name} className="border border-[#020d1f]/12 bg-white px-4 py-3.5 transition hover:border-[#E91A24]">
-                <p className="text-[15px] font-semibold leading-5 tracking-[-.02em]">{cert.name}</p>
-                <p className="mt-1 font-mono text-[10px] font-semibold uppercase tracking-[.06em] text-[#596475]">{cert.label}</p>
+              <div key={cert.name}>
+                <p className="text-[16px] font-semibold leading-5 tracking-[-.02em]">{cert.name}</p>
+                <p className="mt-1 font-mono text-[10px] font-semibold uppercase tracking-[.08em] text-[#596475]">{cert.label}</p>
               </div>
             ))}
           </div>
