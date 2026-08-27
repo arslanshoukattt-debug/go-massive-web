@@ -5,6 +5,7 @@ import { BrandWall } from "../components/BrandWall";
 import { GrowthEngine } from "../components/GrowthEngine";
 import { HeroGrowthVisual } from "../components/HeroGrowthVisual";
 import { Reveal } from "../components/Reveal";
+import { RotatingWord } from "../components/RotatingWord";
 import { SiteFooter } from "../components/SiteFooter";
 import { SiteHeader } from "../components/SiteHeader";
 import { StatCounter } from "../components/StatCounter";
@@ -67,8 +68,11 @@ export default function Home() {
             <p className="gm-text-red-safe font-mono text-[15px] font-bold uppercase tracking-[.14em]">7+ Years of Creating eCommerce Growth</p>
             <HeroRating />
             <h1 className="mt-5 max-w-4xl text-[clamp(3rem,5.6vw,6.5rem)] font-semibold uppercase leading-[.85] tracking-[-.06em]">
-              <span className="gm-hero-line">Make growth feel</span>
-              <span className="gm-hero-line text-[#e91a24]">inevitable.</span>
+              <span className="gm-hero-line">Build growth that&rsquo;s</span>
+              <span className="gm-hero-line text-[#e91a24]">
+                <span className="sr-only">Inevitable.</span>
+                <RotatingWord words={["Inevitable", "Predictable", "Repeatable", "Scalable"]} />
+              </span>
             </h1>
             <div className="gm-hero-copy mt-5 max-w-xl border-t border-[#020d1f]/20 pt-4">
               <p className="text-lg leading-8 text-[#020d1f]/72 lg:text-[19px]">Fragmented partners get paid whether you grow or not. We run strategy, operations, advertising, creative, and technology as one system — with economics aligned to your growth.</p>
