@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ViewTransition } from "react";
-import { ArrowRight, Check, Mail } from "lucide-react";
+import { ArrowRight, Check, CircleDollarSign, Mail, Package, PieChart, ShoppingCart, TrendingDown, Users } from "lucide-react";
 import { BrandWall } from "../components/BrandWall";
 import { GrowthEngine } from "../components/GrowthEngine";
 import { HeroGrowthVisual } from "../components/HeroGrowthVisual";
@@ -36,12 +36,12 @@ const proofStats = [
 ];
 
 const problems = [
-  { title: "Ads get more expensive, not more efficient", detail: "CPCs climb, TACoS creeps up, and the account starts buying the same sales for more money." },
-  { title: "Traffic lands on listings that can't convert", detail: "Weak content and creative turn paid demand into browsing instead of buying." },
-  { title: "Operations quietly cap the growth", detail: "Stockouts, catalogue drift, and compliance issues put a ceiling on what advertising can scale." },
-  { title: "Fragmented partners, fragmented accountability", detail: "An ads agency, a listing freelancer, three tools — and nobody owning the outcome." },
-  { title: "Revenue up, margin down", detail: "Top-line growth that costs more than it returns isn't growth. It's expensive activity." },
-  { title: "No single commercial view", detail: "Decisions get made from channel reports instead of one honest picture of the business." },
+  { icon: CircleDollarSign, title: "Ads get more expensive, not more efficient", detail: "CPCs climb, TACoS creeps up, and the account starts buying the same sales for more money." },
+  { icon: ShoppingCart, title: "Traffic lands on listings that can't convert", detail: "Weak content and creative turn paid demand into browsing instead of buying." },
+  { icon: Package, title: "Operations quietly cap the growth", detail: "Stockouts, catalogue drift, and compliance issues put a ceiling on what advertising can scale." },
+  { icon: Users, title: "Fragmented partners, fragmented accountability", detail: "An ads agency, a listing freelancer, three tools — and nobody owning the outcome." },
+  { icon: TrendingDown, title: "Revenue up, margin down", detail: "Top-line growth that costs more than it returns isn't growth. It's expensive activity." },
+  { icon: PieChart, title: "No single commercial view", detail: "Decisions get made from channel reports instead of one honest picture of the business." },
 ];
 
 const channels = [
@@ -119,24 +119,30 @@ export default function Home() {
         </Reveal>
       </section>
 
-      {/* 2 — PROBLEM: editorial stacked rows (owner cut the card grid + numbering, Aug 2026) */}
+      {/* 2 — PROBLEM: icon-led cells on a hairline lattice (owner's reference used as inspiration; site fonts/colors kept) */}
       <section className="px-5 py-20 sm:px-8 lg:px-12 lg:py-28">
         <Reveal className="mx-auto max-w-[1600px]">
-          <div className="grid gap-10 border-b border-[#020d1f]/20 pb-12 lg:grid-cols-[.64fr_1.36fr] lg:items-end">
+          <div className="grid gap-10 pb-12 lg:grid-cols-[.64fr_1.36fr] lg:items-center">
             <div><p className="gm-eyebrow gm-text-red-safe">Where brands get stuck</p><p className="gm-section-support">By the time revenue flattens, the cause is usually spread across the account — and no single-channel partner can see all of it.</p></div>
-            <h2 className="max-w-3xl text-[clamp(1.9rem,3.4vw,3.4rem)] font-semibold uppercase leading-[.95] tracking-[-.04em]">Growth rarely breaks in one place.</h2>
+            <h2 className="max-w-3xl text-[clamp(1.9rem,3.4vw,3.4rem)] font-semibold uppercase leading-[.95] tracking-[-.04em] lg:border-l lg:border-[#020d1f]/15 lg:pl-12">Growth rarely breaks in one place<span className="text-[#E91A24]">.</span></h2>
           </div>
-          <div>
-            {problems.map((problem, index) => (
-              <Reveal key={problem.title} delay={index * 60}>
-                <div className="grid gap-2.5 border-b border-[#020d1f]/15 py-7 lg:grid-cols-[.55fr_1fr] lg:gap-12 lg:py-8">
-                  <h3 className="max-w-md text-xl font-semibold leading-snug tracking-[-.03em] sm:text-[22px]">{problem.title}</h3>
-                  <p className="max-w-2xl leading-7 text-[#596475]">{problem.detail}</p>
-                </div>
-              </Reveal>
-            ))}
+          <div className="grid gap-px border-y border-[#020d1f]/15 bg-[#020d1f]/15 sm:grid-cols-2 lg:grid-cols-3">
+            {problems.map((problem, index) => {
+              const Icon = problem.icon;
+              return (
+                <Reveal key={problem.title} delay={index * 60} className="bg-[#f4f3ef]">
+                  <div className="flex h-full items-start gap-5 px-6 py-9 lg:px-8 lg:py-10">
+                    <span className="grid h-14 w-14 shrink-0 place-items-center rounded-full bg-[#E91A24]/10"><Icon size={24} strokeWidth={1.8} className="text-[#E91A24]" aria-hidden="true" /></span>
+                    <div>
+                      <h3 className="max-w-[16rem] text-lg font-semibold leading-snug tracking-[-.02em]">{problem.title}</h3>
+                      <p className="mt-2 max-w-sm text-[14.5px] leading-6 text-[#596475]">{problem.detail}</p>
+                    </div>
+                  </div>
+                </Reveal>
+              );
+            })}
           </div>
-          <p className="mt-12 max-w-3xl text-xl font-medium leading-8 tracking-[-.02em] sm:text-2xl">Every one of these is a system problem. Fixing them one silo at a time is how brands stay stuck.</p>
+          <p className="mt-12 max-w-3xl border-l-[3px] border-[#E91A24] pl-6 text-xl leading-8 tracking-[-.02em] sm:text-2xl"><span className="font-semibold">Every one of these is a system problem.</span> <span className="text-[#020d1f]/70">Fixing them one silo at a time is how brands stay stuck.</span></p>
         </Reveal>
       </section>
 
