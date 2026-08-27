@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { ViewTransition } from "react";
 import { ArrowRight, Check, CircleDollarSign, Mail, Package, PieChart, ShoppingCart, TrendingDown, Users } from "lucide-react";
@@ -19,18 +18,19 @@ import { ENGINE_NODES } from "../lib/engine-nodes";
 const WHATSAPP_URL = "";
 const MEETING_URL = "";
 
-// Owner-cleared client logos (Aug 2026) - logo cloud in section 3. Logos only,
-// no labels or metrics attached to named brands.
+// Owner-cleared client logos (Aug 2026) - single-line marquee in section 3.
+// Per-logo heights equalise visual mass: wide wordmarks run shorter, compact
+// square marks taller, so no logo reads bigger than its neighbours.
 const brandLogos = [
-  { name: "Hallowood Furniture", src: "/logos/hallowood.png" },
-  { name: "Love & Peanut", src: "/logos/love-and-peanut.png" },
-  { name: "Calzitaly", src: "/logos/calzitaly.png" },
-  { name: "Witt", src: "/logos/witt.png" },
-  { name: "DBZ Beds", src: "/logos/dbz-beds.png" },
-  { name: "Bigfoot Bushcraft", src: "/logos/bigfoot-bushcraft.png" },
-  { name: "Hot Star Honey", src: "/logos/hot-star-honey.png" },
-  { name: "funSLINGER", src: "/logos/funslinger.png" },
-  { name: "Qnaturals", src: "/logos/qnaturals.png" },
+  { name: "Hallowood Furniture", src: "/logos/hallowood.png", h: "h-9" },
+  { name: "Calzitaly", src: "/logos/calzitaly.png", h: "h-14" },
+  { name: "Witt", src: "/logos/witt.png", h: "h-11" },
+  { name: "Love & Peanut", src: "/logos/love-and-peanut.png", h: "h-9" },
+  { name: "Bigfoot Bushcraft", src: "/logos/bigfoot-bushcraft.png", h: "h-14" },
+  { name: "DBZ Beds", src: "/logos/dbz-beds.png", h: "h-11" },
+  { name: "Hot Star Honey", src: "/logos/hot-star-honey.png", h: "h-14" },
+  { name: "funSLINGER", src: "/logos/funslinger.png", h: "h-10" },
+  { name: "Qnaturals", src: "/logos/qnaturals.png", h: "h-12" },
 ];
 
 // Owner-provided certifications (Aug 2026), rendered in the strip under the hero.
@@ -168,12 +168,17 @@ export default function Home() {
       <section className="border-y border-[#020d1f]/15 bg-white px-5 py-16 sm:px-8 lg:px-12 lg:py-20">
         <Reveal className="mx-auto max-w-[1600px]">
           <h2 className="text-center text-[clamp(1.5rem,2.6vw,2.3rem)] font-bold uppercase tracking-[-.03em]">Trusted by leading brands worldwide<span className="text-[#E91A24]">.</span></h2>
-          <div className="mt-12 flex flex-wrap items-center justify-center gap-x-12 gap-y-10 sm:gap-x-16 lg:gap-x-20">
-            {brandLogos.map((brand) => (
-              <span key={brand.name} className="relative block h-10 w-[120px] opacity-60 grayscale transition duration-300 hover:opacity-100 hover:grayscale-0 sm:h-12 sm:w-[145px]">
-                <Image src={brand.src} alt={brand.name} fill sizes="145px" className="object-contain" />
-              </span>
-            ))}
+          <div className="gm-logo-marquee mt-12" aria-label="Logos of brands Go Massive has worked with">
+            <div className="gm-logo-track">
+              {[0, 1].map((copy) => (
+                <div key={copy} className="gm-logo-set" aria-hidden={copy === 1}>
+                  {brandLogos.map((brand) => (
+                    // eslint-disable-next-line @next/next/no-img-element -- marquee needs natural-width PNGs, no optimizer frame
+                    <img key={brand.name} src={brand.src} alt={copy === 0 ? brand.name : ""} loading="lazy" className={`${brand.h} w-auto opacity-60 grayscale transition duration-300 hover:opacity-100 hover:grayscale-0`} />
+                  ))}
+                </div>
+              ))}
+            </div>
           </div>
           <p className="mt-12 text-center text-xs leading-5 text-[#687385]">Logos shown with permission · 50+ brands and 200+ accounts managed across categories, marketplaces, and growth stages</p>
         </Reveal>
