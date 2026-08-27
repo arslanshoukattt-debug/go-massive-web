@@ -72,12 +72,13 @@ export function BrandWall() {
     <div className="gm-wall" aria-label="A rotating selection of Go Massive engagement categories, channels, and outcomes">
       {tiles.map((tile, index) => (
         <div key={index} className={`gm-wall-tile ${swapping === index ? "gm-wall-tile--out" : ""}`}>
-          <div className="gm-wall-tile-inner">
+          <div className="gm-wall-tile-inner group">
             {tile.logo ? (
               // Fixed 40px-tall frame; fill + object-contain scales any aspect
               // ratio (wide wordmark or square mark) without distortion.
+              // Logos render black-and-white and regain colour on tile hover.
               <span className="relative block h-10 w-full max-w-[150px]">
-                <Image src={tile.logo} alt={tile.title} fill sizes="150px" className="object-contain object-left" />
+                <Image src={tile.logo} alt={tile.title} fill sizes="150px" className="object-contain object-left grayscale transition-[filter] duration-300 group-hover:grayscale-0" />
               </span>
             ) : (
               <b>{tile.title}</b>
