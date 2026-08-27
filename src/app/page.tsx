@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ViewTransition } from "react";
-import { ArrowRight, Check, Mail } from "lucide-react";
+import { ArrowRight, Award, Check, Mail } from "lucide-react";
 import { BrandWall } from "../components/BrandWall";
 import { GrowthEngine } from "../components/GrowthEngine";
 import { HeroGrowthVisual } from "../components/HeroGrowthVisual";
@@ -93,15 +93,36 @@ export default function Home() {
             ))}
           </div>
         </div>
-        <div className="gm-hero-strip relative border-t border-[#020d1f]/10 bg-[#F7F8FA]">
-          <div className="mx-auto flex max-w-[1600px] flex-col gap-5 px-5 py-6 sm:px-8 lg:flex-row lg:items-center lg:justify-between lg:px-12">
-            <div>
-              <p className="text-lg font-semibold tracking-[-.02em] sm:text-xl">Not sure where growth is leaking? Get a free growth audit.</p>
-              <p className="mt-1 text-sm leading-6 text-[#596475]">A focused, no-pitch look at your account — with clear next steps, even if we&rsquo;re not the right fit.</p>
+      </section>
+
+      {/* 1b — RECOGNITIONS & CERTIFICATIONS (owner-provided, Aug 2026; layout mirrors owner's reference screenshot) */}
+      <section className="bg-white px-5 pb-12 pt-5 sm:px-8 lg:px-12">
+        <Reveal className="relative mx-auto max-w-[1600px] rounded-2xl border border-[#020d1f]/12 px-6 py-9 sm:px-10">
+          <p className="gm-eyebrow absolute -top-2 left-5 inline-flex items-center gap-2 bg-white px-2.5 sm:left-8"><Award size={15} className="text-[#E91A24]" aria-hidden="true" /> Recognitions and certifications</p>
+          <div className="flex flex-wrap items-center gap-x-12 gap-y-7 lg:justify-between">
+            <div className="flex items-center gap-2.5">
+              <p className="text-xl font-bold lowercase tracking-[-.045em]">amazon<span className="font-medium text-[#596475]"> ads</span></p>
+              <p className="text-[11px] font-semibold leading-[1.2] text-[#596475]">Verified<br />Partner</p>
             </div>
-            <Link href="/growth-audit" className="gm-button gm-button--red shrink-0 whitespace-nowrap">Get my free audit <ArrowRight size={16} /></Link>
+            <div className="flex items-center gap-2.5">
+              <p className="text-xl font-bold lowercase tracking-[-.045em]">amazon<span className="font-medium text-[#596475]"> spn</span></p>
+              <p className="text-[11px] font-semibold leading-[1.2] text-[#596475]">Verified<br />Partner</p>
+            </div>
+            <p className="text-xl font-bold lowercase tracking-[-.045em]">amazon <span className="text-base font-semibold uppercase tracking-[-.01em]">SAS Core</span></p>
+            <div className="flex items-center gap-2.5">
+              <p className="text-xl font-semibold tracking-[-.03em]">Google Ads</p>
+              <p className="text-[11px] font-semibold leading-[1.2] text-[#596475]">Partner</p>
+            </div>
+            <div className="flex items-center gap-2.5">
+              <p className="text-xl font-bold tracking-[-.03em]">Clutch</p>
+              <p className="text-[11px] font-semibold leading-[1.2] text-[#596475]">5.0-rated<br />agency</p>
+            </div>
+            <div className="flex items-center gap-2.5">
+              <svg width="24" height="24" viewBox="0 0 26 26" aria-hidden="true" className="shrink-0"><rect x="1.5" y="5.5" width="19" height="19" fill="none" stroke="#E91A24" strokeWidth="1.6" /><rect x="5.5" y="1.5" width="19" height="19" fill="none" stroke="#E91A24" strokeWidth="1.6" /></svg>
+              <p className="text-sm font-semibold uppercase tracking-[.12em]">The Manifest</p>
+            </div>
           </div>
-        </div>
+        </Reveal>
       </section>
 
       {/* 2 — PROBLEM: meet the visitor where they're stuck */}
