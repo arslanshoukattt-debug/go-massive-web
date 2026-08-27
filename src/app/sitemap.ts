@@ -12,6 +12,8 @@ const staticRoutes = [
   { path: "/case-studies", priority: 0.7 },
   { path: "/about", priority: 0.6 },
   { path: "/growth-audit", priority: 0.9 },
+  { path: "/contact", priority: 0.5 },
+  { path: "/privacy", priority: 0.3 },
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
