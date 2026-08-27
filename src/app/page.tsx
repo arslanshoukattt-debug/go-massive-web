@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ViewTransition } from "react";
-import { ArrowRight, Award, Check, Mail } from "lucide-react";
+import { ArrowRight, Check, Mail } from "lucide-react";
 import { BrandWall } from "../components/BrandWall";
 import { GrowthEngine } from "../components/GrowthEngine";
 import { HeroGrowthVisual } from "../components/HeroGrowthVisual";
@@ -18,6 +18,15 @@ import { ENGINE_NODES } from "../lib/engine-nodes";
 // fill these in and the buttons appear in the closing section automatically.
 const WHATSAPP_URL = "";
 const MEETING_URL = "";
+
+// Owner-provided certifications (Aug 2026), rendered in the strip under the hero.
+const certifications = [
+  { name: "Amazon Ads", label: "Verified Partner" },
+  { name: "Amazon SPN", label: "Verified Partner" },
+  { name: "Amazon SAS", label: "Core" },
+  { name: "Google Ads", label: "Partner" },
+  { name: "Clutch", label: "5.0-rated agency" },
+];
 
 const proofStats = [
   { value: "7+", label: "Years operating in eCommerce" },
@@ -95,32 +104,17 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 1b — RECOGNITIONS & CERTIFICATIONS (owner-provided, Aug 2026; layout mirrors owner's reference screenshot) */}
-      <section className="bg-white px-5 pb-12 pt-5 sm:px-8 lg:px-12">
-        <Reveal className="relative mx-auto max-w-[1600px] rounded-2xl border border-[#020d1f]/12 px-6 py-9 sm:px-10">
-          <p className="gm-eyebrow absolute -top-2 left-5 inline-flex items-center gap-2 bg-white px-2.5 sm:left-8"><Award size={15} className="text-[#E91A24]" aria-hidden="true" /> Recognitions and certifications</p>
-          <div className="flex flex-wrap items-center gap-x-12 gap-y-7 lg:justify-between">
-            <div className="flex items-center gap-2.5">
-              <p className="text-xl font-bold lowercase tracking-[-.045em]">amazon<span className="font-medium text-[#596475]"> ads</span></p>
-              <p className="text-[11px] font-semibold leading-[1.2] text-[#596475]">Verified<br />Partner</p>
-            </div>
-            <div className="flex items-center gap-2.5">
-              <p className="text-xl font-bold lowercase tracking-[-.045em]">amazon<span className="font-medium text-[#596475]"> spn</span></p>
-              <p className="text-[11px] font-semibold leading-[1.2] text-[#596475]">Verified<br />Partner</p>
-            </div>
-            <p className="text-xl font-bold lowercase tracking-[-.045em]">amazon <span className="text-base font-semibold uppercase tracking-[-.01em]">SAS Core</span></p>
-            <div className="flex items-center gap-2.5">
-              <p className="text-xl font-semibold tracking-[-.03em]">Google Ads</p>
-              <p className="text-[11px] font-semibold leading-[1.2] text-[#596475]">Partner</p>
-            </div>
-            <div className="flex items-center gap-2.5">
-              <p className="text-xl font-bold tracking-[-.03em]">Clutch</p>
-              <p className="text-[11px] font-semibold leading-[1.2] text-[#596475]">5.0-rated<br />agency</p>
-            </div>
-            <div className="flex items-center gap-2.5">
-              <svg width="24" height="24" viewBox="0 0 26 26" aria-hidden="true" className="shrink-0"><rect x="1.5" y="5.5" width="19" height="19" fill="none" stroke="#E91A24" strokeWidth="1.6" /><rect x="5.5" y="1.5" width="19" height="19" fill="none" stroke="#E91A24" strokeWidth="1.6" /></svg>
-              <p className="text-sm font-semibold uppercase tracking-[.12em]">The Manifest</p>
-            </div>
+      {/* 1b — RECOGNITIONS & CERTIFICATIONS (owner-provided, Aug 2026) — styled in the site's own hairline-tile idiom */}
+      <section className="border-b border-[#020d1f]/15 bg-white px-5 py-9 sm:px-8 lg:px-12">
+        <Reveal className="mx-auto flex max-w-[1600px] flex-col gap-6 lg:flex-row lg:items-center lg:gap-14">
+          <p className="gm-eyebrow gm-text-red-safe shrink-0 lg:max-w-[150px]">Recognitions &amp; certifications</p>
+          <div className="grid flex-1 grid-cols-2 gap-2.5 sm:grid-cols-3 xl:grid-cols-5">
+            {certifications.map((cert) => (
+              <div key={cert.name} className="border border-[#020d1f]/12 bg-white px-4 py-3.5 transition hover:border-[#E91A24]">
+                <p className="text-[15px] font-semibold leading-5 tracking-[-.02em]">{cert.name}</p>
+                <p className="mt-1 font-mono text-[10px] font-semibold uppercase tracking-[.06em] text-[#596475]">{cert.label}</p>
+              </div>
+            ))}
           </div>
         </Reveal>
       </section>
