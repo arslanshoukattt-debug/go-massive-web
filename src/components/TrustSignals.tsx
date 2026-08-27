@@ -4,6 +4,12 @@
 const RATING = "4.9";
 const REVIEWS = "300+";
 
+// Owner-directed links (Aug 2026). Trustpilot is the live go-massive.com
+// profile; the Google link is a Maps lookup for the Austin listing - replace
+// with the exact share link from the Google Business dashboard when provided.
+const TRUSTPILOT_URL = "https://www.trustpilot.com/review/go-massive.com";
+const GOOGLE_REVIEWS_URL = "https://www.google.com/maps/search/?api=1&query=Go%20Massive%205900%20Balcones%20Drive%20Austin%20TX";
+
 const STAR = "M8 .6l2.18 4.42 4.88.71-3.53 3.44.83 4.86L8 11.74l-4.36 2.29.83-4.86L.94 5.73l4.88-.71L8 .6z";
 
 function Stars({ color, size = 15 }: { color: string; size?: number }) {
@@ -46,14 +52,14 @@ export function TrustBadges() {
   return (
     <div className="flex flex-wrap items-center gap-3">
       {/* Trustpilot */}
-      <span className="inline-flex items-center gap-2 border border-[#020d1f]/12 bg-white py-2.5 pl-3 pr-3.5">
+      <a href={TRUSTPILOT_URL} target="_blank" rel="noreferrer" aria-label="Go Massive reviews on Trustpilot (opens in a new tab)" className="inline-flex items-center gap-2 border border-[#020d1f]/12 bg-white py-2.5 pl-3 pr-3.5 transition hover:border-[#E91A24]">
         <svg width="18" height="18" viewBox="0 0 16 16" aria-hidden="true"><path d={STAR} fill="#00B67A" /></svg>
         <span className="text-sm font-bold tracking-[-.02em]">Trustpilot</span>
         <Stars color="#00B67A" size={12} />
         <span className="text-sm font-semibold">{RATING}</span>
-      </span>
+      </a>
       {/* Google Reviews */}
-      <span className="inline-flex items-center gap-2 border border-[#020d1f]/12 bg-white py-2.5 pl-3 pr-3.5">
+      <a href={GOOGLE_REVIEWS_URL} target="_blank" rel="noreferrer" aria-label="Go Massive reviews on Google (opens in a new tab)" className="inline-flex items-center gap-2 border border-[#020d1f]/12 bg-white py-2.5 pl-3 pr-3.5 transition hover:border-[#E91A24]">
         <svg width="17" height="17" viewBox="0 0 18 18" aria-hidden="true">
           <path fill="#4285F4" d="M17.64 9.2c0-.637-.057-1.251-.163-1.84H9v3.481h4.844c-.209 1.125-.843 2.078-1.796 2.717v2.258h2.908c1.702-1.567 2.684-3.874 2.684-6.615z" />
           <path fill="#34A853" d="M9 18c2.43 0 4.467-.806 5.956-2.18l-2.908-2.259c-.806.54-1.837.86-3.048.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332C2.438 15.983 5.482 18 9 18z" />
@@ -63,7 +69,7 @@ export function TrustBadges() {
         <span className="text-sm font-bold tracking-[-.02em]">Google Reviews</span>
         <Stars color="#FBBC04" size={12} />
         <span className="text-sm font-semibold">{RATING}</span>
-      </span>
+      </a>
     </div>
   );
 }
