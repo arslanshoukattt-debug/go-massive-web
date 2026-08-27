@@ -119,12 +119,14 @@ export default function Home() {
         </Reveal>
       </section>
 
-      {/* 2 — PROBLEM: centered eyebrow, description left / headline right, icon lattice on white */}
-      <section className="bg-white px-5 py-20 sm:px-8 lg:px-12 lg:py-28">
+      {/* 2 — PROBLEM: centered kicker, description left / headline right, icon lattice on white with red accents */}
+      <section className="relative isolate overflow-hidden bg-white px-5 py-20 sm:px-8 lg:px-12 lg:py-28">
+        <div className="pointer-events-none absolute -right-40 -top-36 -z-10 h-[540px] w-[540px] rounded-full border border-[#E91A24]/15" aria-hidden="true" />
+        <div className="pointer-events-none absolute -left-28 bottom-10 -z-10 h-[340px] w-[340px] rounded-full border border-[#E91A24]/10" aria-hidden="true" />
         <Reveal className="mx-auto max-w-[1600px]">
-          <p className="gm-eyebrow gm-text-red-safe text-center">Where brands get stuck</p>
+          <p className="text-center text-[19px] font-bold uppercase tracking-[.12em] text-[#E91A24] sm:text-[21px]">Where brands get stuck</p>
           <div className="mt-10 grid gap-8 pb-12 lg:grid-cols-[.8fr_1.2fr] lg:items-center lg:gap-14">
-            <p className="max-w-md text-[15px] leading-7 text-[#020d1f]/62 lg:justify-self-end lg:text-right">By the time revenue flattens, the cause is usually spread across the account — and no single-channel partner can see all of it.</p>
+            <p className="max-w-lg text-lg leading-8 text-[#020d1f]/70 sm:text-[19px] lg:justify-self-end lg:text-right">By the time revenue flattens, the cause is usually spread across the account — and no single-channel partner can see all of it.</p>
             <h2 className="max-w-3xl text-[clamp(2.2rem,4.2vw,4.2rem)] font-bold uppercase leading-[.92] tracking-[-.045em] lg:border-l lg:border-[#020d1f]/15 lg:pl-14">Growth rarely breaks in one place<span className="text-[#E91A24]">.</span></h2>
           </div>
           <div className="grid gap-px border-y border-[#020d1f]/15 bg-[#020d1f]/15 sm:grid-cols-2 lg:grid-cols-3">
@@ -132,18 +134,19 @@ export default function Home() {
               const Icon = problem.icon;
               return (
                 <Reveal key={problem.title} delay={index * 60} className="bg-white">
-                  <div className="flex h-full items-start gap-5 px-6 py-9 lg:px-8 lg:py-10">
-                    <span className="grid h-14 w-14 shrink-0 place-items-center rounded-full bg-[#E91A24]/10"><Icon size={24} strokeWidth={1.8} className="text-[#E91A24]" aria-hidden="true" /></span>
+                  <div className="group relative flex h-full items-start gap-5 px-6 py-9 lg:px-8 lg:py-10">
+                    <span className="grid h-14 w-14 shrink-0 place-items-center rounded-full bg-[#E91A24]/10 transition-colors duration-300 group-hover:bg-[#E91A24]"><Icon size={24} strokeWidth={1.8} className="text-[#E91A24] transition-colors duration-300 group-hover:text-white" aria-hidden="true" /></span>
                     <div>
                       <h3 className="max-w-[16rem] text-[19px] font-semibold leading-snug tracking-[-.02em]">{problem.title}</h3>
                       <p className="mt-2 max-w-sm text-[14.5px] leading-6 text-[#596475]">{problem.detail}</p>
                     </div>
+                    <span className="absolute bottom-0 left-0 h-[2px] w-full origin-left scale-x-0 bg-[#E91A24] transition-transform duration-500 ease-out group-hover:scale-x-100" aria-hidden="true" />
                   </div>
                 </Reveal>
               );
             })}
           </div>
-          <p className="mt-12 max-w-3xl border-l-[3px] border-[#E91A24] pl-6 text-xl leading-8 tracking-[-.02em] sm:text-2xl"><span className="font-semibold">Every one of these is a system problem.</span> <span className="text-[#020d1f]/70">Fixing them one silo at a time is how brands stay stuck.</span></p>
+          <p className="mt-12 border-l-[3px] border-[#E91A24] pl-6 text-xl leading-8 tracking-[-.02em] sm:text-2xl"><span className="font-semibold">Every one of these is a system problem.</span> <span className="text-[#020d1f]/70">Fixing them one silo at a time is how brands stay stuck.</span></p>
         </Reveal>
       </section>
 
