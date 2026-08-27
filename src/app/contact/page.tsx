@@ -18,11 +18,11 @@ export default function ContactPage() {
     <main id="main" className="flex min-h-screen flex-col bg-[#F7F8FA] text-[#020D1F]">
       <SiteHeader />
       <ViewTransition name="page-content" share="auto" enter="auto" default="none">
-      <section className="bg-[#020D1F] py-20 text-white sm:py-28">
+      <section className="bg-white py-20 sm:py-28">
         <div className="mx-auto max-w-[1440px] px-6 lg:px-10">
-          <p className="text-xs font-bold uppercase tracking-[.2em] text-[#FF8A90]">Contact</p>
+          <p className="text-xs font-bold uppercase tracking-[.2em] gm-text-red-safe">Contact</p>
           <h1 className="mt-6 max-w-4xl text-[clamp(2.4rem,5.6vw,5.4rem)] font-semibold uppercase leading-[.92] tracking-[-.04em]">Start the conversation.</h1>
-          <p className="mt-7 max-w-xl text-lg leading-8 text-white/65">The fastest route to a useful answer is the Growth Audit. For everything else, email works.</p>
+          <p className="mt-7 max-w-xl text-lg leading-8 text-[#596475]">The fastest route to a useful answer is the Growth Audit. For everything else, email works.</p>
         </div>
       </section>
 

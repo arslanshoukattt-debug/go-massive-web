@@ -18,7 +18,7 @@ const SITE_DESCRIPTION =
   "Go Massive connects marketplace operations, demand capture, conversion, and expansion into one accountable commercial system for ambitious eCommerce brands.";
 
 export const viewport: Viewport = {
-  themeColor: "#020D1F",
+  themeColor: "#ffffff",
 };
 
 export const metadata: Metadata = {

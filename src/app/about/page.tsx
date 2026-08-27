@@ -33,20 +33,20 @@ export default function AboutPage() {
     <main id="main" className="overflow-hidden bg-[#F7F8FA] text-[#020D1F]">
       <SiteHeader />
       <ViewTransition name="page-content" share="auto" enter="auto" default="none">
-      <section className="relative isolate overflow-hidden bg-[#020D1F] py-20 text-white sm:py-28 lg:py-32">
-        <div className="absolute inset-0 -z-10 opacity-35 [background-image:linear-gradient(rgba(255,255,255,.07)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.07)_1px,transparent_1px)] [background-size:56px_56px]" />
+      <section className="relative isolate overflow-hidden bg-white py-20 sm:py-28 lg:py-32">
+        <div className="absolute inset-0 -z-10 opacity-35 [background-image:linear-gradient(rgba(2,13,31,.06)_1px,transparent_1px),linear-gradient(90deg,rgba(2,13,31,.06)_1px,transparent_1px)] [background-size:56px_56px]" />
         <div className="absolute -right-32 top-0 -z-10 h-[640px] w-[640px] rounded-full border border-[#E91A24]/35" />
-        <div className="absolute -right-8 top-28 -z-10 h-[410px] w-[410px] rounded-full border border-white/15" />
+        <div className="absolute -right-8 top-28 -z-10 h-[410px] w-[410px] rounded-full border border-[#020D1F]/10" />
         <div className="mx-auto max-w-[1440px] px-6 lg:px-10">
           <div className="grid gap-12 lg:grid-cols-[1.1fr_.9fr] lg:items-end">
             <div>
-              <p className="text-xs font-bold uppercase tracking-[.18em] text-[#FF8A90]">The Go Massive difference</p>
+              <p className="text-xs font-bold uppercase tracking-[.18em] gm-text-red-safe">The Go Massive difference</p>
               <h1 className="mt-6 max-w-4xl text-5xl font-semibold leading-[.97] tracking-[-.06em] sm:text-6xl lg:text-7xl">A growth partner built for the work behind the numbers.</h1>
             </div>
-            <p className="max-w-xl text-lg leading-8 text-white/65">Go Massive helps ambitious brands and manufacturers make better commercial decisions across the marketplaces and channels that drive modern commerce.</p>
+            <p className="max-w-xl text-lg leading-8 text-[#596475]">Go Massive helps ambitious brands and manufacturers make better commercial decisions across the marketplaces and channels that drive modern commerce.</p>
           </div>
-          <div className="mt-16 grid grid-cols-2 gap-px overflow-hidden rounded-3xl border border-white/10 bg-white/10 sm:grid-cols-4">
-            {agencyStats.map((stat, index) => <Reveal key={stat.label} delay={index * 90}><div className="bg-[#081B38] p-6"><p className="text-3xl font-semibold tracking-[-.04em] sm:text-4xl"><StatCounter value={stat.value} /></p><p className="mt-2 text-sm leading-5 text-white/55">{stat.label}</p></div></Reveal>)}
+          <div className="mt-16 grid grid-cols-2 gap-px overflow-hidden rounded-3xl border border-[#020D1F]/10 bg-[#020D1F]/10 sm:grid-cols-4">
+            {agencyStats.map((stat, index) => <Reveal key={stat.label} delay={index * 90}><div className="bg-white p-6"><p className="text-3xl font-semibold tracking-[-.04em] sm:text-4xl"><StatCounter value={stat.value} /></p><p className="mt-2 text-sm leading-5 text-[#596475]">{stat.label}</p></div></Reveal>)}
           </div>
         </div>
       </section>
@@ -61,11 +61,11 @@ export default function AboutPage() {
             const Icon = principle.icon;
             return (
               <Reveal key={principle.title} delay={index * 90}>
-                <article className={index === 0 ? "bg-[#020D1F] p-7 text-white sm:p-8" : "bg-white p-7 sm:p-8"}>
-                  <span className={index === 0 ? "gm-num-editorial gm-num-editorial--on-dark" : "gm-num-editorial"}>0{index + 1}</span>
-                  <Icon className={index === 0 ? "mt-8 text-[#FF8A90]" : "mt-8 text-[#E91A24]"} size={24} />
+                <article className="bg-white p-7 sm:p-8">
+                  <span className="gm-num-editorial">0{index + 1}</span>
+                  <Icon className="mt-8 text-[#E91A24]" size={24} />
                   <h3 className="mt-5 text-2xl font-semibold tracking-tight">{principle.title}</h3>
-                  <p className={index === 0 ? "mt-4 leading-7 text-white/60" : "mt-4 leading-7 text-[#596475]"}>{principle.description}</p>
+                  <p className="mt-4 leading-7 text-[#596475]">{principle.description}</p>
                 </article>
               </Reveal>
             );
@@ -73,9 +73,9 @@ export default function AboutPage() {
         </div>
       </div></section>
 
-      <section className="bg-[#0A1830] py-24 text-white sm:py-32"><div className="mx-auto grid max-w-[1440px] gap-14 px-6 lg:grid-cols-[.85fr_1.15fr] lg:items-start lg:px-10">
-        <div><p className="text-xs font-bold uppercase tracking-[.18em] text-[#FF8A90]">How we work</p><h2 className="mt-5 max-w-xl text-4xl font-semibold tracking-[-.055em] sm:text-6xl">Clear priorities. Direct communication. Better decisions.</h2></div>
-        <div className="grid gap-3">{operatingPrinciples.map((item, index) => <Reveal key={item} delay={index * 90}><div className="flex gap-4 rounded-2xl border border-white/10 bg-white/[.045] p-5"><span className="gm-num-meta gm-num-meta--on-dark">{String(index + 1).padStart(2, "0")}</span><p className="font-semibold leading-6 text-white/85">{item}</p></div></Reveal>)}</div>
+      <section className="border-y border-[#020D1F]/10 bg-white py-24 sm:py-32"><div className="mx-auto grid max-w-[1440px] gap-14 px-6 lg:grid-cols-[.85fr_1.15fr] lg:items-start lg:px-10">
+        <div><p className="text-xs font-bold uppercase tracking-[.18em] gm-text-red-safe">How we work</p><h2 className="mt-5 max-w-xl text-4xl font-semibold tracking-[-.055em] sm:text-6xl">Clear priorities. Direct communication. Better decisions.</h2></div>
+        <div className="grid gap-3">{operatingPrinciples.map((item, index) => <Reveal key={item} delay={index * 90}><div className="flex gap-4 rounded-2xl border border-[#020D1F]/10 bg-[#F7F8FA] p-5"><span className="gm-num-meta">{String(index + 1).padStart(2, "0")}</span><p className="font-semibold leading-6">{item}</p></div></Reveal>)}</div>
       </div></section>
 
       <section className="bg-[#F7F8FA] py-20 sm:py-24"><div className="mx-auto max-w-[1440px] px-6 lg:px-10">

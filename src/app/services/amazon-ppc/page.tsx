@@ -66,33 +66,33 @@ export default function AmazonPpcPage() {
       <SiteHeader />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify([serviceJsonLd({ name: "Amazon PPC Management", description: "Amazon PPC management that connects campaign architecture, search-term intelligence, catalogue priorities, and commercial reporting.", path: "/services/amazon-ppc" }), breadcrumbJsonLd([{ name: "Services", path: "/services" }, { name: "Amazon PPC", path: "/services/amazon-ppc" }])]) }} />
       <ViewTransition name="page-content" share="auto" enter="auto" default="none">
-      <section className="relative isolate bg-[#020D1F] py-20 text-white sm:py-28 lg:py-32">
-        <div className="absolute inset-0 -z-10 opacity-35 [background-image:linear-gradient(rgba(255,255,255,.07)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.07)_1px,transparent_1px)] [background-size:56px_56px]" />
+      <section className="relative isolate bg-white py-20 sm:py-28 lg:py-32">
+        <div className="absolute inset-0 -z-10 opacity-35 [background-image:linear-gradient(rgba(2,13,31,.06)_1px,transparent_1px),linear-gradient(90deg,rgba(2,13,31,.06)_1px,transparent_1px)] [background-size:56px_56px]" />
         <div className="absolute -right-32 top-0 -z-10 h-[640px] w-[640px] rounded-full border border-[#E91A24]/35" />
-        <div className="absolute -right-8 top-28 -z-10 h-[410px] w-[410px] rounded-full border border-white/15" />
+        <div className="absolute -right-8 top-28 -z-10 h-[410px] w-[410px] rounded-full border border-[#020D1F]/10" />
         <div className="mx-auto grid max-w-[1440px] gap-14 px-6 lg:grid-cols-[1.05fr_.95fr] lg:items-center lg:px-10">
           <div>
-            <Link href="/services" className="inline-flex items-center gap-2 text-sm font-semibold text-white/55 transition hover:text-white">
+            <Link href="/services" className="inline-flex items-center gap-2 text-sm font-semibold text-[#596475] transition hover:text-[#020D1F]">
               <ArrowRight className="rotate-180" size={16} /> Services
             </Link>
-            <p className="mt-10 text-xs font-bold uppercase tracking-[.2em] text-[#FF8A90]">Amazon PPC management</p>
-            <h1 className="mt-6 max-w-4xl text-5xl font-semibold leading-[.96] tracking-[-.065em] sm:text-7xl lg:text-[5.35rem]">Amazon advertising that works like a <span className="text-[#FF8A90]">commercial system.</span></h1>
-            <p className="mt-8 max-w-xl text-lg leading-8 text-white/65">Go Massive turns PPC from an isolated campaign task into a connected system for capturing demand, making better product decisions, and growing the marketplace opportunities that matter.</p>
+            <p className="mt-10 text-xs font-bold uppercase tracking-[.2em] gm-text-red-safe">Amazon PPC management</p>
+            <h1 className="mt-6 max-w-4xl text-5xl font-semibold leading-[.96] tracking-[-.065em] sm:text-7xl lg:text-[5.35rem]">Amazon advertising that works like a <span className="text-[#E91A24]">commercial system.</span></h1>
+            <p className="mt-8 max-w-xl text-lg leading-8 text-[#596475]">Go Massive turns PPC from an isolated campaign task into a connected system for capturing demand, making better product decisions, and growing the marketplace opportunities that matter.</p>
             <div className="mt-10 flex flex-col gap-3 sm:flex-row">
               <Link href="/growth-audit" className="gm-button gm-button--red">Get your Amazon PPC Audit <ArrowRight size={18} /></Link>
               <a href="#how-it-works" className="gm-button gm-button--ghost">How we manage PPC</a>
             </div>
           </div>
 
-          <aside className="rounded-[2rem] border border-white/15 bg-[#081B38] p-6 shadow-2xl shadow-black/30 sm:p-8">
-            <div className="flex items-center justify-between border-b border-white/10 pb-5">
-              <div><p className="text-xs font-bold uppercase tracking-[.18em] text-[#FF8A90]">The operating view</p><p className="mt-2 text-xl font-semibold">Make every decision earn its place.</p></div>
+          <aside className="rounded-[2rem] border border-[#020D1F]/10 bg-[#F7F8FA] p-6 shadow-2xl shadow-[#020D1F]/10 sm:p-8">
+            <div className="flex items-center justify-between border-b border-[#020D1F]/10 pb-5">
+              <div><p className="text-xs font-bold uppercase tracking-[.18em] gm-text-red-safe">The operating view</p><p className="mt-2 text-xl font-semibold">Make every decision earn its place.</p></div>
               <CircleDollarSign className="text-[#E91A24]" size={27} />
             </div>
             <div className="mt-7 grid gap-3 sm:grid-cols-2">
-              {[['Demand', 'Capture, defend, and develop the searches that matter.'], ['Products', 'Prioritise the catalogue opportunities worth backing.'], ['Efficiency', 'Put budget behind a defined commercial job.'], ['Context', 'Connect PPC to listings, stock, and conversion.']].map(([title, copy], index) => <div key={title} className="rounded-2xl border border-white/10 bg-white/[.045] p-4"><p className="gm-num-meta gm-num-meta--on-dark">0{index + 1}</p><p className="mt-6 font-semibold">{title}</p><p className="mt-2 text-sm leading-6 text-white/55">{copy}</p></div>)}
+              {[['Demand', 'Capture, defend, and develop the searches that matter.'], ['Products', 'Prioritise the catalogue opportunities worth backing.'], ['Efficiency', 'Put budget behind a defined commercial job.'], ['Context', 'Connect PPC to listings, stock, and conversion.']].map(([title, copy], index) => <div key={title} className="rounded-2xl border border-[#020D1F]/10 bg-white p-4"><p className="gm-num-meta">0{index + 1}</p><p className="mt-6 font-semibold">{title}</p><p className="mt-2 text-sm leading-6 text-[#596475]">{copy}</p></div>)}
             </div>
-            <div className="mt-4 flex gap-3 rounded-2xl bg-[#E91A24] p-4"><ShieldCheck className="shrink-0" size={21} /><p className="text-sm leading-6">Activity is not the goal. Better commercial decisions are.</p></div>
+            <div className="mt-4 flex gap-3 rounded-2xl bg-[#E91A24] p-4 text-white"><ShieldCheck className="shrink-0" size={21} /><p className="text-sm leading-6">Activity is not the goal. Better commercial decisions are.</p></div>
           </aside>
         </div>
       </section>
@@ -102,7 +102,7 @@ export default function AmazonPpcPage() {
         <div className="mt-16 grid gap-4 md:grid-cols-2 xl:grid-cols-4">{pillars.map(({number,title,copy,icon: Icon}, index) => <Reveal key={title} delay={index * 90}><article className="min-h-[340px] rounded-3xl border border-[#020D1F]/10 bg-[#F7F8FA] p-7 transition hover:-translate-y-1 hover:border-[#E91A24]/50 hover:bg-white hover:shadow-xl"><div className="flex items-start justify-between"><span className="gm-num-editorial">{number}</span><Icon size={24}/></div><h3 className="mt-14 text-2xl font-semibold tracking-tight">{title}</h3><p className="mt-4 leading-7 text-[#596475]">{copy}</p></article></Reveal>)}</div>
       </div></section>
 
-      <section className="bg-[#0A1830] py-24 text-white sm:py-32"><div className="mx-auto grid max-w-[1440px] gap-14 px-6 lg:grid-cols-[.85fr_1.15fr] lg:items-start lg:px-10"><div><p className="text-xs font-bold uppercase tracking-[.18em] text-[#FF8A90]">What we manage</p><h2 className="mt-5 text-4xl font-semibold tracking-[-.055em] sm:text-6xl">The levers behind a more intentional account.</h2><p className="mt-7 max-w-lg text-lg leading-8 text-white/60">The exact scope follows the commercial need, but every engagement connects account activity back to product, demand, and profitability decisions.</p></div><div className="grid gap-3 sm:grid-cols-2">{accountWork.map((item,index) => <Reveal key={item} delay={index * 70}><div className="flex gap-4 rounded-2xl border border-white/10 bg-white/[.045] p-5"><span className="gm-num-meta gm-num-meta--on-dark">{String(index + 1).padStart(2, "0")}</span><p className="font-semibold leading-6">{item}</p></div></Reveal>)}</div></div></section>
+      <section className="bg-[#F7F8FA] py-24 sm:py-32"><div className="mx-auto grid max-w-[1440px] gap-14 px-6 lg:grid-cols-[.85fr_1.15fr] lg:items-start lg:px-10"><div><p className="text-xs font-bold uppercase tracking-[.18em] gm-text-red-safe">What we manage</p><h2 className="mt-5 text-4xl font-semibold tracking-[-.055em] sm:text-6xl">The levers behind a more intentional account.</h2><p className="mt-7 max-w-lg text-lg leading-8 text-[#596475]">The exact scope follows the commercial need, but every engagement connects account activity back to product, demand, and profitability decisions.</p></div><div className="grid gap-3 sm:grid-cols-2">{accountWork.map((item,index) => <Reveal key={item} delay={index * 70}><div className="flex gap-4 rounded-2xl border border-[#020D1F]/10 bg-white p-5"><span className="gm-num-meta">{String(index + 1).padStart(2, "0")}</span><p className="font-semibold leading-6">{item}</p></div></Reveal>)}</div></div></section>
 
       <section className="bg-[#F7F8FA] py-24 sm:py-32"><div className="mx-auto grid max-w-[1440px] gap-12 px-6 lg:grid-cols-2 lg:items-center lg:px-10"><div className="rounded-[2rem] bg-[#E91A24] p-8 text-white sm:p-12"><p className="text-xs font-bold uppercase tracking-[.18em] text-white">Anonymous client outcome</p><p className="mt-12 text-6xl font-semibold tracking-[-.07em] sm:text-8xl"><StatCounter value="−42%" /></p><p className="mt-3 max-w-sm text-xl leading-7">Total advertising cost of sale</p><div className="mt-10 border-t border-white/25 pt-6"><p className="text-2xl font-semibold"><StatCounter value="+180%" /></p><p className="mt-1 text-white">Non-branded sales</p><p className="mt-6 text-sm leading-6 text-white">An established outdoor and leisure brand rebuilt its Amazon advertising, listings, content, and account management into one connected marketplace system.</p></div></div><div><p className="text-xs font-bold uppercase tracking-[.18em] gm-text-red-safe">Proof with context</p><h2 className="mt-5 text-4xl font-semibold tracking-[-.055em] sm:text-6xl">PPC works better when the work around it does too.</h2><p className="mt-7 max-w-xl text-lg leading-8 text-[#596475]">Advertising can expose a conversion or catalogue constraint, but it cannot fix one alone. Our Amazon PPC work connects to listings, content, product priorities, and marketplace operations—so the account is designed to compound, not just stay active.</p><Link href="/case-studies/outdoor-leisure-marketplace-growth" className="mt-9 inline-flex items-center gap-2 font-semibold gm-text-red-safe transition hover:text-[#C9141D]">Read the anonymous case study <ArrowRight size={18}/></Link></div></div></section>
 

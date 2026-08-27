@@ -35,14 +35,14 @@ export default function GrowthAuditPage() {
       <SiteHeader />
       <ViewTransition name="page-content" share="auto" enter="auto" default="none">
 
-      <section className="relative isolate overflow-hidden bg-[#020D1F] py-20 text-white sm:py-28">
-        <div className="absolute inset-0 -z-10 opacity-35 [background-image:linear-gradient(rgba(255,255,255,.07)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.07)_1px,transparent_1px)] [background-size:56px_56px]" />
+      <section className="relative isolate overflow-hidden bg-white py-20 sm:py-28">
+        <div className="absolute inset-0 -z-10 opacity-35 [background-image:linear-gradient(rgba(2,13,31,.06)_1px,transparent_1px),linear-gradient(90deg,rgba(2,13,31,.06)_1px,transparent_1px)] [background-size:56px_56px]" />
         <div className="mx-auto max-w-[1440px] px-6 lg:px-10">
-          <p className="text-xs font-bold uppercase tracking-[.2em] text-[#FF8A90]">Growth Audit</p>
+          <p className="text-xs font-bold uppercase tracking-[.2em] gm-text-red-safe">Growth Audit</p>
           <h1 className="mt-6 max-w-4xl text-[clamp(2.4rem,5.6vw,5.4rem)] font-semibold uppercase leading-[.92] tracking-[-.04em]">Get clarity on your next best growth move.</h1>
-          <p className="mt-7 max-w-xl text-lg leading-8 text-white/65">Tell us where your business is today and what you are trying to solve. We will use it to prepare for a focused, commercially useful conversation - not a generic sales call.</p>
-          <div className="mt-14 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 sm:grid-cols-4">
-            {agencyStats.map((stat, index) => <Reveal key={stat.label} delay={index * 90}><div className="bg-[#081B38] p-5"><p className="text-2xl font-semibold tracking-[-.03em] sm:text-3xl"><StatCounter value={stat.value} /></p><p className="mt-1 text-xs leading-5 text-white/55">{stat.label}</p></div></Reveal>)}
+          <p className="mt-7 max-w-xl text-lg leading-8 text-[#596475]">Tell us where your business is today and what you are trying to solve. We will use it to prepare for a focused, commercially useful conversation - not a generic sales call.</p>
+          <div className="mt-14 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-[#020D1F]/10 bg-[#020D1F]/10 sm:grid-cols-4">
+            {agencyStats.map((stat, index) => <Reveal key={stat.label} delay={index * 90}><div className="bg-white p-5"><p className="text-2xl font-semibold tracking-[-.03em] sm:text-3xl"><StatCounter value={stat.value} /></p><p className="mt-1 text-xs leading-5 text-[#596475]">{stat.label}</p></div></Reveal>)}
           </div>
         </div>
       </section>
@@ -59,7 +59,7 @@ export default function GrowthAuditPage() {
             {auditIncludes.map((item) => <li className="flex gap-3" key={item}><Check className="shrink-0 text-[#E91A24]" size={18} strokeWidth={3} />{item}</li>)}
           </ul>
 
-          <div className="mt-8 flex gap-3 rounded-2xl bg-[#020D1F] p-5 text-white"><ShieldCheck className="shrink-0 text-[#E91A24]" size={20} /><p className="text-sm leading-6 text-white/75">This is not a pitch for a retainer. It is a structured look at your account, so you leave with a clearer view of where the constraint actually is.</p></div>
+          <div className="mt-8 flex gap-3 rounded-2xl bg-white p-5 shadow-sm ring-1 ring-[#020D1F]/10"><ShieldCheck className="shrink-0 text-[#E91A24]" size={20} /><p className="text-sm leading-6 text-[#354052]">This is not a pitch for a retainer. It is a structured look at your account, so you leave with a clearer view of where the constraint actually is.</p></div>
 
           <div className="mt-6 rounded-2xl bg-white p-6 shadow-sm ring-1 ring-[#020D1F]/10">
             <div className="flex gap-3"><Mail className="shrink-0 text-[#E91A24]" size={21} /><div><p className="font-semibold">Prefer email?</p><a className="mt-1 inline-block text-sm text-[#596475] transition hover:text-[#E91A24]" href="mailto:info@go-massive.com">info@go-massive.com</a></div></div>

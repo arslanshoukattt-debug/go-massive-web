@@ -37,13 +37,13 @@ export default async function CaseStudyDetailPage({ params }: PageProps) {
       <SiteHeader />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd([{ name: "Case Studies", path: "/case-studies" }, { name: caseStudy!.label, path: `/case-studies/${slug}` }])) }} />
       <ViewTransition name="page-content" share="auto" enter="auto" default="none">
-      <section className="bg-[#020D1F] py-20 text-white sm:py-28">
+      <section className="bg-white py-20 sm:py-28">
         <div className="mx-auto max-w-[1120px] px-6 lg:px-10">
-          <Link href="/case-studies" className="inline-flex items-center gap-2 text-sm font-semibold text-white/60 transition hover:text-white"><ArrowLeft size={17} /> All case studies</Link>
-          <p className="mt-12 text-xs font-bold uppercase tracking-[.18em] text-[#FF8A90]">{caseStudy.label}</p>
+          <Link href="/case-studies" className="inline-flex items-center gap-2 text-sm font-semibold text-[#596475] transition hover:text-[#020D1F]"><ArrowLeft size={17} /> All case studies</Link>
+          <p className="mt-12 text-xs font-bold uppercase tracking-[.18em] gm-text-red-safe">{caseStudy.label}</p>
           <h1 className="mt-6 max-w-5xl text-4xl font-semibold leading-[1.02] tracking-[-.055em] sm:text-6xl">{caseStudy.title}</h1>
-          <p className="mt-7 max-w-3xl text-lg leading-8 text-white/65">{caseStudy.summary}</p>
-          <div className={`mt-12 grid gap-px overflow-hidden rounded-2xl border border-white/15 bg-white/10 ${caseStudy.metrics.length === 1 ? "" : caseStudy.metrics.length === 2 ? "sm:grid-cols-2" : caseStudy.metrics.length === 3 ? "sm:grid-cols-3" : "sm:grid-cols-2 lg:grid-cols-4"}`}>{caseStudy.metrics.map((metric, index) => <Reveal key={metric.label} delay={index * 90}><div className="bg-[#081B38] p-5"><p className="text-3xl font-semibold tracking-tight text-white"><StatCounter value={metric.value} /></p><p className="mt-2 text-sm leading-5 text-white/55">{metric.label}</p></div></Reveal>)}</div>
+          <p className="mt-7 max-w-3xl text-lg leading-8 text-[#596475]">{caseStudy.summary}</p>
+          <div className={`mt-12 grid gap-px overflow-hidden rounded-2xl border border-[#020D1F]/10 bg-[#020D1F]/10 ${caseStudy.metrics.length === 1 ? "" : caseStudy.metrics.length === 2 ? "sm:grid-cols-2" : caseStudy.metrics.length === 3 ? "sm:grid-cols-3" : "sm:grid-cols-2 lg:grid-cols-4"}`}>{caseStudy.metrics.map((metric, index) => <Reveal key={metric.label} delay={index * 90}><div className="bg-white p-5"><p className="text-3xl font-semibold tracking-tight"><StatCounter value={metric.value} /></p><p className="mt-2 text-sm leading-5 text-[#687385]">{metric.label}</p></div></Reveal>)}</div>
         </div>
       </section>
 

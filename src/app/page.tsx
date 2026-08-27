@@ -61,7 +61,7 @@ export default function Home() {
       <ViewTransition name="page-content" share="auto" enter="auto" default="none">
 
       {/* 1 — HERO: experience -> problem -> promise -> system -> action, one viewport on desktop */}
-      <section className="gm-hero relative flex flex-col bg-[#020d1f] text-white lg:h-[calc(100svh-76px)] lg:max-h-[940px] lg:min-h-[600px]">
+      <section className="gm-hero relative flex flex-col bg-white text-[#020d1f] lg:h-[calc(100svh-76px)] lg:max-h-[940px] lg:min-h-[600px]">
         <div className="gm-hero-grid" />
         <div className="relative mx-auto grid w-full max-w-[1600px] flex-1 lg:min-h-0 lg:grid-cols-[1.06fr_.94fr]">
           <div className="flex flex-col justify-between px-5 pb-6 pt-10 sm:px-8 lg:px-12 lg:pt-12">
@@ -72,25 +72,25 @@ export default function Home() {
                 <span className="gm-hero-line text-[#e91a24]">inevitable.</span>
               </h1>
             </div>
-            <div className="gm-hero-copy mt-8 max-w-xl border-t border-white/20 pt-5">
-              <p className="text-base leading-7 text-white/72 lg:text-[17px]">Fragmented partners get paid whether you grow or not. We run strategy, operations, advertising, creative, and technology as one system — with economics aligned to your growth.</p>
+            <div className="gm-hero-copy mt-8 max-w-xl border-t border-[#020d1f]/20 pt-5">
+              <p className="text-base leading-7 text-[#020d1f]/72 lg:text-[17px]">Fragmented partners get paid whether you grow or not. We run strategy, operations, advertising, creative, and technology as one system — with economics aligned to your growth.</p>
             </div>
             <div className="gm-hero-ctas mt-6 flex flex-col gap-3 sm:flex-row">
               <Link href="/growth-audit" className="gm-button gm-button--red whitespace-nowrap">Book a growth call <ArrowRight size={16} /></Link>
               <a href="#growth-engine" className="gm-button gm-button--ghost whitespace-nowrap">See how we work</a>
             </div>
           </div>
-          <div className="relative hidden min-h-full border-l border-white/15 lg:block"><CommerceSystemMap /></div>
+          <div className="relative hidden min-h-full border-l border-[#020d1f]/15 lg:block"><CommerceSystemMap /></div>
         </div>
         <div className="px-5 pb-8 pt-2 sm:px-8 lg:hidden">
-          <p className="gm-eyebrow gm-text-red-safe--on-dark">Go Massive — Operating Layer</p>
+          <p className="gm-eyebrow gm-text-red-safe">Go Massive — Operating Layer</p>
           <div className="gm-engine-strip mt-4" aria-label="The six commercial functions Go Massive coordinates">
             {ENGINE_NODES.map((node) => (
               <article key={node.label}><b>{node.label}</b><p>{node.detail}</p></article>
             ))}
           </div>
         </div>
-        <div className="gm-hero-strip relative border-t border-white/15">
+        <div className="gm-hero-strip relative border-t border-[#020d1f]/15">
           <div className="mx-auto grid max-w-[1600px] grid-cols-2 gap-x-8 px-5 sm:px-8 lg:grid-cols-4 lg:px-12">
             {heroStats.map((stat) => (
               <div key={stat.label} className="gm-hero-stat">
@@ -140,14 +140,14 @@ export default function Home() {
       </section>
 
       {/* 4 — THE GROWTH ENGINE: how the system actually works */}
-      <section id="growth-engine" className="bg-[#020d1f] px-5 py-20 text-white sm:px-8 lg:px-12 lg:py-28">
+      <section id="growth-engine" className="bg-white px-5 py-20 text-[#020d1f] sm:px-8 lg:px-12 lg:py-28">
         <div className="mx-auto grid max-w-[1600px] gap-14 lg:grid-cols-[.9fr_1.1fr]">
           <Reveal>
             <div className="lg:sticky lg:top-28">
-              <p className="gm-eyebrow gm-text-red-safe--on-dark">The Growth Engine</p>
+              <p className="gm-eyebrow gm-text-red-safe">The Growth Engine</p>
               <h2 className="mt-6 max-w-xl text-[clamp(2.1rem,8.5vw,6rem)] font-semibold uppercase leading-[.87] tracking-[-.05em]">One system. Every lever that moves revenue.</h2>
-              <p className="mt-7 max-w-lg text-lg leading-8 text-white/65">Not an ads agency with add-ons. An operating engine where each stage feeds the next — so wins compound instead of leaking between vendors.</p>
-              <Link href="/services" className="gm-text-link mt-9 text-white">Explore the services <ArrowRight size={16} /></Link>
+              <p className="mt-7 max-w-lg text-lg leading-8 text-[#020d1f]/70">Not an ads agency with add-ons. An operating engine where each stage feeds the next — so wins compound instead of leaking between vendors.</p>
+              <Link href="/services" className="gm-text-link mt-9">Explore the services <ArrowRight size={16} /></Link>
             </div>
           </Reveal>
           <GrowthEngine />
@@ -155,10 +155,10 @@ export default function Home() {
       </section>
 
       {/* 5 — CHANNELS: where the engine runs */}
-      <section className="bg-[#0A1830] px-5 py-20 text-white sm:px-8 lg:px-12 lg:py-28">
+      <section className="border-y border-[#020d1f]/15 bg-white px-5 py-20 text-[#020d1f] sm:px-8 lg:px-12 lg:py-28">
         <Reveal className="mx-auto max-w-[1600px]">
           <div className="grid gap-10 pb-12 lg:grid-cols-[.64fr_1.36fr] lg:items-end">
-            <div><p className="gm-eyebrow gm-text-red-safe--on-dark">Sales channels</p><p className="gm-section-support gm-section-support--dark">Brands shouldn&rsquo;t need five agencies for five channels. Priorities get set commercially — not per silo.</p></div>
+            <div><p className="gm-eyebrow gm-text-red-safe">Sales channels</p><p className="gm-section-support gm-section-support--dark">Brands shouldn&rsquo;t need five agencies for five channels. Priorities get set commercially — not per silo.</p></div>
             <h2 className="max-w-5xl text-[clamp(2.1rem,8.5vw,6rem)] font-semibold uppercase leading-[.87] tracking-[-.05em]">Every channel that matters. One accountable partner.</h2>
           </div>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -171,7 +171,7 @@ export default function Home() {
                   </div>
                   <div>
                     <p>{channel.role}</p>
-                    <span className="gm-text-red-safe--on-dark mt-5 inline-flex items-center gap-2 text-sm font-semibold">Explore <ArrowRight size={14} /></span>
+                    <span className="gm-text-red-safe mt-5 inline-flex items-center gap-2 text-sm font-semibold">Explore <ArrowRight size={14} /></span>
                   </div>
                 </Link>
               </Reveal>
@@ -199,14 +199,14 @@ export default function Home() {
               <p className="gm-model-verdict text-[#596475]">The brand carries the risk</p>
             </div></Reveal>
             <Reveal delay={120}><div className="gm-model-col gm-model-col--gm h-full">
-              <p className="gm-eyebrow gm-text-red-safe--on-dark">The Go Massive model</p>
+              <p className="gm-eyebrow gm-text-red-safe">The Go Massive model</p>
               <div className="mt-8">
-                <div className="gm-model-step"><span className="gm-num-meta gm-num-meta--on-dark">01</span><div><b>Lean operating retainer</b><small>Covers the dedicated team, tools, and infrastructure your account runs on — not our profit margin.</small></div></div>
-                <div className="gm-model-step"><span className="gm-num-meta gm-num-meta--on-dark">02</span><div><b>Full-system execution</b><small>Strategy, operations, advertising, creative, and technology as one accountable engine.</small></div></div>
-                <div className="gm-model-step"><span className="gm-num-meta gm-num-meta--on-dark">03</span><div><b>Growth</b><small>Measured commercially — revenue, efficiency, and margin. Not activity.</small></div></div>
-                <div className="gm-model-step"><span className="gm-num-meta gm-num-meta--on-dark">04</span><div><b>Shared upside</b><small>Our real earnings come from a share of the growth we create. No growth, no upside — for either of us.</small></div></div>
+                <div className="gm-model-step"><span className="gm-num-meta">01</span><div><b>Lean operating retainer</b><small>Covers the dedicated team, tools, and infrastructure your account runs on — not our profit margin.</small></div></div>
+                <div className="gm-model-step"><span className="gm-num-meta">02</span><div><b>Full-system execution</b><small>Strategy, operations, advertising, creative, and technology as one accountable engine.</small></div></div>
+                <div className="gm-model-step"><span className="gm-num-meta">03</span><div><b>Growth</b><small>Measured commercially — revenue, efficiency, and margin. Not activity.</small></div></div>
+                <div className="gm-model-step"><span className="gm-num-meta">04</span><div><b>Shared upside</b><small>Our real earnings come from a share of the growth we create. No growth, no upside — for either of us.</small></div></div>
               </div>
-              <p className="gm-model-verdict gm-text-red-safe--on-dark">We carry the risk with you</p>
+              <p className="gm-model-verdict gm-text-red-safe">We carry the risk with you</p>
             </div></Reveal>
           </div>
           <div className="mt-10 flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
@@ -227,7 +227,7 @@ export default function Home() {
             {techStack.map((cell, index) => (
               <Reveal key={cell.title} delay={index * 60} className={cell.wide ? "gm-bento-cell--wide" : ""}>
                 <article className={`gm-bento-cell h-full ${cell.dark ? "gm-bento-cell--dark" : ""}`}>
-                  <span className={`gm-num-meta ${cell.dark ? "gm-num-meta--on-dark" : ""}`}>{String(index + 1).padStart(2, "0")}</span>
+                  <span className="gm-num-meta">{String(index + 1).padStart(2, "0")}</span>
                   <div><h3>{cell.title}</h3><p>{cell.detail}</p></div>
                 </article>
               </Reveal>
@@ -238,39 +238,39 @@ export default function Home() {
       </section>
 
       {/* 8 — PROOF: featured case study + supporting results */}
-      <section className="bg-[#020d1f] px-5 py-20 text-white sm:px-8 lg:px-12 lg:py-28">
+      <section className="bg-[#f4f3ef] px-5 py-20 text-[#020d1f] sm:px-8 lg:px-12 lg:py-28">
         <Reveal className="mx-auto max-w-[1600px]">
           <div className="grid gap-10 pb-12 lg:grid-cols-[.64fr_1.36fr] lg:items-end">
-            <div><p className="gm-eyebrow gm-text-red-safe--on-dark">Proof</p><p className="gm-section-support gm-section-support--dark">Documented engagements with the mechanism behind every number. Identities stay confidential.</p></div>
+            <div><p className="gm-eyebrow gm-text-red-safe">Proof</p><p className="gm-section-support gm-section-support--dark">Documented engagements with the mechanism behind every number. Identities stay confidential.</p></div>
             <h2 className="max-w-5xl text-[clamp(2.1rem,8.5vw,6.2rem)] font-semibold uppercase leading-[.87] tracking-[-.05em]">The numbers matter. The mechanism matters more.</h2>
           </div>
-          <div className="grid gap-px bg-white/20 lg:grid-cols-[1.15fr_.85fr]">
-            <article className="flex flex-col justify-between bg-[#020d1f] p-8 sm:p-10">
+          <div className="grid gap-px bg-[#020d1f]/15 lg:grid-cols-[1.15fr_.85fr]">
+            <article className="flex flex-col justify-between bg-white p-8 sm:p-10">
               <div>
-                <p className="gm-eyebrow text-white/55">{featuredCase.label}</p>
+                <p className="gm-eyebrow text-[#596475]">{featuredCase.label}</p>
                 <h3 className="mt-6 max-w-xl text-3xl font-semibold leading-tight tracking-[-.04em] sm:text-4xl">{featuredCase.title}</h3>
               </div>
-              <div className="mt-10 grid gap-px overflow-hidden border border-white/15 bg-white/10 sm:grid-cols-2">
+              <div className="mt-10 grid gap-px overflow-hidden border border-[#020d1f]/15 bg-[#020d1f]/10 sm:grid-cols-2">
                 {featuredCase.metrics.slice(0, 4).map((metric) => (
-                  <div key={metric.label} className="bg-[#081B38] p-5">
+                  <div key={metric.label} className="bg-white p-5">
                     <p className="text-3xl font-semibold tracking-tight sm:text-4xl"><StatCounter value={metric.value} /></p>
-                    <p className="mt-2 text-sm leading-5 text-white/55">{metric.label}</p>
+                    <p className="mt-2 text-sm leading-5 text-[#596475]">{metric.label}</p>
                   </div>
                 ))}
               </div>
-              <Link href={`/case-studies/${featuredCase.slug}`} className="gm-text-link mt-9 text-white">Read the full case study <ArrowRight size={16} /></Link>
+              <Link href={`/case-studies/${featuredCase.slug}`} className="gm-text-link mt-9">Read the full case study <ArrowRight size={16} /></Link>
             </article>
-            <div className="grid gap-px bg-white/20">
+            <div className="grid gap-px bg-[#020d1f]/15">
               {otherCases.slice(0, 3).map((caseStudy) => (
-                <Link key={caseStudy.slug} href={`/case-studies/${caseStudy.slug}`} className="group flex flex-col justify-between bg-[#081B38] p-6 transition hover:bg-[#0d2242]">
-                  <p className="gm-eyebrow text-white/50">{caseStudy.label}</p>
+                <Link key={caseStudy.slug} href={`/case-studies/${caseStudy.slug}`} className="group flex flex-col justify-between bg-white p-6 transition hover:bg-[#F7F8FA]">
+                  <p className="gm-eyebrow text-[#596475]">{caseStudy.label}</p>
                   <div className="mt-5 flex items-end justify-between gap-6">
                     <p className="max-w-md font-semibold leading-6">{caseStudy.title}</p>
-                    <ArrowRight className="gm-text-red-safe--on-dark shrink-0 transition group-hover:translate-x-1" size={18} />
+                    <ArrowRight className="gm-text-red-safe shrink-0 transition group-hover:translate-x-1" size={18} />
                   </div>
                 </Link>
               ))}
-              <Link href="/case-studies" className="flex items-center justify-between bg-[#E91A24] p-6 font-semibold transition hover:bg-white hover:text-[#020d1f]">All case studies <ArrowRight size={18} /></Link>
+              <Link href="/case-studies" className="flex items-center justify-between bg-[#E91A24] p-6 font-semibold text-white transition hover:bg-[#020d1f]">All case studies <ArrowRight size={18} /></Link>
             </div>
           </div>
         </Reveal>
@@ -290,9 +290,9 @@ export default function Home() {
             <p className="text-xl leading-8 text-white">A direct conversation about your account — constraints, opportunities, and whether the model fits. No pitch deck.</p>
             <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <Link href="/growth-audit" className="gm-button gm-button--dark">Book a growth call <ArrowRight size={16} /></Link>
-              <a href="mailto:info@go-massive.com" className="gm-button gm-button--ghost border-white/50">Email us <Mail size={16} /></a>
-              {WHATSAPP_URL && <a href={WHATSAPP_URL} target="_blank" rel="noreferrer" className="gm-button gm-button--ghost border-white/50">WhatsApp</a>}
-              {MEETING_URL && <a href={MEETING_URL} target="_blank" rel="noreferrer" className="gm-button gm-button--ghost border-white/50">Book a meeting</a>}
+              <a href="mailto:info@go-massive.com" className="gm-button gm-button--ghost-on-dark">Email us <Mail size={16} /></a>
+              {WHATSAPP_URL && <a href={WHATSAPP_URL} target="_blank" rel="noreferrer" className="gm-button gm-button--ghost-on-dark">WhatsApp</a>}
+              {MEETING_URL && <a href={MEETING_URL} target="_blank" rel="noreferrer" className="gm-button gm-button--ghost-on-dark">Book a meeting</a>}
             </div>
             <p className="mt-7 flex items-center gap-2 text-sm font-medium text-white"><Check size={16} strokeWidth={3} /> Clear next steps — even if we&rsquo;re not the right fit.</p>
           </div>

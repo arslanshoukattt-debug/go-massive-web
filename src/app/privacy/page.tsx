@@ -57,11 +57,11 @@ export default function PrivacyPage() {
     <main id="main" className="flex min-h-screen flex-col bg-[#F7F8FA] text-[#020D1F]">
       <SiteHeader />
       <ViewTransition name="page-content" share="auto" enter="auto" default="none">
-      <section className="bg-[#020D1F] py-16 text-white sm:py-24">
+      <section className="bg-white py-16 sm:py-24">
         <div className="mx-auto max-w-[880px] px-6">
-          <p className="text-xs font-bold uppercase tracking-[.2em] text-[#FF8A90]">Legal</p>
+          <p className="text-xs font-bold uppercase tracking-[.2em] gm-text-red-safe">Legal</p>
           <h1 className="mt-6 text-4xl font-semibold tracking-[-.045em] sm:text-5xl">Privacy Policy</h1>
-          <p className="mt-6 max-w-xl text-lg leading-8 text-white/65">A plain-language description of what this website collects and what happens to it.</p>
+          <p className="mt-6 max-w-xl text-lg leading-8 text-[#596475]">A plain-language description of what this website collects and what happens to it.</p>
         </div>
       </section>
 
