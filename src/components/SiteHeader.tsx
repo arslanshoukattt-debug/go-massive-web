@@ -15,6 +15,7 @@ const MOBILE_NAV_ID = "mobile-nav";
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
+  const [hidden, setHidden] = useState(false);
   const triggerRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
@@ -29,8 +30,28 @@ export function SiteHeader() {
     return () => document.removeEventListener("keydown", onKeyDown);
   }, [open]);
 
+  // Slides away while scrolling down (past the hero's header band), returns
+  // the moment the visitor scrolls up - the CTA is never more than a flick
+  // away. CSS also forces it visible on focus-within and while the menu is open.
+  useEffect(() => {
+    let lastY = window.scrollY;
+    let ticking = false;
+    function onScroll() {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        const y = window.scrollY;
+        setHidden(y > 160 && y > lastY + 2);
+        lastY = y;
+        ticking = false;
+      });
+    }
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
-    <header className="gm-vt-header sticky top-0 z-50 border-b border-white/20 bg-[#07090A]/95 text-white backdrop-blur">
+    <header className={`gm-vt-header gm-header-anim sticky top-0 z-50 border-b border-white/20 bg-[#07090A]/95 text-white backdrop-blur ${hidden && !open ? "gm-header--hidden" : ""}`}>
       <div className="mx-auto flex h-[76px] max-w-[1600px] items-center justify-between gap-2 px-4 sm:px-8 lg:px-12">
         <Link href="/" className="inline-flex shrink-0" aria-label="Go Massive home">
           <Image src="/go-massive-wordmark-transparent.png" alt="Go Massive" width={220} height={34} priority sizes="220px" className="h-6 w-auto brightness-0 invert sm:h-8" />

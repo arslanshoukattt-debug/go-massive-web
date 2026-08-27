@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 const columns = [
-  { title: "Growth", links: [["Amazon Growth", "/services"], ["Amazon PPC", "/services/amazon-ppc"], ["Google Ads", "/services/google-ads"], ["Meta Ads", "/services/meta-ads"]] },
+  { title: "Growth", links: [["Amazon Growth", "/services#amazon-growth"], ["Amazon PPC", "/services/amazon-ppc"], ["Google Ads", "/services/google-ads"], ["Meta Ads", "/services/meta-ads"], ["Marketplace Expansion", "/services#commerce-expansion"]] },
   { title: "Company", links: [["Case Studies", "/case-studies"], ["About Go Massive", "/about"], ["Growth Audit", "/growth-audit"], ["Contact", "/contact"]] },
 ];
 
