@@ -119,22 +119,23 @@ export default function Home() {
         </Reveal>
       </section>
 
-      {/* 2 — PROBLEM: icon-led cells on a hairline lattice (owner's reference used as inspiration; site fonts/colors kept) */}
-      <section className="px-5 py-20 sm:px-8 lg:px-12 lg:py-28">
+      {/* 2 — PROBLEM: centered eyebrow, description left / headline right, icon lattice on white */}
+      <section className="bg-white px-5 py-20 sm:px-8 lg:px-12 lg:py-28">
         <Reveal className="mx-auto max-w-[1600px]">
-          <div className="grid gap-10 pb-12 lg:grid-cols-[.64fr_1.36fr] lg:items-center">
-            <div><p className="gm-eyebrow gm-text-red-safe">Where brands get stuck</p><p className="gm-section-support">By the time revenue flattens, the cause is usually spread across the account — and no single-channel partner can see all of it.</p></div>
-            <h2 className="max-w-3xl text-[clamp(1.9rem,3.4vw,3.4rem)] font-semibold uppercase leading-[.95] tracking-[-.04em] lg:border-l lg:border-[#020d1f]/15 lg:pl-12">Growth rarely breaks in one place<span className="text-[#E91A24]">.</span></h2>
+          <p className="gm-eyebrow gm-text-red-safe text-center">Where brands get stuck</p>
+          <div className="mt-10 grid gap-8 pb-12 lg:grid-cols-[.8fr_1.2fr] lg:items-center lg:gap-14">
+            <p className="max-w-md text-[15px] leading-7 text-[#020d1f]/62 lg:justify-self-end lg:text-right">By the time revenue flattens, the cause is usually spread across the account — and no single-channel partner can see all of it.</p>
+            <h2 className="max-w-3xl text-[clamp(2.2rem,4.2vw,4.2rem)] font-bold uppercase leading-[.92] tracking-[-.045em] lg:border-l lg:border-[#020d1f]/15 lg:pl-14">Growth rarely breaks in one place<span className="text-[#E91A24]">.</span></h2>
           </div>
           <div className="grid gap-px border-y border-[#020d1f]/15 bg-[#020d1f]/15 sm:grid-cols-2 lg:grid-cols-3">
             {problems.map((problem, index) => {
               const Icon = problem.icon;
               return (
-                <Reveal key={problem.title} delay={index * 60} className="bg-[#f4f3ef]">
+                <Reveal key={problem.title} delay={index * 60} className="bg-white">
                   <div className="flex h-full items-start gap-5 px-6 py-9 lg:px-8 lg:py-10">
                     <span className="grid h-14 w-14 shrink-0 place-items-center rounded-full bg-[#E91A24]/10"><Icon size={24} strokeWidth={1.8} className="text-[#E91A24]" aria-hidden="true" /></span>
                     <div>
-                      <h3 className="max-w-[16rem] text-lg font-semibold leading-snug tracking-[-.02em]">{problem.title}</h3>
+                      <h3 className="max-w-[16rem] text-[19px] font-semibold leading-snug tracking-[-.02em]">{problem.title}</h3>
                       <p className="mt-2 max-w-sm text-[14.5px] leading-6 text-[#596475]">{problem.detail}</p>
                     </div>
                   </div>
