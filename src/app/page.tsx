@@ -23,12 +23,16 @@ const MEETING_URL = "";
 // square marks taller, so no logo reads bigger than its neighbours.
 const brandLogos = [
   { name: "Hallowood Furniture", src: "/logos/hallowood.png", h: "h-9" },
-  { name: "Calzitaly", src: "/logos/calzitaly.png", h: "h-14" },
-  { name: "Witt", src: "/logos/witt.png", h: "h-11" },
-  { name: "Love & Peanut", src: "/logos/love-and-peanut.png", h: "h-9" },
   { name: "Bigfoot Bushcraft", src: "/logos/bigfoot-bushcraft.png", h: "h-14" },
+  { name: "Calzitaly", src: "/logos/calzitaly.png", h: "h-9" },
+  { name: "Eatwater", src: "/logos/eatwater.png", h: "h-12" },
+  { name: "Witt", src: "/logos/witt.png", h: "h-11" },
+  { name: "Weymouth", src: "/logos/weymouth.png", h: "h-14" },
+  { name: "Love & Peanut", src: "/logos/love-and-peanut.png", h: "h-9" },
+  { name: "Bigg Golf", src: "/logos/bigg-golf.png", h: "h-10" },
   { name: "DBZ Beds", src: "/logos/dbz-beds.png", h: "h-11" },
   { name: "Hot Star Honey", src: "/logos/hot-star-honey.png", h: "h-14" },
+  { name: "Welnesse", src: "/logos/welnesse.png", h: "h-12" },
   { name: "funSLINGER", src: "/logos/funslinger.png", h: "h-10" },
   { name: "Qnaturals", src: "/logos/qnaturals.png", h: "h-12" },
 ];
