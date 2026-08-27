@@ -9,19 +9,32 @@ import { useEffect, useRef, useState } from "react";
 // item and the tile renders the logo instead - no component changes needed.
 type WallItem = { title: string; detail: string; logo?: string };
 
+// Logo tiles (owner-cleared, Aug 2026) carry soft category labels only -
+// growth metrics stay on the anonymous tiles so numbers are never publicly
+// attributable to a named client. First 12 entries = the initial wall, so
+// logos and metric tiles are interleaved deliberately.
 const POOL: WallItem[] = [
+  { title: "Hallowood Furniture", detail: "Furniture", logo: "/logos/hallowood.png" },
   { title: "Outdoor & Leisure", detail: "Amazon US · 2.4x revenue in 6 months" },
-  { title: "Food & Beverage", detail: "Amazon · +250% sales at 15% TACoS" },
-  { title: "Consumer Goods", detail: "5 EU marketplaces · +700% sales" },
-  { title: "Home & Furniture", detail: "Amazon · 4x monthly sales" },
-  { title: "Outdoor Launch", detail: "Amazon · +300% first-season growth" },
-  { title: "Amazon US & EU", detail: "Full account management" },
-  { title: "Walmart Marketplace", detail: "Expansion & operations" },
-  { title: "eBay", detail: "Wholesale & white label" },
-  { title: "TikTok Shop", detail: "Emerging-channel growth" },
-  { title: "Shopify / DTC", detail: "Storefront & retention" },
-  { title: "Temu", detail: "Marketplace expansion" },
+  { title: "Love & Peanut", detail: "Food & Beverage", logo: "/logos/love-and-peanut.png" },
   { title: "PPC & Retail Media", detail: "200+ accounts managed" },
+  { title: "Calzitaly", detail: "Apparel & Hosiery", logo: "/logos/calzitaly.png" },
+  { title: "Food & Beverage", detail: "Amazon · +250% sales at 15% TACoS" },
+  { title: "Witt", detail: "Consumer Goods", logo: "/logos/witt.png" },
+  { title: "Consumer Goods", detail: "5 EU marketplaces · +700% sales" },
+  { title: "DBZ Beds", detail: "Home & Furniture", logo: "/logos/dbz-beds.png" },
+  { title: "Amazon US & EU", detail: "Full account management" },
+  { title: "Bigfoot Bushcraft", detail: "Outdoor & Leisure", logo: "/logos/bigfoot-bushcraft.png" },
+  { title: "TikTok Shop", detail: "Emerging-channel growth" },
+  { title: "Hot Star Honey", detail: "Food & Beverage", logo: "/logos/hot-star-honey.png" },
+  { title: "Home & Furniture", detail: "Amazon · 4x monthly sales" },
+  { title: "funSLINGER", detail: "Toys & Outdoor Play", logo: "/logos/funslinger.png" },
+  { title: "Walmart Marketplace", detail: "Expansion & operations" },
+  { title: "Qnaturals", detail: "Health & Naturals", logo: "/logos/qnaturals.png" },
+  { title: "eBay", detail: "Wholesale & white label" },
+  { title: "Shopify / DTC", detail: "Storefront & retention" },
+  { title: "Outdoor Launch", detail: "Amazon · +300% first-season growth" },
+  { title: "Temu", detail: "Marketplace expansion" },
   { title: "Creative & A+ Content", detail: "Conversion-first brand content" },
   { title: "Compliance & Health", detail: "Risk handled before it escalates" },
   { title: "Product Launches", detail: "Demand built from day one" },

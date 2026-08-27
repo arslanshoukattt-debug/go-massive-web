@@ -35,7 +35,7 @@ Marketing site for Go Massive, an eCommerce growth agency (7+ years operating). 
 - `CommerceSystemMap` (client): interactive hub-spoke SVG; nodes from `lib/engine-nodes.ts` (MARKETPLACES/ADVERTISING/CONVERSION/RETENTION/CREATIVE/INVENTORY); hover/tap/keyboard sets active (red ring+spoke+center, detail panel below, no layout shift); auto-cycles every 3.2s after 1.8s, user interaction locks 8s; pauses off-viewport; reduced-motion = static.
 - `TypeLine` (client): typewriter; SSR renders full text (SEO/reduced-motion safe).
 - `StatCounter`: rAF count-up, writes textContent directly (never setState per frame — caused an infinite-restart bug once); `immediate` prop skips IO (hero strip sits on the fold); `tabular-nums` + reserved `ch` width prevents CLS.
-- `BrandWall` (client): 16-item pool → 12 tiles (6 on mobile), one tile 3D-flips every 4.2s, duplicate-guarded, deterministic (no Math.random), off under reduced-motion. Logo-ready: add `logo:` to an item.
+- `BrandWall` (client): 25-item pool (9 owner-cleared client logos + 16 anonymous tiles) → 12 tiles (6 on mobile), one tile 3D-flips every 4.2s, duplicate-guarded, deterministic (no Math.random), off under reduced-motion. Logos: `/public/logos/*.png` (trimmed/normalized Aug 2026 from owner originals in `E:\Hermes Agent\Logo`), rendered grayscale w/ colour-on-hover in a fixed 40px no-distortion frame. RULE: logo tiles carry soft category labels only — growth metrics live on anonymous tiles only, never attached to a named brand.
 - `GrowthEngine` (client): IO lights steps once, states persist.
 - `SiteHeader`: hides on scroll-down past 160px, returns on scroll-up/focus-within/menu-open; mobile CTA always visible ("Audit ↗" under 640px); Escape closes menu + refocuses trigger.
 - `HubSpotGrowthAuditForm`: lazy-mounts script via IO at 600px (was 1,240ms TBT); form iframe internals are cross-origin — unstylable, don't try.
@@ -54,7 +54,7 @@ Playwright installed via `npm init -y && npm i playwright@1.62.1` in scratchpad 
 Lint uses new react-hooks purity rules: no Date.now() in render-reachable fns, no sync setState in effects.
 
 ## Open items (need owner input)
-Client logos for BrandWall · testimonials for `lib/testimonials.ts` · WhatsApp/Meeting URLs (page.tsx consts) · model-copy sign-off (commercial commitment wording) · analytics decision (site has none) · custom domain attach · privacy legal review · SEO depth pages (Amazon Account Mgmt, Listings/A+, Shopify, Walmart/eBay — need real scope input, don't invent) · art-direction assets (blueprint artifact exists: photography plan, 4 shoots, Meta Ads contact-sheet etc.).
+Testimonials for `lib/testimonials.ts` · WhatsApp/Meeting URLs (page.tsx consts) · model-copy sign-off (commercial commitment wording) · analytics decision (site has none) · custom domain attach · privacy legal review · SEO depth pages (Amazon Account Mgmt, Listings/A+, Shopify, Walmart/eBay — need real scope input, don't invent) · art-direction assets (blueprint artifact exists: photography plan, 4 shoots, Meta Ads contact-sheet etc.).
 
 ## Design direction status
 A light-first "White Edition" homepage mockup was designed as an artifact (white hero, navy×2, red×1, mono section-index rails): https://claude.ai/code/artifact/588296dc-14b4-48c2-916b-b32f27939c63 — the owner is deciding; current working mode is **iterating the existing (dark-hero) live site section by section per owner's direction**, not wholesale adopting the mock. Owner wants a white hero background eventually — confirm before applying.

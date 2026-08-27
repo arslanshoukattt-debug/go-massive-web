@@ -159,7 +159,7 @@ export default function Home() {
           </div>
           <BrandWall />
           <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-            <p className="max-w-xl text-sm leading-6 text-[#596475]">Client identities stay confidential — the outcomes don&rsquo;t. Every figure above is drawn from a documented engagement.</p>
+            <p className="max-w-xl text-sm leading-6 text-[#596475]">Logos shown with permission. Everything else stays confidential — and every figure above is drawn from a documented engagement.</p>
             <Link href="/case-studies" className="gm-text-link shrink-0">Read the case studies <ArrowRight size={16} /></Link>
           </div>
         </Reveal>
