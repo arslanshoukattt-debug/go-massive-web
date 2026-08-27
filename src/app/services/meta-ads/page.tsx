@@ -42,7 +42,7 @@ export default function MetaAdsPage() {
           <div>
             <Link href="/services" className="inline-flex items-center gap-2 text-sm font-semibold text-white/55 transition hover:text-white"><ArrowRight className="rotate-180" size={16} /> Services</Link>
             <p className="mt-10 text-xs font-bold uppercase tracking-[.2em] text-[#FF8A90]">Meta Ads management</p>
-            <h1 className="mt-6 max-w-3xl text-5xl font-semibold leading-[.96] tracking-[-.065em] sm:text-7xl">Turn attention into a <span className="text-[#FF6E76]">stronger acquisition engine.</span></h1>
+            <h1 className="mt-6 max-w-3xl text-5xl font-semibold leading-[.96] tracking-[-.065em] sm:text-7xl">Turn attention into a <span className="text-[#FF8A90]">stronger acquisition engine.</span></h1>
             <p className="mt-8 max-w-xl text-lg leading-8 text-white/65">Go Massive helps brands create demand through Meta Ads campaigns that bring creative, audiences, offers, and landing pages into a more useful commercial system.</p>
             <div className="mt-10 flex flex-col gap-3 sm:flex-row">
               <Link href="/growth-audit" className="gm-button gm-button--red">Get your Meta Ads Audit <ArrowRight size={18} /></Link>

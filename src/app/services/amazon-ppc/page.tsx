@@ -76,7 +76,7 @@ export default function AmazonPpcPage() {
               <ArrowRight className="rotate-180" size={16} /> Services
             </Link>
             <p className="mt-10 text-xs font-bold uppercase tracking-[.2em] text-[#FF8A90]">Amazon PPC management</p>
-            <h1 className="mt-6 max-w-4xl text-5xl font-semibold leading-[.96] tracking-[-.065em] sm:text-7xl lg:text-[5.35rem]">Amazon advertising that works like a <span className="text-[#FF6E76]">commercial system.</span></h1>
+            <h1 className="mt-6 max-w-4xl text-5xl font-semibold leading-[.96] tracking-[-.065em] sm:text-7xl lg:text-[5.35rem]">Amazon advertising that works like a <span className="text-[#FF8A90]">commercial system.</span></h1>
             <p className="mt-8 max-w-xl text-lg leading-8 text-white/65">Go Massive turns PPC from an isolated campaign task into a connected system for capturing demand, making better product decisions, and growing the marketplace opportunities that matter.</p>
             <div className="mt-10 flex flex-col gap-3 sm:flex-row">
               <Link href="/growth-audit" className="gm-button gm-button--red">Get your Amazon PPC Audit <ArrowRight size={18} /></Link>

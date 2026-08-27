@@ -42,7 +42,7 @@ export default function GoogleAdsPage() {
           <div>
             <Link href="/services" className="inline-flex items-center gap-2 text-sm font-semibold text-white/55 transition hover:text-white"><ArrowRight className="rotate-180" size={16} /> Services</Link>
             <p className="mt-10 text-xs font-bold uppercase tracking-[.2em] text-[#FF8A90]">Google Ads management</p>
-            <h1 className="mt-6 max-w-3xl text-5xl font-semibold leading-[.96] tracking-[-.065em] sm:text-7xl">Be there when customers are <span className="text-[#FF6E76]">looking for you.</span></h1>
+            <h1 className="mt-6 max-w-3xl text-5xl font-semibold leading-[.96] tracking-[-.065em] sm:text-7xl">Be there when customers are <span className="text-[#FF8A90]">looking for you.</span></h1>
             <p className="mt-8 max-w-xl text-lg leading-8 text-white/65">Go Massive helps eCommerce brands capture high-intent demand through Google Ads strategies that connect search behaviour, product priorities, and commercial objectives.</p>
             <div className="mt-10 flex flex-col gap-3 sm:flex-row">
               <Link href="/growth-audit" className="gm-button gm-button--red">Get your Google Ads Audit <ArrowRight size={18} /></Link>
