@@ -124,10 +124,10 @@ section[id] { scroll-margin-top: 90px; }
 .gm-header--hidden { transform: translateY(-100%); }
 .gm-header--hidden:focus-within { transform: none; }
 
-/* Hero proof strip */
-.gm-hero-stat { padding:18px 0; }
+/* Hero proof strip: black metric tiles (owner-directed, Aug 2026) */
+.gm-hero-stat { padding:20px 22px; background:#07090A; color:white; }
 .gm-hero-stat p { margin:0; font-size:clamp(1.55rem,2.4vw,2.3rem); font-weight:600; letter-spacing:-.05em; line-height:1; }
-.gm-hero-stat small { display:block; margin-top:7px; font-size:12px; line-height:1.45; color:rgba(2,13,31,.6); }
+.gm-hero-stat small { display:block; margin-top:7px; font-size:12px; line-height:1.45; color:rgba(255,255,255,.55); }
 
 /* Brand wall: rotating portfolio tiles (logo-ready via item.logo) */
 .gm-wall { display:grid; grid-template-columns:repeat(2,1fr); gap:10px; }

@@ -89,8 +89,8 @@ export default function Home() {
             ))}
           </div>
         </div>
-        <div className="gm-hero-strip relative border-t border-[#020d1f]/15">
-          <div className="mx-auto grid max-w-[1600px] grid-cols-2 gap-x-8 px-5 sm:px-8 lg:grid-cols-4 lg:px-12">
+        <div className="gm-hero-strip relative px-5 pb-8 sm:px-8 lg:px-12">
+          <div className="mx-auto grid max-w-[1600px] grid-cols-2 gap-3 lg:grid-cols-4">
             {heroStats.map((stat) => (
               <div key={stat.label} className="gm-hero-stat">
                 <p><StatCounter value={stat.value} immediate /></p>
