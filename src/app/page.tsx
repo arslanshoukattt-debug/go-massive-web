@@ -17,7 +17,7 @@ const operatingLayers = [
 
 export default function Home() {
   return (
-    <main className="overflow-hidden bg-[#f4f3ef] text-[#020d1f]">
+    <main id="main" className="overflow-hidden bg-[#f4f3ef] text-[#020d1f]">
       <SiteHeader />
       <ViewTransition name="page-content" share="auto" enter="auto" default="none">
       <section className="gm-hero relative bg-[#020d1f] text-white">
@@ -96,7 +96,7 @@ export default function Home() {
         <Reveal className="mx-auto max-w-[1600px]"><div className="grid gap-10 lg:grid-cols-[.64fr_1.36fr] lg:items-end"><p className="gm-eyebrow">The Go Massive record</p><h2 className="text-[clamp(1.9rem,8.8vw,6.9rem)] font-semibold uppercase leading-[.87] tracking-[-.06em]">Serious growth needs a team built to stay accountable.</h2></div><div className="mt-14 grid border-l border-t border-[#020d1f]/20 sm:grid-cols-2 lg:grid-cols-4">{agencyStats.map((stat, index) => <Reveal key={stat.label} delay={index * 90}><div className="gm-stat"><span className="gm-num-editorial">0{index + 1}</span><p><StatCounter value={stat.value} /></p><small>{stat.label}</small></div></Reveal>)}</div></Reveal>
       </section>
 
-      <section className="gm-closing bg-[#e91a24] px-5 py-20 text-white sm:px-8 lg:px-12 lg:py-28"><Reveal className="mx-auto grid max-w-[1600px] gap-12 lg:grid-cols-[1.3fr_.7fr] lg:items-end"><div><p className="gm-eyebrow text-white/70">Start with a growth audit</p><h2 className="mt-7 max-w-5xl text-[clamp(2.4rem,9.8vw,8rem)] font-semibold uppercase leading-[.85] tracking-[-.07em]">Find the move worth making next.</h2></div><div><p className="text-xl leading-8 text-white/85">Tell us where the business is constrained. We’ll establish the clearest opportunity—and whether Go Massive is the right team to act on it.</p><Link href="/growth-audit" className="gm-button gm-button--dark mt-9">Request a growth audit <ArrowRight size={16} /></Link></div></Reveal></section>
+      <section className="gm-closing bg-[#e91a24] px-5 py-20 text-white sm:px-8 lg:px-12 lg:py-28"><Reveal className="mx-auto grid max-w-[1600px] gap-12 lg:grid-cols-[1.3fr_.7fr] lg:items-end"><div><p className="gm-eyebrow text-white">Start with a growth audit</p><h2 className="mt-7 max-w-5xl text-[clamp(2.4rem,9.8vw,8rem)] font-semibold uppercase leading-[.85] tracking-[-.07em]">Find the move worth making next.</h2></div><div><p className="text-xl leading-8 text-white">Tell us where the business is constrained. We’ll establish the clearest opportunity—and whether Go Massive is the right team to act on it.</p><Link href="/growth-audit" className="gm-button gm-button--dark mt-9">Request a growth audit <ArrowRight size={16} /></Link></div></Reveal></section>
       </ViewTransition>
       <SiteFooter />
     </main>

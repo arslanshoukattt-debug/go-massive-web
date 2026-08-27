@@ -32,7 +32,7 @@ const commerceServices = [
 ];
 
 export default function ServicesPage() {
-  return <main className="bg-[#F7F8FA] text-[#020D1F]">
+  return <main id="main" className="bg-[#F7F8FA] text-[#020D1F]">
     <SiteHeader />
     <ViewTransition name="page-content" share="auto" enter="auto" default="none">
     <section className="bg-[#020D1F] py-20 text-white sm:py-28"><div className="mx-auto max-w-[1440px] px-6 lg:px-10">

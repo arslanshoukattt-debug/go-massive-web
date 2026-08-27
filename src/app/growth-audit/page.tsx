@@ -10,7 +10,7 @@ import { agencyStats } from "../../lib/case-studies";
 import { pageMetadata } from "../../lib/seo";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Book a Growth Audit | Go Massive",
+  title: "Book an eCommerce Growth Audit | Go Massive",
   description:
     "Start a conversation with Go Massive about your Amazon, Google Ads, Meta Ads, or wider eCommerce growth opportunity.",
   path: "/growth-audit",
@@ -31,7 +31,7 @@ const auditIncludes = [
 
 export default function GrowthAuditPage() {
   return (
-    <main className="overflow-hidden bg-[#F7F8FA] text-[#020D1F]">
+    <main id="main" className="overflow-hidden bg-[#F7F8FA] text-[#020D1F]">
       <SiteHeader />
       <ViewTransition name="page-content" share="auto" enter="auto" default="none">
 

@@ -23,7 +23,15 @@ body { margin: 0; background: var(--background); color: var(--foreground); font-
 .gm-text-link { display: inline-flex; align-items: center; gap: 10px; border-bottom: 1px solid #e91a24; padding-bottom: 8px; font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; transition: color 200ms ease; }.gm-text-link:hover { color: #e91a24; }
 
 .gm-reveal { opacity: 1; }.gm-reveal--visible { animation: gm-reveal-in 720ms cubic-bezier(.16,1,.3,1) both; }
-.gm-hero-kicker,.gm-hero-title,.gm-hero-copy { animation: gm-rise 900ms cubic-bezier(.16,1,.3,1) both; }.gm-hero-title { animation-delay: 100ms; }.gm-hero-copy { animation-delay: 240ms; }
+.gm-hero-kicker,.gm-hero-copy { animation: gm-rise 900ms cubic-bezier(.16,1,.3,1) both; }.gm-hero-copy { animation-delay: 240ms; }
+/* The H1 rises with transform only - never opacity. A fade-from-zero start
+   excludes the headline from LCP candidacy, so the browser reported the tiny
+   header logo (~2.8s) as LCP instead of this element (~1.1s). */
+.gm-hero-title { animation: gm-rise-move 900ms cubic-bezier(.16,1,.3,1) 100ms both; }
+@keyframes gm-rise-move { from { transform: translateY(26px); } }
+
+.gm-skip-link { position:fixed; top:10px; left:10px; z-index:100; padding:12px 18px; background:#e91a24; color:white; font:600 13px var(--font-geist-sans); transform:translateY(-200%); transition:transform .15s ease; }
+.gm-skip-link:focus { transform:translateY(0); }
 @keyframes gm-reveal-in { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes gm-rise { from { opacity: 0; transform: translateY(26px); } to { opacity: 1; transform: translateY(0); } }
 
@@ -52,7 +60,7 @@ body { margin: 0; background: var(--background); color: var(--foreground); font-
 @keyframes gm-center-breathe { 0%,100% { transform:scale(1); } 50% { transform:scale(1.035); } }
 @keyframes gm-flow-pulse { 0% { offset-distance:0%; opacity:0; } 7% { opacity:1; } 48% { offset-distance:100%; opacity:1; } 58% { offset-distance:100%; opacity:0; } 100% { offset-distance:0%; opacity:0; } }
 
-.gm-ticker-cell { min-height:102px; display:flex; flex-direction:column; justify-content:center; gap:9px; padding:22px 32px; border-right:1px solid rgba(255,255,255,.28); }.gm-ticker-cell:last-child { border:0; }.gm-ticker-cell span { font-size:10px; font-weight:600; letter-spacing:.14em; opacity:.7; text-transform:uppercase; }.gm-ticker-cell b { font-size:16px; font-weight:600; letter-spacing:-.03em; }
+.gm-ticker-cell { min-height:102px; display:flex; flex-direction:column; justify-content:center; gap:9px; padding:22px 32px; border-right:1px solid rgba(255,255,255,.28); }.gm-ticker-cell:last-child { border:0; }.gm-ticker-cell span { font-size:10px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; }.gm-ticker-cell b { font-size:16px; font-weight:600; letter-spacing:-.03em; }
 
 /* Numeric system: three tiers.
    .gm-num-editorial - sequencing/structure markers (section rows, process steps).

@@ -5,7 +5,7 @@ import { ArrowRight, BarChart3, Check, Layers3, Megaphone, Sparkles, Target, Use
 import { Reveal } from "../../../components/Reveal";
 import { SiteFooter } from "../../../components/SiteFooter";
 import { SiteHeader } from "../../../components/SiteHeader";
-import { pageMetadata } from "../../../lib/seo";
+import { breadcrumbJsonLd, pageMetadata, serviceJsonLd } from "../../../lib/seo";
 
 export const metadata: Metadata = pageMetadata({
   title: "Meta Ads Management for eCommerce Brands | Go Massive",
@@ -30,8 +30,9 @@ const accountWork = [
 
 export default function MetaAdsPage() {
   return (
-    <main className="overflow-hidden bg-[#F7F8FA] text-[#020D1F]">
+    <main id="main" className="overflow-hidden bg-[#F7F8FA] text-[#020D1F]">
       <SiteHeader />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify([serviceJsonLd({ name: "Meta Ads Management", description: "Meta Ads management for brands that want to create demand, improve acquisition efficiency, and connect creative with commercial growth.", path: "/services/meta-ads" }), breadcrumbJsonLd([{ name: "Services", path: "/services" }, { name: "Meta Ads", path: "/services/meta-ads" }])]) }} />
       <ViewTransition name="page-content" share="auto" enter="auto" default="none">
       <section className="relative isolate bg-[#020D1F] py-20 text-white sm:py-28 lg:py-32">
         <div className="absolute inset-0 -z-10 opacity-35 [background-image:linear-gradient(rgba(255,255,255,.07)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.07)_1px,transparent_1px)] [background-size:56px_56px]" />
@@ -69,10 +70,10 @@ export default function MetaAdsPage() {
 
       <section className="bg-[#0A1830] py-24 text-white sm:py-32"><div className="mx-auto grid max-w-[1440px] gap-12 px-6 lg:grid-cols-2 lg:items-center lg:px-10">
         <div className="rounded-3xl border border-white/10 bg-white/[.045] p-7 sm:p-9"><div className="flex items-center gap-3"><span className="grid h-11 w-11 place-items-center rounded-xl bg-[#E91A24]/15 text-[#FF8A90]"><Target size={21} /></span><div><p className="text-sm font-semibold">Creative is a growth lever</p><p className="mt-1 text-sm text-white/55">Not just a deliverable.</p></div></div><p className="mt-7 leading-7 text-white/65">The most effective Meta Ads programs treat creative as an ongoing source of customer insight, not a one-time production task.</p></div>
-        <div><p className="text-xs font-bold uppercase tracking-[.18em] text-[#FF8A90]">The Go Massive standard</p><h2 className="mt-5 text-4xl font-semibold tracking-[-.055em] sm:text-6xl">More than reach. A clearer route to acquisition.</h2><p className="mt-6 max-w-xl text-lg leading-8 text-white/60">We help teams connect creative strategy to the outcomes they need the channel to produce, then make the next test and next decision clear.</p><div className="mt-8 flex items-center gap-3 text-sm font-semibold"><Sparkles className="text-[#E91A24]" size={19} /> Strategy, execution, and reporting in one operating rhythm.</div></div>
+        <div><p className="text-xs font-bold uppercase tracking-[.18em] text-[#FF8A90]">The Go Massive standard</p><h2 className="mt-5 text-4xl font-semibold tracking-[-.055em] sm:text-6xl">More than reach. A clearer route to acquisition.</h2><p className="mt-6 max-w-xl text-lg leading-8 text-white/60">We help teams connect creative strategy to the outcomes they need the channel to produce, then make the next test and next decision clear.</p><div className="mt-8 flex items-center gap-3 text-sm font-semibold"><Sparkles className="text-[#E91A24]" size={19} /> Strategy, execution, and reporting in one operating rhythm.</div><Link href="/case-studies" className="mt-8 inline-flex items-center gap-2 font-semibold text-[#FF8A90] transition hover:text-white">See how this thinking performs <ArrowRight size={16} /></Link></div>
       </div></section>
 
-      <section className="bg-[#E91A24] py-16 text-white sm:py-20"><div className="mx-auto flex max-w-[1440px] flex-col gap-8 px-6 lg:flex-row lg:items-end lg:justify-between lg:px-10"><div><p className="text-xs font-bold uppercase tracking-[.18em] text-white/65">Start with an audit</p><h2 className="mt-4 max-w-2xl text-4xl font-semibold tracking-[-.045em] sm:text-5xl">Find the Meta Ads opportunities worth testing next.</h2></div><Link href="/growth-audit" className="gm-button gm-button--dark">Book a Growth Audit <ArrowRight size={18} /></Link></div></section>
+      <section className="bg-[#E91A24] py-16 text-white sm:py-20"><div className="mx-auto flex max-w-[1440px] flex-col gap-8 px-6 lg:flex-row lg:items-end lg:justify-between lg:px-10"><div><p className="text-xs font-bold uppercase tracking-[.18em] text-white">Start with an audit</p><h2 className="mt-4 max-w-2xl text-4xl font-semibold tracking-[-.045em] sm:text-5xl">Find the Meta Ads opportunities worth testing next.</h2></div><Link href="/growth-audit" className="gm-button gm-button--dark">Book a Growth Audit <ArrowRight size={18} /></Link></div></section>
 
       </ViewTransition>
       <SiteFooter />
