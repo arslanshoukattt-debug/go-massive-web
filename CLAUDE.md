@@ -19,12 +19,12 @@ Marketing site for Go Massive, an eCommerce growth agency (7+ years operating). 
 - White-on-red text must be solid white (opacity variants fail WCAG on #E91A24).
 
 ## Homepage (src/app/page.tsx) — current section order
-1. **Hero** (one-viewport fit on desktop: `lg:h-[calc(100svh-76px)]` capped 600–940px): TypeLine typewriter "> 7+ YEARS OPERATING ECOMMERCE GROWTH_" → H1 "MAKE GROWTH FEEL / INEVITABLE." (clamp 3–6.5rem) → 2-sentence support → CTAs ("Book a growth call" red, "See how we work" ghost) → right: interactive CommerceSystemMap → mobile-only operating-layer scroll strip → stats strip (7+ / 50+ / $200M+ / 92%, `StatCounter immediate`).
+1. **Hero** (white bg, one-viewport fit on desktop: `lg:h-[calc(100svh-76px)]` capped 600–940px): fixed red mono kicker "7+ YEARS OF CREATING ECOMMERCE GROWTH" → HeroRating (gold 4.9 stars, "rated by 300+ reviews") → H1 "BUILD GROWTH THAT'S / [rotating word]" (RotatingWord: Inevitable→Predictable→Repeatable→Scalable, 3s vertical slide, SSR always "Inevitable", sized to widest word = no CLS, first word never animates in = LCP-safe) → support copy → TrustBadges (Trustpilot 4.9 / Google 4.9 / Clutch 5.0, one line ≥lg, linked) → CTAs ("Book a growth call" red, "See how we work" ghost) → right: static HeroGrowthVisual SVG (7 ascending bars, no numbers) → mobile-only operating-layer scroll strip → bottom conversion bar (#F7F8FA): "Not sure where growth is leaking? Get a free growth audit." + red "Get my free audit" → /growth-audit.
 2. Problem: "Growth rarely breaks in one place." — 6 `.gm-problem` cards.
 3. Portfolio: "Seen it before. Fixed it before." — BrandWall rotating tiles.
 4. Growth Engine (navy, `#growth-engine`): sticky intro + 8-step scroll-lit pipeline (GrowthEngine).
 5. Channels (navy `#0A1830`): Amazon (Flagship chip), Walmart, TikTok Shop, eBay, Shopify/DTC, Temu & emerging.
-6. Aligned model: traditional-agency vs Go Massive fee-structure comparison columns.
+6. Aligned model: traditional-agency vs Go Massive fee-structure comparison columns; below them, the 4 proof stats (7+ / 50+ / $200M+ / 92%, `proofStats` in page.tsx) as an inline hairline row — moved here from the hero (owner: stats = evidence for "how we're different").
 7. Tech stack bento: "Humans make the decisions. Technology makes us faster."
 8. Proof (navy): featured case + 3 side rows + red all-cases row (data from `lib/case-studies`).
 9. Testimonials — hidden until `lib/testimonials.ts` has entries.

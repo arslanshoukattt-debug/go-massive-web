@@ -19,7 +19,7 @@ import { ENGINE_NODES } from "../lib/engine-nodes";
 const WHATSAPP_URL = "";
 const MEETING_URL = "";
 
-const heroStats = [
+const proofStats = [
   { value: "7+", label: "Years operating in eCommerce" },
   { value: "50+", label: "Brands managed" },
   { value: "$200M+", label: "Revenue managed" },
@@ -93,14 +93,13 @@ export default function Home() {
             ))}
           </div>
         </div>
-        <div className="gm-hero-strip relative px-5 pb-8 sm:px-8 lg:px-12">
-          <div className="mx-auto grid max-w-[1600px] grid-cols-2 gap-3 lg:grid-cols-4">
-            {heroStats.map((stat) => (
-              <div key={stat.label} className="gm-hero-stat">
-                <p><StatCounter value={stat.value} immediate /></p>
-                <small>{stat.label}</small>
-              </div>
-            ))}
+        <div className="gm-hero-strip relative border-t border-[#020d1f]/10 bg-[#F7F8FA]">
+          <div className="mx-auto flex max-w-[1600px] flex-col gap-5 px-5 py-6 sm:px-8 lg:flex-row lg:items-center lg:justify-between lg:px-12">
+            <div>
+              <p className="text-lg font-semibold tracking-[-.02em] sm:text-xl">Not sure where growth is leaking? Get a free growth audit.</p>
+              <p className="mt-1 text-sm leading-6 text-[#596475]">A focused, no-pitch look at your account — with clear next steps, even if we&rsquo;re not the right fit.</p>
+            </div>
+            <Link href="/growth-audit" className="gm-button gm-button--red shrink-0 whitespace-nowrap">Get my free audit <ArrowRight size={16} /></Link>
           </div>
         </div>
       </section>
@@ -212,7 +211,15 @@ export default function Home() {
               <p className="gm-model-verdict gm-text-red-safe">We carry the risk with you</p>
             </div></Reveal>
           </div>
-          <div className="mt-10 flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+          <div className="mt-14 grid grid-cols-2 gap-x-8 gap-y-10 border-t border-[#020d1f]/20 pt-10 lg:grid-cols-4">
+            {proofStats.map((stat) => (
+              <div key={stat.label}>
+                <p className="text-3xl font-semibold tracking-[-.05em] sm:text-4xl"><StatCounter value={stat.value} /></p>
+                <p className="mt-2 max-w-[220px] text-sm leading-5 text-[#596475]">{stat.label}</p>
+              </div>
+            ))}
+          </div>
+          <div className="mt-12 flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
             <p className="max-w-2xl text-xl font-medium leading-8 tracking-[-.02em]">Aligned incentives aren&rsquo;t a slogan here. They&rsquo;re the fee structure.</p>
             <Link href="/growth-audit" className="gm-text-link shrink-0">Ask how the model works <ArrowRight size={16} /></Link>
           </div>
