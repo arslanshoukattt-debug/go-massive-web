@@ -146,12 +146,6 @@ section[id] { scroll-margin-top: 90px; }
 .gm-fly-node--active circle { fill:var(--gm-red); stroke:var(--gm-red); }
 .gm-fly-node--active .gm-fly-num, .gm-fly-node--active .gm-fly-label { fill:white; }
 
-/* Channel cards */
-.gm-channel { display:flex; min-height:200px; flex-direction:column; justify-content:space-between; border:1px solid rgba(2,13,31,.12); background:white; padding:24px; transition:transform .25s, background-color .25s, border-color .25s; }
-.gm-channel:hover { transform:translateY(-4px); background:white; border-color:var(--gm-red); }
-.gm-channel h3 { margin:0; font-size:21px; font-weight:600; letter-spacing:-.02em; }
-.gm-channel p { margin:14px 0 0; font-size:14px; line-height:1.6; color:#596475; }
-
 /* Aligned-model comparison */
 .gm-model-col { display:flex; flex-direction:column; border:1px solid rgba(2,13,31,.14); background:white; padding:30px; }
 .gm-model-col--gm { border-color:#020d1f; background:white; color:#020d1f; }

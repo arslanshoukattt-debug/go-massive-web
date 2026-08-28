@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ViewTransition } from "react";
 import { ArrowRight, Check, CircleDollarSign, Mail, Package, PieChart, ShoppingCart, TrendingDown, Users } from "lucide-react";
+import { ChannelGrid } from "../components/ChannelGrid";
 import { GrowthFlywheel } from "../components/GrowthFlywheel";
 import { HeroGrowthVisual } from "../components/HeroGrowthVisual";
 import { Reveal } from "../components/Reveal";
@@ -217,29 +218,26 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 5 — CHANNELS: where the engine runs */}
-      <section className="border-y border-[#020d1f]/15 bg-white px-5 py-20 text-[#020d1f] sm:px-8 lg:px-12 lg:py-28">
+      {/* 5 — CHANNELS: where the engine runs (redesigned Aug 2026: numbered card grid, one-active interaction) */}
+      <section className="relative isolate overflow-hidden border-y border-[#020d1f]/15 bg-white px-5 py-20 text-[#020d1f] sm:px-8 lg:px-12 lg:py-28">
+        {/* quiet red connection paths in the background */}
+        <svg className="pointer-events-none absolute inset-0 -z-10 h-full w-full" viewBox="0 0 1600 900" fill="none" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <path d="M-100 710 C 300 530, 700 870, 1100 650 S 1700 430, 1760 470" stroke="#E91A24" strokeOpacity=".07" strokeWidth="1.5" />
+          <path d="M-80 240 C 350 100, 800 300, 1250 140 S 1650 50, 1720 110" stroke="#E91A24" strokeOpacity=".05" strokeWidth="1.5" />
+          <circle cx="1100" cy="650" r="4" fill="#E91A24" fillOpacity=".14" />
+          <circle cx="700" cy="700" r="3" fill="#E91A24" fillOpacity=".1" />
+          <circle cx="1250" cy="140" r="3.5" fill="#E91A24" fillOpacity=".1" />
+        </svg>
         <Reveal className="mx-auto max-w-[1600px]">
-          <div className="grid gap-10 pb-12 lg:grid-cols-[.64fr_1.36fr] lg:items-end">
-            <div><p className="gm-eyebrow gm-text-red-safe">Sales channels</p><p className="gm-section-support gm-section-support--dark">Brands shouldn&rsquo;t need five agencies for five channels. Priorities get set commercially — not per silo.</p></div>
-            <h2 className="max-w-5xl text-[clamp(2.1rem,8.5vw,6rem)] font-semibold uppercase leading-[.87] tracking-[-.05em]">Every channel that matters. One accountable partner.</h2>
+          <div className="grid gap-8 pb-12 lg:grid-cols-[.8fr_1.2fr] lg:items-center lg:gap-14">
+            <div>
+              <p className="text-[19px] font-bold uppercase tracking-[.12em] text-[#E91A24] sm:text-[21px]">Sales channels</p>
+              <p className="mt-4 max-w-lg text-lg leading-8 text-[#020d1f]/70 sm:text-[19px]">Brands shouldn&rsquo;t need five agencies for five channels. Priorities get set commercially — not per silo.</p>
+            </div>
+            <h2 className="max-w-4xl text-[clamp(2.1rem,5.5vw,4.6rem)] font-semibold uppercase leading-[.9] tracking-[-.05em]">Every <span className="text-[#E91A24]">channel</span> that matters. One <span className="text-[#E91A24]">accountable</span> partner.</h2>
           </div>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {channels.map((channel, index) => (
-              <Reveal key={channel.name} delay={index * 70}>
-                <Link href="/services" className="gm-channel h-full">
-                  <div className="flex items-start justify-between gap-4">
-                    <h3>{channel.name}</h3>
-                    {channel.flagship && <span className="gm-eyebrow shrink-0 bg-[#E91A24] px-2.5 py-1.5 text-white">Flagship</span>}
-                  </div>
-                  <div>
-                    <p>{channel.role}</p>
-                    <span className="gm-text-red-safe mt-5 inline-flex items-center gap-2 text-sm font-semibold">Explore <ArrowRight size={14} /></span>
-                  </div>
-                </Link>
-              </Reveal>
-            ))}
-          </div>
+          <ChannelGrid channels={channels} />
+          <p className="mt-12 border-l-[3px] border-[#E91A24] pl-6 text-xl leading-8 tracking-[-.02em] sm:text-2xl"><span className="font-semibold">Six channels, one commercial system.</span> <span className="text-[#020d1f]/70">Every one of them runs on the same operating engine — and one partner stays accountable for the outcome.</span></p>
         </Reveal>
       </section>
 
