@@ -198,12 +198,17 @@ export default function Home() {
       </section>
 
       {/* 4 — THE GROWTH ENGINE: how the system actually works */}
-      <section id="growth-engine" className="bg-white px-5 py-20 text-[#020d1f] sm:px-8 lg:px-12 lg:py-28">
+      <section id="growth-engine" className="relative isolate overflow-hidden bg-white px-5 py-20 text-[#020d1f] sm:px-8 lg:px-12 lg:py-28">
+        {/* quiet background geometry: orbital outlines echoing the flywheel + a soft dot grid */}
+        <div className="pointer-events-none absolute -left-44 -top-28 -z-10 h-[520px] w-[520px] rounded-full border border-[#020d1f]/[.07]" aria-hidden="true" />
+        <div className="pointer-events-none absolute -left-20 top-14 -z-10 h-[340px] w-[340px] rounded-full border border-[#E91A24]/10" aria-hidden="true" />
+        <div className="pointer-events-none absolute -bottom-16 -right-24 -z-10 h-[560px] w-[560px] rounded-full border border-[#020d1f]/[.06]" aria-hidden="true" />
+        <div className="gm-dotgrid pointer-events-none absolute bottom-8 right-0 -z-10 h-[400px] w-[420px]" aria-hidden="true" />
         <div className="mx-auto grid max-w-[1600px] gap-14 lg:grid-cols-[.9fr_1.1fr]">
           <Reveal>
             <div className="lg:sticky lg:top-28">
-              <p className="gm-eyebrow gm-text-red-safe">The Growth Engine</p>
-              <h2 className="mt-6 max-w-xl text-[clamp(2.1rem,8.5vw,6rem)] font-semibold uppercase leading-[.87] tracking-[-.05em]">One system. Every lever that moves revenue.</h2>
+              <p className="text-[19px] font-bold uppercase tracking-[.12em] text-[#E91A24] sm:text-[21px]">The Growth Engine</p>
+              <h2 className="mt-6 max-w-xl text-[clamp(2.1rem,8.5vw,6rem)] font-semibold uppercase leading-[.87] tracking-[-.05em]">One <span className="text-[#E91A24]">system</span>. Every lever that moves <span className="text-[#E91A24]">revenue</span>.</h2>
               <p className="mt-7 max-w-lg text-lg leading-8 text-[#020d1f]/70">Not an ads agency with add-ons. An operating engine where each stage feeds the next — so wins compound instead of leaking between vendors.</p>
               <Link href="/services" className="gm-text-link mt-9">Explore the services <ArrowRight size={16} /></Link>
             </div>
