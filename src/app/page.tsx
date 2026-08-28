@@ -18,23 +18,28 @@ import { ENGINE_NODES } from "../lib/engine-nodes";
 const WHATSAPP_URL = "";
 const MEETING_URL = "";
 
-// Owner-cleared client logos (Aug 2026) - single-line marquee in section 3.
-// Per-logo heights equalise visual mass: wide wordmarks run shorter, compact
-// square marks taller, so no logo reads bigger than its neighbours.
-const brandLogos = [
-  { name: "Hallowood Furniture", src: "/logos/hallowood.png", h: "h-9" },
-  { name: "Bigfoot Bushcraft", src: "/logos/bigfoot-bushcraft.png", h: "h-14" },
-  { name: "Calzitaly", src: "/logos/calzitaly.png", h: "h-9" },
-  { name: "Eatwater", src: "/logos/eatwater.png", h: "h-12" },
-  { name: "Witt", src: "/logos/witt.png", h: "h-11" },
-  { name: "Weymouth", src: "/logos/weymouth.png", h: "h-14" },
-  { name: "Love & Peanut", src: "/logos/love-and-peanut.png", h: "h-9" },
-  { name: "Bigg Golf", src: "/logos/bigg-golf.png", h: "h-10" },
-  { name: "DBZ Beds", src: "/logos/dbz-beds.png", h: "h-11" },
-  { name: "Hot Star Honey", src: "/logos/hot-star-honey.png", h: "h-14" },
-  { name: "Welnesse", src: "/logos/welnesse.png", h: "h-12" },
-  { name: "funSLINGER", src: "/logos/funslinger.png", h: "h-10" },
-  { name: "Qnaturals", src: "/logos/qnaturals.png", h: "h-12" },
+// Owner-cleared client logos (Aug 2026) - two counter-scrolling marquee rows
+// in section 3. Per-logo heights equalise visual mass: wide wordmarks run
+// shorter, compact square marks taller, so no logo reads bigger than its
+// neighbours. New logos: process into /public/logos and add to a row here.
+const brandLogoRows = [
+  [
+    { name: "Hallowood Furniture", src: "/logos/hallowood.png", h: "h-9" },
+    { name: "Bigfoot Bushcraft", src: "/logos/bigfoot-bushcraft.png", h: "h-14" },
+    { name: "Calzitaly", src: "/logos/calzitaly.png", h: "h-9" },
+    { name: "Eatwater", src: "/logos/eatwater.png", h: "h-12" },
+    { name: "Witt", src: "/logos/witt.png", h: "h-11" },
+    { name: "Weymouth", src: "/logos/weymouth.png", h: "h-14" },
+    { name: "Love & Peanut", src: "/logos/love-and-peanut.png", h: "h-9" },
+  ],
+  [
+    { name: "Bigg Golf", src: "/logos/bigg-golf.png", h: "h-10" },
+    { name: "DBZ Beds", src: "/logos/dbz-beds.png", h: "h-11" },
+    { name: "Hot Star Honey", src: "/logos/hot-star-honey.png", h: "h-14" },
+    { name: "Welnesse", src: "/logos/welnesse.png", h: "h-12" },
+    { name: "funSLINGER", src: "/logos/funslinger.png", h: "h-10" },
+    { name: "Qnaturals", src: "/logos/qnaturals.png", h: "h-12" },
+  ],
 ];
 
 // Owner-provided certifications (Aug 2026), rendered in the strip under the hero.
@@ -172,17 +177,21 @@ export default function Home() {
       <section className="border-y border-[#020d1f]/15 bg-white px-5 py-16 sm:px-8 lg:px-12 lg:py-20">
         <Reveal className="mx-auto max-w-[1600px]">
           <h2 className="text-center text-[clamp(1.5rem,2.6vw,2.3rem)] font-bold uppercase tracking-[-.03em]">Trusted by leading brands worldwide<span className="text-[#E91A24]">.</span></h2>
-          <div className="gm-logo-marquee mt-12" aria-label="Logos of brands Go Massive has worked with">
-            <div className="gm-logo-track">
-              {[0, 1].map((copy) => (
-                <div key={copy} className="gm-logo-set" aria-hidden={copy === 1}>
-                  {brandLogos.map((brand) => (
-                    // eslint-disable-next-line @next/next/no-img-element -- marquee needs natural-width PNGs, no optimizer frame
-                    <img key={brand.name} src={brand.src} alt={copy === 0 ? brand.name : ""} loading="lazy" className={`${brand.h} w-auto opacity-60 grayscale transition duration-300 hover:opacity-100 hover:grayscale-0`} />
+          <div className="mt-12 space-y-9" aria-label="Logos of brands Go Massive has worked with">
+            {brandLogoRows.map((row, rowIndex) => (
+              <div key={rowIndex} className="gm-logo-marquee">
+                <div className={rowIndex === 1 ? "gm-logo-track gm-logo-track--reverse" : "gm-logo-track"}>
+                  {[0, 1, 2, 3].map((copy) => (
+                    <div key={copy} className="gm-logo-set" aria-hidden={copy > 0}>
+                      {row.map((brand) => (
+                        // eslint-disable-next-line @next/next/no-img-element -- marquee needs natural-width PNGs, no optimizer frame
+                        <img key={brand.name} src={brand.src} alt={copy === 0 ? brand.name : ""} loading="lazy" className={`${brand.h} w-auto opacity-60 grayscale transition duration-300 hover:opacity-100 hover:grayscale-0`} />
+                      ))}
+                    </div>
                   ))}
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
           <p className="mt-12 text-center text-xs leading-5 text-[#687385]">Logos shown with permission · 50+ brands and 200+ accounts managed across categories, marketplaces, and growth stages</p>
         </Reveal>
