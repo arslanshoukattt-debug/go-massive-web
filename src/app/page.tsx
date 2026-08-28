@@ -150,7 +150,7 @@ export default function Home() {
           <p className="text-center text-[19px] font-bold uppercase tracking-[.12em] text-[#E91A24] sm:text-[21px]">Where brands get stuck</p>
           <div className="mt-10 grid gap-8 pb-12 lg:grid-cols-[.8fr_1.2fr] lg:items-center lg:gap-14">
             <p className="max-w-lg text-lg leading-8 text-[#020d1f]/70 sm:text-[19px] lg:justify-self-end lg:text-right">By the time revenue flattens, the cause is usually spread across the account — and no single-channel partner can see all of it.</p>
-            <h2 className="max-w-3xl text-[clamp(2.2rem,4.2vw,4.2rem)] font-bold uppercase leading-[.92] tracking-[-.045em] lg:border-l lg:border-[#020d1f]/15 lg:pl-14">Growth rarely breaks in one place<span className="text-[#E91A24]">.</span></h2>
+            <h2 className="max-w-3xl text-[clamp(2.2rem,4.2vw,4.2rem)] font-bold uppercase leading-[.92] tracking-[-.045em] lg:border-l lg:border-[#020d1f]/15 lg:pl-14"><span className="text-[#E91A24]">Growth</span> rarely breaks in one place<span className="text-[#E91A24]">.</span></h2>
           </div>
           <div className="grid gap-px border-y border-[#020d1f]/15 bg-[#020d1f]/15 sm:grid-cols-2 lg:grid-cols-3">
             {problems.map((problem, index) => {
