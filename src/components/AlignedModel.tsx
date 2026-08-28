@@ -91,28 +91,6 @@ export function AlignedModel() {
         <p className="mt-1 max-w-2xl leading-7 text-[#596475]">{row.support}</p>
       </div>
 
-      {/* risk alignment: restrained horizontal treatment, no numbers claimed */}
-      <div className="mt-10 border-t border-[#020d1f]/15 pt-8">
-        <div className="grid gap-8 lg:grid-cols-2 lg:gap-14">
-          <div>
-            <p className="font-mono text-[11px] font-bold uppercase tracking-[.12em] text-[#596475]">Traditional agency — who carries the risk</p>
-            <div className="mt-3 flex h-2.5 overflow-hidden" aria-hidden="true">
-              <span className="w-[82%] bg-[#020d1f]/25" />
-              <span className="w-[18%] bg-[#020d1f]/10" />
-            </div>
-            <div className="mt-2 flex justify-between text-xs font-medium text-[#687385]"><span>The brand</span><span>The agency</span></div>
-          </div>
-          <div>
-            <p className="font-mono text-[11px] font-bold uppercase tracking-[.12em] text-[#DB1822]">The Go Massive model — risk shared</p>
-            <div className="mt-3 flex h-2.5 overflow-hidden" aria-hidden="true">
-              <span className="w-[52%] bg-[#020d1f]/25" />
-              <span className="w-[48%] bg-[#E91A24]" />
-            </div>
-            <div className="mt-2 flex justify-between text-xs font-medium text-[#687385]"><span>The brand</span><span className="text-[#DB1822]">Go Massive</span></div>
-          </div>
-        </div>
-        <p className="mt-4 text-xs leading-5 text-[#687385]">An illustration of how each fee structure distributes risk — not a contractual split.</p>
-      </div>
     </div>
   );
 }
