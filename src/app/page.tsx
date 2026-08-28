@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ViewTransition } from "react";
 import { ArrowRight, Check, CircleDollarSign, Mail, Package, PieChart, ShoppingCart, TrendingDown, Users } from "lucide-react";
-import { GrowthEngine } from "../components/GrowthEngine";
+import { GrowthFlywheel } from "../components/GrowthFlywheel";
 import { HeroGrowthVisual } from "../components/HeroGrowthVisual";
 import { Reveal } from "../components/Reveal";
 import { RotatingWord } from "../components/RotatingWord";
@@ -208,7 +208,7 @@ export default function Home() {
               <Link href="/services" className="gm-text-link mt-9">Explore the services <ArrowRight size={16} /></Link>
             </div>
           </Reveal>
-          <GrowthEngine />
+          <GrowthFlywheel />
         </div>
       </section>
 
