@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { ViewTransition } from "react";
 import { ArrowRight, Check, CircleDollarSign, Mail, Package, PieChart, ShoppingCart, TrendingDown, Users } from "lucide-react";
-import { AiOperatingSystem } from "../components/AiOperatingSystem";
 import { AlignedModel } from "../components/AlignedModel";
 import { ChannelGrid } from "../components/ChannelGrid";
 import { GrowthFlywheel } from "../components/GrowthFlywheel";
@@ -12,6 +11,7 @@ import { SiteFooter } from "../components/SiteFooter";
 import { SiteHeader } from "../components/SiteHeader";
 import { StatCounter } from "../components/StatCounter";
 import { Testimonials } from "../components/Testimonials";
+import { TechnologyStack } from "../components/TechnologyStack";
 import { TrackRecord } from "../components/TrackRecord";
 import { HeroRating, TrustBadges } from "../components/TrustSignals";
 import { caseStudies } from "../lib/case-studies";
@@ -265,17 +265,17 @@ export default function Home() {
         </Reveal>
       </section>
 
-      {/* 7 — TECHNOLOGY: the Go Massive AI Operating System (rebuilt from scratch, Aug 2026) */}
-      <section className="relative isolate overflow-hidden border-y border-[#020d1f]/15 bg-white px-5 py-16 sm:px-8 lg:px-12 lg:py-20">
+      {/* 7 — TECHNOLOGY: command deck (rebuilt again per owner, Aug 2026 — see TechnologyStack) */}
+      <section className="border-y border-[#020d1f]/15 bg-white px-5 py-16 sm:px-8 lg:px-12 lg:py-20">
         <Reveal className="mx-auto max-w-[1600px]">
           <div className="grid gap-8 pb-10 lg:grid-cols-[.8fr_1.2fr] lg:items-center lg:gap-14">
             <div>
               <p className="text-[19px] font-bold uppercase tracking-[.12em] text-[#E91A24] sm:text-[21px]">The stack</p>
-              <p className="mt-4 max-w-lg text-lg leading-8 text-[#020d1f]/70 sm:text-[19px]">Every account runs on a proprietary AI operating system that compresses the time between signal and action.</p>
+              <p className="mt-4 max-w-lg text-[19px] leading-8 text-[#020d1f]/70 sm:text-[20px]">Every account runs on a proprietary AI operating system that compresses the time between signal and action.</p>
             </div>
-            <h2 className="max-w-4xl text-[clamp(1.9rem,4.2vw,3.6rem)] font-semibold uppercase leading-[.92] tracking-[-.045em]">Humans make the decisions. Technology makes us <span className="text-[#E91A24]">faster</span>.</h2>
+            <h2 className="max-w-4xl text-[clamp(1.9rem,4.2vw,3.6rem)] font-semibold uppercase leading-[.92] tracking-[-.045em]">Humans make the decisions. Technology makes us <span className="text-[#E91A24]">faster.</span></h2>
           </div>
-          <AiOperatingSystem />
+          <TechnologyStack />
         </Reveal>
       </section>
 

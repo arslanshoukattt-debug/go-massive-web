@@ -146,11 +146,7 @@ section[id] { scroll-margin-top: 90px; }
 .gm-fly-node--active circle { fill:var(--gm-red); stroke:var(--gm-red); }
 .gm-fly-node--active .gm-fly-num, .gm-fly-node--active .gm-fly-label { fill:white; }
 
-/* AI Operating System (tech stack section) */
-.gm-os-hub-title { fill:#020d1f; font:700 15px var(--font-geist-mono); letter-spacing:.08em; }
-.gm-os-hub-sub { fill:rgba(2,13,31,.55); font:600 9px var(--font-geist-mono); letter-spacing:.18em; }
-.gm-os-node-label { fill:rgba(2,13,31,.78); font:600 12.5px var(--font-geist-sans); letter-spacing:-.01em; transition:fill .25s; }
-.gm-os-node-label--active { fill:#020d1f; font-weight:700; }
+/* Technology command deck (tech stack section) */
 .gm-os-particle { offset-rotate:0deg; animation:gm-os-flow linear infinite; }
 @keyframes gm-os-flow { 0% { offset-distance:12%; opacity:0; } 15% { opacity:.45; } 85% { opacity:.45; } 100% { offset-distance:90%; opacity:0; } }
 .gm-os-pulse { animation:gm-os-pulse 2.4s ease-in-out infinite; }
