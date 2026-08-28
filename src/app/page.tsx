@@ -176,7 +176,7 @@ export default function Home() {
       {/* 3 — BRANDS: clean logo cloud, logos only (owner direction, Aug 2026) */}
       <section className="border-y border-[#020d1f]/15 bg-white px-5 py-16 sm:px-8 lg:px-12 lg:py-20">
         <Reveal className="mx-auto max-w-[1600px]">
-          <h2 className="text-center text-[clamp(1.5rem,2.6vw,2.3rem)] font-bold uppercase tracking-[-.03em]">Brands that went massive<span className="text-[#E91A24]">.</span></h2>
+          <h2 className="text-center text-[clamp(1.5rem,2.6vw,2.3rem)] font-bold uppercase tracking-[-.03em]">Brands that went <span className="text-[#E91A24]">massive.</span></h2>
           <div className="mt-12 space-y-9" aria-label="Logos of brands Go Massive has worked with">
             {brandLogoRows.map((row, rowIndex) => (
               <div key={rowIndex} className="gm-logo-marquee">
