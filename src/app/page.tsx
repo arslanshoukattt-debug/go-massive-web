@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ViewTransition } from "react";
 import { ArrowRight, Check, CircleDollarSign, Mail, Package, PieChart, ShoppingCart, TrendingDown, Users } from "lucide-react";
+import { AlignedModel } from "../components/AlignedModel";
 import { ChannelGrid } from "../components/ChannelGrid";
 import { GrowthFlywheel } from "../components/GrowthFlywheel";
 import { HeroGrowthVisual } from "../components/HeroGrowthVisual";
@@ -241,35 +242,24 @@ export default function Home() {
         </Reveal>
       </section>
 
-      {/* 6 — DIFFERENTIATION: the aligned model */}
-      <section className="px-5 py-20 sm:px-8 lg:px-12 lg:py-28">
+      {/* 6 — DIFFERENTIATION: the aligned model (redesigned Aug 2026: row-by-row comparison + risk visual) */}
+      <section className="relative isolate overflow-hidden bg-white px-5 py-20 sm:px-8 lg:px-12 lg:py-28">
+        {/* alignment linework: three paths converging behind the hero area */}
+        <svg className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[440px] w-full" viewBox="0 0 1600 440" fill="none" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <path d="M-60 90 C 400 60, 900 260, 1660 210" stroke="#E91A24" strokeOpacity=".06" strokeWidth="1.5" />
+          <path d="M-60 200 C 450 190, 950 265, 1660 225" stroke="#E91A24" strokeOpacity=".08" strokeWidth="1.5" />
+          <path d="M-60 330 C 420 340, 950 275, 1660 240" stroke="#E91A24" strokeOpacity=".06" strokeWidth="1.5" />
+          <circle cx="1245" cy="243" r="4" fill="#E91A24" fillOpacity=".14" />
+        </svg>
         <Reveal className="mx-auto max-w-[1600px]">
-          <div className="grid gap-10 border-b border-[#020d1f]/20 pb-12 lg:grid-cols-[.64fr_1.36fr] lg:items-end">
-            <div><p className="gm-eyebrow gm-text-red-safe">The aligned model</p><p className="gm-section-support">The traditional agency stack gets paid whether you grow or not. We built the opposite.</p></div>
-            <h2 className="max-w-5xl text-[clamp(2.1rem,8.5vw,6.6rem)] font-semibold uppercase leading-[.87] tracking-[-.05em]">We win when you grow. Literally.</h2>
+          <div className="grid gap-8 pb-12 lg:grid-cols-[.8fr_1.2fr] lg:items-center lg:gap-14">
+            <div>
+              <p className="text-[19px] font-bold uppercase tracking-[.12em] text-[#E91A24] sm:text-[21px]">The Aligned Model</p>
+              <p className="mt-4 max-w-lg text-lg leading-8 text-[#020d1f]/70 sm:text-[19px]">The traditional agency stack gets paid whether you grow or not. We built the opposite.</p>
+            </div>
+            <h2 className="max-w-4xl text-[clamp(2.1rem,5.5vw,4.6rem)] font-semibold uppercase leading-[.9] tracking-[-.05em]">We win when you <span className="text-[#E91A24]">grow.</span> Literally.</h2>
           </div>
-          <div className="mt-12 grid gap-5 lg:grid-cols-2">
-            <Reveal><div className="gm-model-col h-full">
-              <p className="gm-eyebrow text-[#596475]">The traditional agency</p>
-              <div className="mt-8">
-                <div className="gm-model-step"><span className="gm-num-meta">01</span><div><b>Large setup fee</b><small>Paid before any work has proven anything.</small></div></div>
-                <div className="gm-model-step"><span className="gm-num-meta">02</span><div><b>Heavy monthly retainer</b><small>Due on the first of the month, regardless of results.</small></div></div>
-                <div className="gm-model-step"><span className="gm-num-meta">03</span><div><b>Percentage of ad spend</b><small>The incentive points at spending more, not earning more.</small></div></div>
-                <div className="gm-model-step"><span className="gm-num-meta">04</span><div><b>Agency gets paid either way</b><small>Growth is your problem. Invoices are theirs.</small></div></div>
-              </div>
-              <p className="gm-model-verdict text-[#596475]">The brand carries the risk</p>
-            </div></Reveal>
-            <Reveal delay={120}><div className="gm-model-col gm-model-col--gm h-full">
-              <p className="gm-eyebrow gm-text-red-safe">The Go Massive model</p>
-              <div className="mt-8">
-                <div className="gm-model-step"><span className="gm-num-meta">01</span><div><b>Lean operating retainer</b><small>Covers the dedicated team, tools, and infrastructure your account runs on — not our profit margin.</small></div></div>
-                <div className="gm-model-step"><span className="gm-num-meta">02</span><div><b>Full-system execution</b><small>Strategy, operations, advertising, creative, and technology as one accountable engine.</small></div></div>
-                <div className="gm-model-step"><span className="gm-num-meta">03</span><div><b>Growth</b><small>Measured commercially — revenue, efficiency, and margin. Not activity.</small></div></div>
-                <div className="gm-model-step"><span className="gm-num-meta">04</span><div><b>Shared upside</b><small>Our real earnings come from a share of the growth we create. No growth, no upside — for either of us.</small></div></div>
-              </div>
-              <p className="gm-model-verdict gm-text-red-safe">We carry the risk with you</p>
-            </div></Reveal>
-          </div>
+          <AlignedModel />
           <div className="mt-14 grid grid-cols-2 gap-x-8 gap-y-10 border-t border-[#020d1f]/20 pt-10 lg:grid-cols-4">
             {proofStats.map((stat) => (
               <div key={stat.label}>
@@ -278,9 +268,12 @@ export default function Home() {
               </div>
             ))}
           </div>
-          <div className="mt-12 flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
-            <p className="max-w-2xl text-xl font-medium leading-8 tracking-[-.02em]">Aligned incentives aren&rsquo;t a slogan here. They&rsquo;re the fee structure.</p>
-            <Link href="/growth-audit" className="gm-text-link shrink-0">Ask how the model works <ArrowRight size={16} /></Link>
+          <div className="mt-12 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+            <p className="max-w-3xl border-l-[3px] border-[#E91A24] pl-6 text-xl leading-8 tracking-[-.02em] sm:text-2xl"><span className="font-semibold">We do not make more because you are struggling.</span> <span className="text-[#020d1f]/70">The model is designed to reward progress, commercial improvement, and shared upside.</span></p>
+            <div className="flex shrink-0 flex-col items-start gap-4 lg:items-end">
+              <span className="gm-eyebrow bg-[#E91A24] px-3 py-2 text-white">Aligned incentives</span>
+              <Link href="/growth-audit" className="gm-text-link">Ask how the model works <ArrowRight size={16} /></Link>
+            </div>
           </div>
         </Reveal>
       </section>

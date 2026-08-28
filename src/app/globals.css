@@ -146,17 +146,6 @@ section[id] { scroll-margin-top: 90px; }
 .gm-fly-node--active circle { fill:var(--gm-red); stroke:var(--gm-red); }
 .gm-fly-node--active .gm-fly-num, .gm-fly-node--active .gm-fly-label { fill:white; }
 
-/* Aligned-model comparison */
-.gm-model-col { display:flex; flex-direction:column; border:1px solid rgba(2,13,31,.14); background:white; padding:30px; }
-.gm-model-col--gm { border-color:#020d1f; background:white; color:#020d1f; }
-.gm-model-step { display:flex; gap:16px; align-items:baseline; padding:15px 0; border-top:1px solid rgba(2,13,31,.1); }
-.gm-model-col--gm .gm-model-step { border-top-color:rgba(2,13,31,.1); }
-.gm-model-step:first-of-type { border-top:0; padding-top:0; }
-.gm-model-step b { font-size:17px; font-weight:600; letter-spacing:-.02em; }
-.gm-model-step small { display:block; margin-top:3px; font-size:13.5px; line-height:1.55; color:#596475; }
-.gm-model-col--gm .gm-model-step small { color:#596475; }
-.gm-model-verdict { margin-top:auto; padding-top:22px; font-size:12px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; }
-
 /* Technology bento */
 .gm-bento { display:grid; gap:12px; }
 @media (min-width:768px) { .gm-bento { grid-template-columns:repeat(3,1fr); } .gm-bento-cell--wide { grid-column:span 2; } }
