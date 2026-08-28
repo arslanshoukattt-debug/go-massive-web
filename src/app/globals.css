@@ -146,15 +146,15 @@ section[id] { scroll-margin-top: 90px; }
 .gm-fly-node--active circle { fill:var(--gm-red); stroke:var(--gm-red); }
 .gm-fly-node--active .gm-fly-num, .gm-fly-node--active .gm-fly-label { fill:white; }
 
-/* Technology bento */
-.gm-bento { display:grid; gap:12px; }
-@media (min-width:768px) { .gm-bento { grid-template-columns:repeat(3,1fr); } .gm-bento-cell--wide { grid-column:span 2; } }
-.gm-bento-cell { display:flex; min-height:196px; flex-direction:column; justify-content:space-between; border:1px solid rgba(2,13,31,.12); background:white; padding:26px; transition:border-color .25s, transform .25s; }
-.gm-bento-cell:hover { border-color:var(--gm-red); transform:translateY(-3px); }
-.gm-bento-cell--dark { border-color:#020d1f; background:white; color:#020d1f; }
-.gm-bento-cell h3 { margin:26px 0 0; font-size:19px; font-weight:600; letter-spacing:-.02em; }
-.gm-bento-cell p { margin:8px 0 0; font-size:14.5px; line-height:1.6; color:#596475; }
-.gm-bento-cell--dark p { color:#596475; }
+/* AI Operating System (tech stack section) */
+.gm-os-hub-title { fill:#020d1f; font:700 15px var(--font-geist-mono); letter-spacing:.08em; }
+.gm-os-hub-sub { fill:rgba(2,13,31,.55); font:600 9px var(--font-geist-mono); letter-spacing:.18em; }
+.gm-os-node-label { fill:rgba(2,13,31,.78); font:600 12.5px var(--font-geist-sans); letter-spacing:-.01em; transition:fill .25s; }
+.gm-os-node-label--active { fill:#020d1f; font-weight:700; }
+.gm-os-particle { offset-rotate:0deg; animation:gm-os-flow linear infinite; }
+@keyframes gm-os-flow { 0% { offset-distance:12%; opacity:0; } 15% { opacity:.45; } 85% { opacity:.45; } 100% { offset-distance:90%; opacity:0; } }
+.gm-os-pulse { animation:gm-os-pulse 2.4s ease-in-out infinite; }
+@keyframes gm-os-pulse { 0%,100% { opacity:1; } 50% { opacity:.2; } }
 
 /* === Brand logo marquee: two rows scrolling in opposite directions
    (canopymanagement.com reference). Each track holds four identical sets and

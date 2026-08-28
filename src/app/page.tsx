@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ViewTransition } from "react";
 import { ArrowRight, Check, CircleDollarSign, Mail, Package, PieChart, ShoppingCart, TrendingDown, Users } from "lucide-react";
+import { AiOperatingSystem } from "../components/AiOperatingSystem";
 import { AlignedModel } from "../components/AlignedModel";
 import { ChannelGrid } from "../components/ChannelGrid";
 import { GrowthFlywheel } from "../components/GrowthFlywheel";
@@ -70,15 +71,6 @@ const channels = [
   { name: "eBay", role: "Wholesale and white-label volume that most brands leave unmanaged." },
   { name: "Shopify / DTC", role: "Owned margin, retention, and the brand experience marketplaces can't give you." },
   { name: "Temu & emerging", role: "New channels tested when the economics earn it — not because they're new." },
-];
-
-const techStack = [
-  { title: "AI-assisted research", detail: "Category, keyword, and competitor intelligence gathered in hours instead of weeks.", wide: true, dark: true },
-  { title: "Advertising automation", detail: "Bid and budget guardrails that act between human reviews." },
-  { title: "Marketplace analytics", detail: "One commercial view across every channel and account we run." },
-  { title: "Listing intelligence", detail: "Content and conversion signals tracked at SKU level." },
-  { title: "Workflow automation", detail: "Operational busywork removed from the critical path." },
-  { title: "A reporting rhythm", detail: "Decisions and the reasons behind them — not activity dashboards." },
 ];
 
 export default function Home() {
@@ -273,24 +265,17 @@ export default function Home() {
         </Reveal>
       </section>
 
-      {/* 7 — TECHNOLOGY: the operating stack */}
-      <section className="border-y border-[#020d1f]/15 bg-white px-5 py-20 sm:px-8 lg:px-12 lg:py-28">
+      {/* 7 — TECHNOLOGY: the Go Massive AI Operating System (rebuilt from scratch, Aug 2026) */}
+      <section className="relative isolate overflow-hidden border-y border-[#020d1f]/15 bg-white px-5 py-16 sm:px-8 lg:px-12 lg:py-20">
         <Reveal className="mx-auto max-w-[1600px]">
-          <div className="grid gap-10 pb-12 lg:grid-cols-[.64fr_1.36fr] lg:items-end">
-            <div><p className="gm-eyebrow gm-text-red-safe">The stack</p><p className="gm-section-support">Every account runs on an internal stack that compresses the time between signal and action.</p></div>
-            <h2 className="max-w-5xl text-[clamp(2.1rem,8vw,6rem)] font-semibold uppercase leading-[.87] tracking-[-.05em]">Humans make the decisions. Technology makes us faster.</h2>
+          <div className="grid gap-8 pb-10 lg:grid-cols-[.8fr_1.2fr] lg:items-center lg:gap-14">
+            <div>
+              <p className="text-[19px] font-bold uppercase tracking-[.12em] text-[#E91A24] sm:text-[21px]">The stack</p>
+              <p className="mt-4 max-w-lg text-lg leading-8 text-[#020d1f]/70 sm:text-[19px]">Every account runs on a proprietary AI operating system that compresses the time between signal and action.</p>
+            </div>
+            <h2 className="max-w-4xl text-[clamp(1.9rem,4.2vw,3.6rem)] font-semibold uppercase leading-[.92] tracking-[-.045em]">Humans make the decisions. Technology makes us <span className="text-[#E91A24]">faster</span>.</h2>
           </div>
-          <div className="gm-bento">
-            {techStack.map((cell, index) => (
-              <Reveal key={cell.title} delay={index * 60} className={cell.wide ? "gm-bento-cell--wide" : ""}>
-                <article className={`gm-bento-cell h-full ${cell.dark ? "gm-bento-cell--dark" : ""}`}>
-                  <span className="gm-num-meta">{String(index + 1).padStart(2, "0")}</span>
-                  <div><h3>{cell.title}</h3><p>{cell.detail}</p></div>
-                </article>
-              </Reveal>
-            ))}
-          </div>
-          <p className="mt-10 max-w-3xl text-xl font-medium leading-8 tracking-[-.02em]">Faster decisions. Faster execution. Fewer blind spots. That&rsquo;s the actual advantage — not the word &ldquo;AI&rdquo;.</p>
+          <AiOperatingSystem />
         </Reveal>
       </section>
 
