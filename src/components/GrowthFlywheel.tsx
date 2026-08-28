@@ -43,18 +43,25 @@ function feedArc(index: number) {
   return `M ${a.x} ${a.y} A ${ORBIT} ${ORBIT} 0 0 1 ${b.x} ${b.y}`;
 }
 
-const CYCLE_MS = 4000;
+const SEGMENT_MS = 4000; // node-to-node travel time (same cadence as before)
 const INTERACTION_LOCK_MS = 8000;
 
 export function GrowthFlywheel() {
   const [active, setActive] = useState(0);
+  const activeRef = useRef(0);
   const lockUntil = useRef(0);
   const inView = useRef(true);
   const rootRef = useRef<HTMLDivElement>(null);
+  const dotRef = useRef<SVGCircleElement>(null);
 
   function activate(index: number) {
+    activeRef.current = index;
     setActive(index);
+    // relocate the travelling dot to the chosen node and hold it there
+    // for the interaction lock before it resumes its orbit
     lockUntil.current = performance.now() + INTERACTION_LOCK_MS;
+    const p = pos(index, ORBIT);
+    dotRef.current?.setAttribute("transform", `translate(${p.x} ${p.y})`);
   }
 
   useEffect(() => {
@@ -65,13 +72,42 @@ export function GrowthFlywheel() {
     return () => observer.disconnect();
   }, []);
 
+  // The red dot physically orbits the ring at constant angular speed,
+  // written straight to the DOM each frame (never through setState - same
+  // rule as StatCounter). On arrival at the next node, React state flips
+  // once: node turns solid red, panel updates, dot carries on unpaused.
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const timer = setInterval(() => {
-      if (!inView.current || performance.now() < lockUntil.current) return;
-      setActive((current) => (current + 1) % STEPS.length);
-    }, CYCLE_MS);
-    return () => clearInterval(timer);
+    const dot = dotRef.current;
+    if (!dot) return;
+    let frame: number;
+    let segmentStart = performance.now();
+    let last = segmentStart;
+    function tick(now: number) {
+      const delta = now - last;
+      last = now;
+      // freeze (without losing progress) while off-viewport or during the
+      // post-interaction hold - the clock shifts instead of the dot
+      if (!inView.current || now < lockUntil.current) {
+        segmentStart += delta;
+      } else {
+        const t = (now - segmentStart) / SEGMENT_MS;
+        if (t >= 1) {
+          const arrived = (activeRef.current + 1) % STEPS.length;
+          activeRef.current = arrived;
+          setActive(arrived);
+          segmentStart += SEGMENT_MS;
+        }
+        const progress = Math.min(1, (now - segmentStart) / SEGMENT_MS);
+        const angle = angleOf(activeRef.current) + 45 * progress;
+        const x = CENTER + ORBIT * Math.cos(rad(angle));
+        const y = CENTER + ORBIT * Math.sin(rad(angle));
+        dot!.setAttribute("transform", `translate(${x} ${y})`);
+      }
+      frame = requestAnimationFrame(tick);
+    }
+    frame = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(frame);
   }, []);
 
   const step = STEPS[active];
@@ -91,6 +127,9 @@ export function GrowthFlywheel() {
           })}
           {/* active layer feeds the next: red arc segment */}
           <path d={feedArc(active)} className="gm-fly-feed" />
+          {/* the travelling energy dot - orbits continuously, docking under
+              each node as it arrives (rAF writes its transform per frame) */}
+          <circle ref={dotRef} r="6" className="gm-fly-dot" transform={`translate(${pos(0, ORBIT).x} ${pos(0, ORBIT).y})`} aria-hidden="true" />
           {/* spokes */}
           {STEPS.map((_, index) => {
             const a = pos(index, HUB_R + 6);
