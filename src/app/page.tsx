@@ -257,27 +257,19 @@ export default function Home() {
         </Reveal>
       </section>
 
-      {/* 6b — TRACK RECORD: dark navy proof separator band (owner reintroduced a navy band deliberately, Aug 2026) */}
-      <section className="relative isolate overflow-hidden bg-[#020D1F] px-5 py-20 text-white sm:px-8 lg:px-12 lg:py-24">
-        {/* flowing red + white linework, low opacity */}
-        <svg className="pointer-events-none absolute inset-0 -z-10 h-full w-full" viewBox="0 0 1600 700" fill="none" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-          <path d="M-80 520 C 320 380, 760 640, 1180 480 S 1700 340, 1760 380" stroke="white" strokeOpacity=".05" strokeWidth="1.5" />
-          <path d="M-80 600 C 360 480, 820 700, 1260 560 S 1700 430, 1760 460" stroke="#E91A24" strokeOpacity=".12" strokeWidth="1.5" />
-          <path d="M-80 120 C 400 40, 900 200, 1760 90" stroke="white" strokeOpacity=".04" strokeWidth="1.5" />
+      {/* 6b — TRACK RECORD: compact navy proof-of-work divider strip */}
+      <section className="relative isolate overflow-hidden bg-[#020D1F] px-5 py-10 text-white sm:px-8 lg:px-12 lg:py-12">
+        {/* subtle red + white curved linework */}
+        <svg className="pointer-events-none absolute inset-0 -z-10 h-full w-full" viewBox="0 0 1600 260" fill="none" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <path d="M-80 200 C 340 120, 820 260, 1260 170 S 1700 90, 1760 120" stroke="white" strokeOpacity=".05" strokeWidth="1.5" />
+          <path d="M-80 90 C 380 170, 880 40, 1320 140 S 1700 210, 1760 180" stroke="#E91A24" strokeOpacity=".1" strokeWidth="1.5" />
         </svg>
-        <Reveal className="mx-auto max-w-[1600px]">
-          <div className="grid gap-8 pb-12 lg:grid-cols-[1.15fr_.85fr] lg:items-center lg:gap-14">
-            <div>
-              <p className="text-[19px] font-bold uppercase tracking-[.12em] text-[#E91A24] sm:text-[21px]">The track record</p>
-              <h2 className="mt-4 max-w-3xl text-[clamp(2.1rem,5.5vw,4.6rem)] font-semibold uppercase leading-[.9] tracking-[-.05em]">The work is the <span className="text-[#E91A24]">proof.</span></h2>
-            </div>
-            <p className="max-w-md text-lg leading-8 text-white/65 sm:text-[19px] lg:justify-self-end">A straightforward snapshot of the work: the numbers we operate by, stated plainly — no inflated claims, no projected figures.</p>
+        <Reveal className="mx-auto flex max-w-[1600px] flex-col gap-8 lg:flex-row lg:items-center lg:gap-16">
+          <div className="shrink-0 lg:max-w-[300px]">
+            <p className="font-mono text-[11px] font-bold uppercase tracking-[.14em] text-[#FF8A90]">The track record</p>
+            <h2 className="mt-2 text-[clamp(1.5rem,2.3vw,2.1rem)] font-bold uppercase leading-[1.05] tracking-[-.03em]">The work is the <span className="text-[#E91A24]">proof.</span></h2>
           </div>
           <TrackRecord />
-          <div className="mt-14 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-            <p className="max-w-3xl border-l-[3px] border-[#E91A24] pl-6 text-xl leading-8 tracking-[-.02em] sm:text-2xl"><span className="font-semibold text-white">We do not make more because you are struggling.</span> <span className="text-white/60">The model is designed to reward progress, commercial improvement, and shared upside.</span></p>
-            <Link href="/growth-audit" className="gm-text-link shrink-0 text-white">Ask how the model works <ArrowRight size={16} /></Link>
-          </div>
         </Reveal>
       </section>
 
