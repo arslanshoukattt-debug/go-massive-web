@@ -146,9 +146,7 @@ section[id] { scroll-margin-top: 90px; }
 .gm-fly-node--active circle { fill:var(--gm-red); stroke:var(--gm-red); }
 .gm-fly-node--active .gm-fly-num, .gm-fly-node--active .gm-fly-label { fill:white; }
 
-/* Technology command deck (tech stack section) */
-.gm-os-particle { offset-rotate:0deg; animation:gm-os-flow linear infinite; }
-@keyframes gm-os-flow { 0% { offset-distance:12%; opacity:0; } 15% { opacity:.45; } 85% { opacity:.45; } 100% { offset-distance:90%; opacity:0; } }
+/* Pulsing status dots (operating pillars) */
 .gm-os-pulse { animation:gm-os-pulse 2.4s ease-in-out infinite; }
 @keyframes gm-os-pulse { 0%,100% { opacity:1; } 50% { opacity:.2; } }
 

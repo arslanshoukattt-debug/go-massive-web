@@ -11,7 +11,7 @@ import { SiteFooter } from "../components/SiteFooter";
 import { SiteHeader } from "../components/SiteHeader";
 import { StatCounter } from "../components/StatCounter";
 import { Testimonials } from "../components/Testimonials";
-import { OperatingLayer } from "../components/OperatingLayer";
+import { OperatingPillars } from "../components/OperatingPillars";
 import { TrackRecord } from "../components/TrackRecord";
 import { HeroRating, TrustBadges } from "../components/TrustSignals";
 import { caseStudies } from "../lib/case-studies";
@@ -265,17 +265,17 @@ export default function Home() {
         </Reveal>
       </section>
 
-      {/* 7 — THE OPERATING LAYER: dedication, discipline, senior skill (tools removed per owner; a separate "Our tech stack" section may host logos later) */}
-      <section className="border-y border-[#020d1f]/15 bg-white px-5 py-16 sm:px-8 lg:px-12 lg:py-20">
+      {/* 7 — HOW WE OPERATE: six trust pillars, asymmetric grid (final direction per owner — no diagrams, no AI focus) */}
+      <section className="border-y border-[#020d1f]/15 bg-white px-5 py-20 sm:px-8 lg:px-12 lg:py-28">
         <Reveal className="mx-auto max-w-[1600px]">
-          <div className="grid gap-8 pb-10 lg:grid-cols-[.8fr_1.2fr] lg:items-center lg:gap-14">
+          <div className="grid gap-8 pb-14 lg:grid-cols-[.8fr_1.2fr] lg:items-center lg:gap-14">
             <div>
-              <p className="text-[19px] font-bold uppercase tracking-[.12em] text-[#E91A24] sm:text-[21px]">The operating layer</p>
+              <p className="text-[19px] font-bold uppercase tracking-[.12em] text-[#E91A24] sm:text-[21px]">How we operate</p>
               <p className="mt-4 max-w-lg text-[19px] leading-8 text-[#020d1f]/70 sm:text-[20px]">Behind every account is a disciplined operating layer — senior operators, an accountable cadence, and systems refined over 7+ years of marketplace work.</p>
             </div>
             <h2 className="max-w-4xl text-[clamp(1.9rem,4.2vw,3.6rem)] font-semibold uppercase leading-[.92] tracking-[-.045em]">Humans make the decisions. Technology makes us <span className="text-[#E91A24]">faster.</span></h2>
           </div>
-          <OperatingLayer />
+          <OperatingPillars />
         </Reveal>
       </section>
 
