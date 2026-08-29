@@ -113,18 +113,38 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 1b — RECOGNITIONS & CERTIFICATIONS (owner-provided, Aug 2026) — pure typographic row, no containers */}
-      <section className="border-b border-[#020d1f]/10 bg-white px-5 py-8 sm:px-8 lg:px-12">
-        <Reveal className="mx-auto flex max-w-[1600px] flex-col gap-7 lg:flex-row lg:items-center lg:gap-16">
-          <p className="gm-eyebrow gm-text-red-safe shrink-0 lg:max-w-[150px]">Recognitions &amp; certifications</p>
-          <div className="flex flex-1 flex-wrap items-center gap-x-12 gap-y-6 lg:justify-between">
-            {certifications.map((cert) => (
-              <div key={cert.name}>
-                <p className="text-[16px] font-semibold leading-5 tracking-[-.02em]">{cert.name}</p>
-                <p className="mt-1 font-mono text-[10px] font-semibold uppercase tracking-[.08em] text-[#596475]">{cert.label}</p>
+      {/* 2 — CREDIBILITY: brands + certifications, one section (consolidated Aug 2026 — answers "are you legit?" once) */}
+      <section className="border-b border-[#020d1f]/15 bg-white px-5 py-14 sm:px-8 lg:px-12 lg:py-16">
+        <Reveal className="mx-auto max-w-[1600px]">
+          <h2 className="text-center text-[clamp(1.5rem,2.6vw,2.3rem)] font-bold uppercase tracking-[-.03em]">Brands that went <span className="text-[#E91A24]">massive.</span></h2>
+          <div className="mt-10 space-y-9" aria-label="Logos of brands Go Massive has worked with">
+            {brandLogoRows.map((row, rowIndex) => (
+              <div key={rowIndex} className="gm-logo-marquee">
+                <div className={rowIndex === 1 ? "gm-logo-track gm-logo-track--reverse" : "gm-logo-track"}>
+                  {[0, 1, 2, 3].map((copy) => (
+                    <div key={copy} className="gm-logo-set" aria-hidden={copy > 0}>
+                      {row.map((brand) => (
+                        // eslint-disable-next-line @next/next/no-img-element -- marquee needs natural-width PNGs, no optimizer frame
+                        <img key={brand.name} src={brand.src} alt={copy === 0 ? brand.name : ""} loading="lazy" className={`${brand.h} w-auto opacity-60 grayscale transition duration-300 hover:opacity-100 hover:grayscale-0`} />
+                      ))}
+                    </div>
+                  ))}
+                </div>
               </div>
             ))}
           </div>
+          <div className="mt-12 flex flex-col items-center gap-6 border-t border-[#020d1f]/10 pt-8 lg:flex-row lg:justify-between lg:gap-14">
+            <p className="gm-eyebrow gm-text-red-safe shrink-0">Recognitions &amp; certifications</p>
+            <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-5 lg:gap-x-12">
+              {certifications.map((cert) => (
+                <div key={cert.name}>
+                  <p className="text-[16px] font-semibold leading-5 tracking-[-.02em]">{cert.name}</p>
+                  <p className="mt-1 font-mono text-[10px] font-semibold uppercase tracking-[.08em] text-[#596475]">{cert.label}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+          <p className="mt-8 text-center text-xs leading-5 text-[#687385]">Logos shown with permission · 50+ brands and 200+ accounts managed across categories, marketplaces, and growth stages</p>
         </Reveal>
       </section>
 
@@ -156,30 +176,6 @@ export default function Home() {
             })}
           </div>
           <p className="mt-12 border-l-[3px] border-[#E91A24] pl-6 text-xl leading-8 tracking-[-.02em] sm:text-2xl"><span className="font-semibold">Every one of these is a system problem.</span> <span className="text-[#020d1f]/70">Fixing them one silo at a time is how brands stay stuck.</span></p>
-        </Reveal>
-      </section>
-
-      {/* 3 — BRANDS: clean logo cloud, logos only (owner direction, Aug 2026) */}
-      <section className="border-y border-[#020d1f]/15 bg-white px-5 py-16 sm:px-8 lg:px-12 lg:py-20">
-        <Reveal className="mx-auto max-w-[1600px]">
-          <h2 className="text-center text-[clamp(1.5rem,2.6vw,2.3rem)] font-bold uppercase tracking-[-.03em]">Brands that went <span className="text-[#E91A24]">massive.</span></h2>
-          <div className="mt-12 space-y-9" aria-label="Logos of brands Go Massive has worked with">
-            {brandLogoRows.map((row, rowIndex) => (
-              <div key={rowIndex} className="gm-logo-marquee">
-                <div className={rowIndex === 1 ? "gm-logo-track gm-logo-track--reverse" : "gm-logo-track"}>
-                  {[0, 1, 2, 3].map((copy) => (
-                    <div key={copy} className="gm-logo-set" aria-hidden={copy > 0}>
-                      {row.map((brand) => (
-                        // eslint-disable-next-line @next/next/no-img-element -- marquee needs natural-width PNGs, no optimizer frame
-                        <img key={brand.name} src={brand.src} alt={copy === 0 ? brand.name : ""} loading="lazy" className={`${brand.h} w-auto opacity-60 grayscale transition duration-300 hover:opacity-100 hover:grayscale-0`} />
-                      ))}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-          <p className="mt-12 text-center text-xs leading-5 text-[#687385]">Logos shown with permission · 50+ brands and 200+ accounts managed across categories, marketplaces, and growth stages</p>
         </Reveal>
       </section>
 
