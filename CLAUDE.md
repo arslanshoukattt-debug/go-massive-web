@@ -57,6 +57,13 @@ Lint uses new react-hooks purity rules: no Date.now() in render-reachable fns, n
 ## Open items (need owner input)
 Testimonials for `lib/testimonials.ts` · WhatsApp/Meeting URLs (page.tsx consts) · model-copy sign-off (commercial commitment wording) · analytics decision (site has none) · custom domain attach · privacy legal review · SEO depth pages (Amazon Account Mgmt, Listings/A+, Shopify, Walmart/eBay — need real scope input, don't invent) · art-direction assets (blueprint artifact exists: photography plan, 4 shoots, Meta Ads contact-sheet etc.).
 
+## Design principles (owner-endorsed, Aug 29 2026 — these REJECT work, not just guide it)
+Go Massive is an eCommerce growth partner, not a creative agency. Personality: bold, premium, editorial — consulting firm × modern product company (Stripe + Linear as layout FEEL references, never to copy). Enforced rules:
+1. **Every section answers ONE business question in 5 seconds** (why trust us / how we work / what results look like / what it costs to act). Can't name the question → rewrite or cut.
+2. **No motion without a message.** Animation only demonstrates a claim (counting numbers = real scale; status dot = machine is on). Decorative motion and gimmicky AI visuals are deleted on sight.
+3. **Typography does the design** — hierarchy from size/weight/space, not boxes/chrome (every owner rejection so far traced to container-reaching).
+4. **Copy is the interface** — a section that doesn't persuade as plain text won't be saved by styling.
+
 ## Design direction status
 A light-first "White Edition" homepage mockup was designed as an artifact (white hero, navy×2, red×1, mono section-index rails): https://claude.ai/code/artifact/588296dc-14b4-48c2-916b-b32f27939c63 — the owner is deciding; current working mode is **iterating the existing (dark-hero) live site section by section per owner's direction**, not wholesale adopting the mock. Owner wants a white hero background eventually — confirm before applying.
 
