@@ -74,8 +74,6 @@ const channels = [
 ];
 
 export default function Home() {
-  const [featuredCase, ...otherCases] = caseStudies;
-
   return (
     <main id="main" className="overflow-hidden bg-[#f4f3ef] text-[#020d1f]">
       <SiteHeader />
@@ -279,41 +277,41 @@ export default function Home() {
         </Reveal>
       </section>
 
-      {/* 8 — PROOF: featured case study + supporting results */}
+      {/* 8 — PROOF: editorial results ledger (redesigned Aug 2026 under the Stripe+Linear principles — typography does the design) */}
       <section className="bg-[#f4f3ef] px-5 py-20 text-[#020d1f] sm:px-8 lg:px-12 lg:py-28">
         <Reveal className="mx-auto max-w-[1600px]">
-          <div className="grid gap-10 pb-12 lg:grid-cols-[.64fr_1.36fr] lg:items-end">
-            <div><p className="gm-eyebrow gm-text-red-safe">Proof</p><p className="gm-section-support gm-section-support--dark">Documented engagements with the mechanism behind every number. Identities stay confidential.</p></div>
-            <h2 className="max-w-5xl text-[clamp(2.1rem,8.5vw,6.2rem)] font-semibold uppercase leading-[.87] tracking-[-.05em]">The numbers matter. The mechanism matters more.</h2>
+          <div className="grid gap-8 pb-12 lg:grid-cols-[.8fr_1.2fr] lg:items-center lg:gap-14">
+            <div>
+              <p className="text-[19px] font-bold uppercase tracking-[.12em] text-[#E91A24] sm:text-[21px]">Proof</p>
+              <p className="mt-4 max-w-lg text-lg leading-8 text-[#020d1f]/70 sm:text-[19px]">Documented engagements with the mechanism behind every number. Identities stay confidential.</p>
+            </div>
+            <h2 className="max-w-4xl text-[clamp(2.1rem,5.5vw,4.6rem)] font-semibold uppercase leading-[.9] tracking-[-.05em]">The numbers matter. The <span className="text-[#E91A24]">mechanism</span> matters more.</h2>
           </div>
-          <div className="grid gap-px bg-[#020d1f]/15 lg:grid-cols-[1.15fr_.85fr]">
-            <article className="flex flex-col justify-between bg-white p-8 sm:p-10">
-              <div>
-                <p className="gm-eyebrow text-[#596475]">{featuredCase.label}</p>
-                <h3 className="mt-6 max-w-xl text-3xl font-semibold leading-tight tracking-[-.04em] sm:text-4xl">{featuredCase.title}</h3>
-              </div>
-              <div className="mt-10 grid gap-px overflow-hidden border border-[#020d1f]/15 bg-[#020d1f]/10 sm:grid-cols-2">
-                {featuredCase.metrics.slice(0, 4).map((metric) => (
-                  <div key={metric.label} className="bg-white p-5">
-                    <p className="text-3xl font-semibold tracking-tight sm:text-4xl"><StatCounter value={metric.value} /></p>
-                    <p className="mt-2 text-sm leading-5 text-[#596475]">{metric.label}</p>
+          <div className="border-b border-[#020d1f]/15">
+            {caseStudies.map((caseStudy, index) => (
+              <Reveal key={caseStudy.slug} delay={index * 60}>
+                <Link href={`/case-studies/${caseStudy.slug}`} className="group grid gap-4 border-t border-[#020d1f]/15 py-9 lg:grid-cols-[.4fr_1fr] lg:items-center lg:gap-14 lg:py-11">
+                  <div>
+                    <p className="text-[clamp(3rem,5.2vw,5rem)] font-semibold leading-none tracking-[-.05em] transition-colors duration-300 group-hover:text-[#E91A24]"><StatCounter value={caseStudy.metrics[0].value} /></p>
+                    <p className="mt-2.5 font-mono text-[10.5px] font-bold uppercase tracking-[.14em] text-[#596475]">{caseStudy.metrics[0].label}</p>
                   </div>
-                ))}
-              </div>
-              <Link href={`/case-studies/${featuredCase.slug}`} className="gm-text-link mt-9">Read the full case study <ArrowRight size={16} /></Link>
-            </article>
-            <div className="grid gap-px bg-[#020d1f]/15">
-              {otherCases.slice(0, 3).map((caseStudy) => (
-                <Link key={caseStudy.slug} href={`/case-studies/${caseStudy.slug}`} className="group flex flex-col justify-between bg-white p-6 transition hover:bg-[#F7F8FA]">
-                  <p className="gm-eyebrow text-[#596475]">{caseStudy.label}</p>
-                  <div className="mt-5 flex items-end justify-between gap-6">
-                    <p className="max-w-md font-semibold leading-6">{caseStudy.title}</p>
-                    <ArrowRight className="gm-text-red-safe shrink-0 transition group-hover:translate-x-1" size={18} />
+                  <div className="flex items-end justify-between gap-8">
+                    <div>
+                      <p className="gm-text-red-safe font-mono text-[10.5px] font-bold uppercase tracking-[.14em]">{caseStudy.category} · {caseStudy.marketplace}</p>
+                      <p className="mt-3 max-w-2xl text-xl font-medium leading-7 tracking-[-.02em] sm:text-[22px] sm:leading-8">{caseStudy.title}</p>
+                      {caseStudy.metrics.length > 1 && (
+                        <p className="mt-3.5 font-mono text-[11px] font-semibold uppercase tracking-[.06em] text-[#687385]">{caseStudy.metrics.slice(1).map((metric) => `${metric.value} ${metric.label}`).join("  ·  ")}</p>
+                      )}
+                    </div>
+                    <ArrowRight className="mb-1 hidden shrink-0 text-[#020d1f]/30 transition duration-300 group-hover:translate-x-1.5 group-hover:text-[#E91A24] sm:block" size={22} />
                   </div>
                 </Link>
-              ))}
-              <Link href="/case-studies" className="flex items-center justify-between bg-[#E91A24] p-6 font-semibold text-white transition hover:bg-[#020d1f]">All case studies <ArrowRight size={18} /></Link>
-            </div>
+              </Reveal>
+            ))}
+          </div>
+          <div className="mt-9 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <p className="max-w-xl text-sm leading-6 text-[#596475]">Client identities stay confidential — every figure above is drawn from a documented engagement.</p>
+            <Link href="/case-studies" className="gm-text-link shrink-0">All five case studies <ArrowRight size={16} /></Link>
           </div>
         </Reveal>
       </section>
