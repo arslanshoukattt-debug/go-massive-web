@@ -148,7 +148,7 @@ export default function Home() {
         </Reveal>
       </section>
 
-      {/* 2 — PROBLEM: centered kicker, description left / headline right, icon lattice on white with red accents */}
+      {/* 3 — PROBLEM: centered kicker, description left / headline right, icon lattice on white with red accents */}
       <section className="relative isolate overflow-hidden bg-white px-5 py-20 sm:px-8 lg:px-12 lg:py-28">
         <div className="pointer-events-none absolute -right-40 -top-36 -z-10 h-[540px] w-[540px] rounded-full border border-[#E91A24]/15" aria-hidden="true" />
         <div className="pointer-events-none absolute -left-28 bottom-10 -z-10 h-[340px] w-[340px] rounded-full border border-[#E91A24]/10" aria-hidden="true" />
@@ -192,88 +192,19 @@ export default function Home() {
               <p className="text-[19px] font-bold uppercase tracking-[.12em] text-[#E91A24] sm:text-[21px]">The Growth Engine</p>
               <h2 className="mt-6 max-w-xl text-[clamp(2.1rem,8.5vw,6rem)] font-semibold uppercase leading-[.87] tracking-[-.05em]">One <span className="text-[#E91A24]">system</span>. Every lever that moves <span className="text-[#E91A24]">revenue</span>.</h2>
               <p className="mt-7 max-w-lg text-lg leading-8 text-[#020d1f]/70">Not an ads agency with add-ons. An operating engine where each stage feeds the next — so wins compound instead of leaking between vendors.</p>
-              <Link href="/services" className="gm-text-link mt-9">Explore the services <ArrowRight size={16} /></Link>
+              {/* micro-proof weld: figures from the outdoor & leisure case in lib/case-studies.ts */}
+              <div className="mt-8 flex items-baseline gap-3.5">
+                <p className="text-[28px] font-semibold leading-none tracking-[-.03em]">+180%</p>
+                <p className="max-w-xs font-mono text-[11px] font-bold uppercase leading-5 tracking-[.1em] text-[#596475]">Non-branded sales in one engagement — ad cost of sale down 42%</p>
+              </div>
+              <Link href="/services" className="gm-text-link mt-8">Explore the services <ArrowRight size={16} /></Link>
             </div>
           </Reveal>
           <GrowthFlywheel />
         </div>
       </section>
 
-      {/* 5 — CHANNELS: where the engine runs (redesigned Aug 2026: numbered card grid, one-active interaction) */}
-      <section className="relative isolate overflow-hidden border-y border-[#020d1f]/15 bg-white px-5 py-20 text-[#020d1f] sm:px-8 lg:px-12 lg:py-28">
-        {/* quiet red connection paths in the background */}
-        <svg className="pointer-events-none absolute inset-0 -z-10 h-full w-full" viewBox="0 0 1600 900" fill="none" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-          <path d="M-100 710 C 300 530, 700 870, 1100 650 S 1700 430, 1760 470" stroke="#E91A24" strokeOpacity=".07" strokeWidth="1.5" />
-          <path d="M-80 240 C 350 100, 800 300, 1250 140 S 1650 50, 1720 110" stroke="#E91A24" strokeOpacity=".05" strokeWidth="1.5" />
-          <circle cx="1100" cy="650" r="4" fill="#E91A24" fillOpacity=".14" />
-          <circle cx="700" cy="700" r="3" fill="#E91A24" fillOpacity=".1" />
-          <circle cx="1250" cy="140" r="3.5" fill="#E91A24" fillOpacity=".1" />
-        </svg>
-        <Reveal className="mx-auto max-w-[1600px]">
-          <div className="grid gap-8 pb-12 lg:grid-cols-[.8fr_1.2fr] lg:items-center lg:gap-14">
-            <div>
-              <p className="text-[19px] font-bold uppercase tracking-[.12em] text-[#E91A24] sm:text-[21px]">Sales channels</p>
-              <p className="mt-4 max-w-lg text-lg leading-8 text-[#020d1f]/70 sm:text-[19px]">Brands shouldn&rsquo;t need five agencies for five channels. Priorities get set commercially — not per silo.</p>
-            </div>
-            <h2 className="max-w-4xl text-[clamp(2.1rem,5.5vw,4.6rem)] font-semibold uppercase leading-[.9] tracking-[-.05em]">Every <span className="text-[#E91A24]">channel</span> that matters. One <span className="text-[#E91A24]">accountable</span> partner.</h2>
-          </div>
-          <ChannelGrid channels={channels} />
-          <p className="mt-12 border-l-[3px] border-[#E91A24] pl-6 text-xl leading-8 tracking-[-.02em] sm:text-2xl"><span className="font-semibold">Six channels, one commercial system.</span> <span className="text-[#020d1f]/70">Every one of them runs on the same operating engine — and one partner stays accountable for the outcome.</span></p>
-        </Reveal>
-      </section>
-
-      {/* 6 — DIFFERENTIATION: the aligned model (redesigned Aug 2026: row-by-row comparison + risk visual) */}
-      <section className="relative isolate overflow-hidden bg-white px-5 py-20 sm:px-8 lg:px-12 lg:py-28">
-        {/* alignment linework: three paths converging behind the hero area */}
-        <svg className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[440px] w-full" viewBox="0 0 1600 440" fill="none" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-          <path d="M-60 90 C 400 60, 900 260, 1660 210" stroke="#E91A24" strokeOpacity=".06" strokeWidth="1.5" />
-          <path d="M-60 200 C 450 190, 950 265, 1660 225" stroke="#E91A24" strokeOpacity=".08" strokeWidth="1.5" />
-          <path d="M-60 330 C 420 340, 950 275, 1660 240" stroke="#E91A24" strokeOpacity=".06" strokeWidth="1.5" />
-          <circle cx="1245" cy="243" r="4" fill="#E91A24" fillOpacity=".14" />
-        </svg>
-        <Reveal className="mx-auto max-w-[1600px]">
-          <div className="grid gap-8 pb-12 lg:grid-cols-[.8fr_1.2fr] lg:items-center lg:gap-14">
-            <div>
-              <p className="text-[19px] font-bold uppercase tracking-[.12em] text-[#E91A24] sm:text-[21px]">The Aligned Model</p>
-              <p className="mt-4 max-w-lg text-lg leading-8 text-[#020d1f]/70 sm:text-[19px]">The traditional agency stack gets paid whether you grow or not. We built the opposite.</p>
-            </div>
-            <h2 className="max-w-4xl text-[clamp(2.1rem,5.5vw,4.6rem)] font-semibold uppercase leading-[.9] tracking-[-.05em]">We win when you <span className="text-[#E91A24]">grow.</span> Literally.</h2>
-          </div>
-          <AlignedModel />
-        </Reveal>
-      </section>
-
-      {/* 6b — TRACK RECORD: compact navy proof-of-work divider strip */}
-      <section className="relative isolate overflow-hidden bg-[#020D1F] px-5 py-10 text-white sm:px-8 lg:px-12 lg:py-12">
-        {/* subtle red + white curved linework */}
-        <svg className="pointer-events-none absolute inset-0 -z-10 h-full w-full" viewBox="0 0 1600 260" fill="none" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-          <path d="M-80 200 C 340 120, 820 260, 1260 170 S 1700 90, 1760 120" stroke="white" strokeOpacity=".05" strokeWidth="1.5" />
-          <path d="M-80 90 C 380 170, 880 40, 1320 140 S 1700 210, 1760 180" stroke="#E91A24" strokeOpacity=".1" strokeWidth="1.5" />
-        </svg>
-        <Reveal className="mx-auto flex max-w-[1600px] flex-col gap-8 lg:flex-row lg:items-center lg:gap-16">
-          <div className="shrink-0 lg:max-w-[300px]">
-            <p className="font-mono text-[11px] font-bold uppercase tracking-[.14em] text-[#FF8A90]">The track record</p>
-            <h2 className="mt-2 text-[clamp(1.5rem,2.3vw,2.1rem)] font-bold uppercase leading-[1.05] tracking-[-.03em]">The work is the <span className="text-[#E91A24]">proof.</span></h2>
-          </div>
-          <TrackRecord />
-        </Reveal>
-      </section>
-
-      {/* 7 — HOW WE OPERATE: six trust pillars, asymmetric grid (final direction per owner — no diagrams, no AI focus) */}
-      <section className="border-y border-[#020d1f]/15 bg-white px-5 py-20 sm:px-8 lg:px-12 lg:py-28">
-        <Reveal className="mx-auto max-w-[1600px]">
-          <div className="grid gap-8 pb-14 lg:grid-cols-[.8fr_1.2fr] lg:items-center lg:gap-14">
-            <div>
-              <p className="text-[19px] font-bold uppercase tracking-[.12em] text-[#E91A24] sm:text-[21px]">How we operate</p>
-              <p className="mt-4 max-w-lg text-[19px] leading-8 text-[#020d1f]/70 sm:text-[20px]">Behind every account is a disciplined operating layer — senior operators, an accountable cadence, and systems refined over 7+ years of marketplace work.</p>
-            </div>
-            <h2 className="max-w-4xl text-[clamp(1.9rem,4.2vw,3.6rem)] font-semibold uppercase leading-[.92] tracking-[-.045em]">Humans make the decisions. Technology makes us <span className="text-[#E91A24]">faster.</span></h2>
-          </div>
-          <OperatingPillars />
-        </Reveal>
-      </section>
-
-      {/* 8 — PROOF: editorial results ledger (redesigned Aug 2026 under the Stripe+Linear principles — typography does the design) */}
+      {/* 5 — PROOF: editorial results ledger, moved directly after the engine (Sep 2026) so the system claim is followed by its evidence */}
       <section className="bg-[#f4f3ef] px-5 py-20 text-[#020d1f] sm:px-8 lg:px-12 lg:py-28">
         <Reveal className="mx-auto max-w-[1600px]">
           <div className="grid gap-8 pb-12 lg:grid-cols-[.8fr_1.2fr] lg:items-center lg:gap-14">
@@ -309,6 +240,89 @@ export default function Home() {
             <p className="max-w-xl text-sm leading-6 text-[#596475]">Client identities stay confidential — every figure above is drawn from a documented engagement.</p>
             <Link href="/case-studies" className="gm-text-link shrink-0">All five case studies <ArrowRight size={16} /></Link>
           </div>
+        </Reveal>
+      </section>
+
+      {/* 6 — CHANNELS: where the engine runs (redesigned Aug 2026: numbered card grid, one-active interaction) */}
+      <section className="relative isolate overflow-hidden border-y border-[#020d1f]/15 bg-white px-5 py-20 text-[#020d1f] sm:px-8 lg:px-12 lg:py-28">
+        {/* quiet red connection paths in the background */}
+        <svg className="pointer-events-none absolute inset-0 -z-10 h-full w-full" viewBox="0 0 1600 900" fill="none" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <path d="M-100 710 C 300 530, 700 870, 1100 650 S 1700 430, 1760 470" stroke="#E91A24" strokeOpacity=".07" strokeWidth="1.5" />
+          <path d="M-80 240 C 350 100, 800 300, 1250 140 S 1650 50, 1720 110" stroke="#E91A24" strokeOpacity=".05" strokeWidth="1.5" />
+          <circle cx="1100" cy="650" r="4" fill="#E91A24" fillOpacity=".14" />
+          <circle cx="700" cy="700" r="3" fill="#E91A24" fillOpacity=".1" />
+          <circle cx="1250" cy="140" r="3.5" fill="#E91A24" fillOpacity=".1" />
+        </svg>
+        <Reveal className="mx-auto max-w-[1600px]">
+          <div className="grid gap-8 pb-12 lg:grid-cols-[.8fr_1.2fr] lg:items-center lg:gap-14">
+            <div>
+              <p className="text-[19px] font-bold uppercase tracking-[.12em] text-[#E91A24] sm:text-[21px]">Sales channels</p>
+              <p className="mt-4 max-w-lg text-lg leading-8 text-[#020d1f]/70 sm:text-[19px]">Brands shouldn&rsquo;t need five agencies for five channels. Priorities get set commercially — not per silo.</p>
+              <div className="mt-6 flex items-baseline gap-3.5">
+                <p className="text-[28px] font-semibold leading-none tracking-[-.03em]">200+</p>
+                <p className="font-mono text-[11px] font-bold uppercase leading-5 tracking-[.1em] text-[#596475]">Accounts managed across these channels</p>
+              </div>
+            </div>
+            <h2 className="max-w-4xl text-[clamp(2.1rem,5.5vw,4.6rem)] font-semibold uppercase leading-[.9] tracking-[-.05em]">Every <span className="text-[#E91A24]">channel</span> that matters. One <span className="text-[#E91A24]">accountable</span> partner.</h2>
+          </div>
+          <ChannelGrid channels={channels} />
+          <p className="mt-12 border-l-[3px] border-[#E91A24] pl-6 text-xl leading-8 tracking-[-.02em] sm:text-2xl"><span className="font-semibold">Six channels, one commercial system.</span> <span className="text-[#020d1f]/70">Every one of them runs on the same operating engine — and one partner stays accountable for the outcome.</span></p>
+        </Reveal>
+      </section>
+
+      {/* 7 — DIFFERENTIATION: the aligned model (redesigned Aug 2026: row-by-row comparison + risk visual) */}
+      <section className="relative isolate overflow-hidden bg-white px-5 py-20 sm:px-8 lg:px-12 lg:py-28">
+        {/* alignment linework: three paths converging behind the hero area */}
+        <svg className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[440px] w-full" viewBox="0 0 1600 440" fill="none" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <path d="M-60 90 C 400 60, 900 260, 1660 210" stroke="#E91A24" strokeOpacity=".06" strokeWidth="1.5" />
+          <path d="M-60 200 C 450 190, 950 265, 1660 225" stroke="#E91A24" strokeOpacity=".08" strokeWidth="1.5" />
+          <path d="M-60 330 C 420 340, 950 275, 1660 240" stroke="#E91A24" strokeOpacity=".06" strokeWidth="1.5" />
+          <circle cx="1245" cy="243" r="4" fill="#E91A24" fillOpacity=".14" />
+        </svg>
+        <Reveal className="mx-auto max-w-[1600px]">
+          <div className="grid gap-8 pb-12 lg:grid-cols-[.8fr_1.2fr] lg:items-center lg:gap-14">
+            <div>
+              <p className="text-[19px] font-bold uppercase tracking-[.12em] text-[#E91A24] sm:text-[21px]">The Aligned Model</p>
+              <p className="mt-4 max-w-lg text-lg leading-8 text-[#020d1f]/70 sm:text-[19px]">The traditional agency stack gets paid whether you grow or not. We built the opposite.</p>
+            </div>
+            <h2 className="max-w-4xl text-[clamp(2.1rem,5.5vw,4.6rem)] font-semibold uppercase leading-[.9] tracking-[-.05em]">We win when you <span className="text-[#E91A24]">grow.</span> Literally.</h2>
+          </div>
+          <AlignedModel />
+          {/* mid-page exit ramp: quiet, typographic — the only conversion moment between hero and closing band */}
+          <div className="mt-12 flex flex-col gap-4 border-t border-[#020d1f]/10 pt-8 sm:flex-row sm:items-center sm:justify-between">
+            <p className="max-w-xl text-sm leading-6 text-[#596475]">Aligned economics start with one honest conversation about your account.</p>
+            <Link href="/growth-audit" className="gm-text-link shrink-0">Get your growth plan <ArrowRight size={16} /></Link>
+          </div>
+        </Reveal>
+      </section>
+
+      {/* 7b — TRACK RECORD: compact navy proof-of-work divider strip */}
+      <section className="relative isolate overflow-hidden bg-[#020D1F] px-5 py-10 text-white sm:px-8 lg:px-12 lg:py-12">
+        {/* subtle red + white curved linework */}
+        <svg className="pointer-events-none absolute inset-0 -z-10 h-full w-full" viewBox="0 0 1600 260" fill="none" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <path d="M-80 200 C 340 120, 820 260, 1260 170 S 1700 90, 1760 120" stroke="white" strokeOpacity=".05" strokeWidth="1.5" />
+          <path d="M-80 90 C 380 170, 880 40, 1320 140 S 1700 210, 1760 180" stroke="#E91A24" strokeOpacity=".1" strokeWidth="1.5" />
+        </svg>
+        <Reveal className="mx-auto flex max-w-[1600px] flex-col gap-8 lg:flex-row lg:items-center lg:gap-16">
+          <div className="shrink-0 lg:max-w-[300px]">
+            <p className="font-mono text-[11px] font-bold uppercase tracking-[.14em] text-[#FF8A90]">The track record</p>
+            <h2 className="mt-2 text-[clamp(1.5rem,2.3vw,2.1rem)] font-bold uppercase leading-[1.05] tracking-[-.03em]">The work is the <span className="text-[#E91A24]">proof.</span></h2>
+          </div>
+          <TrackRecord />
+        </Reveal>
+      </section>
+
+      {/* 8 — HOW WE OPERATE: six trust pillars, asymmetric grid (final direction per owner — no diagrams, no AI focus) */}
+      <section className="border-y border-[#020d1f]/15 bg-white px-5 py-20 sm:px-8 lg:px-12 lg:py-28">
+        <Reveal className="mx-auto max-w-[1600px]">
+          <div className="grid gap-8 pb-14 lg:grid-cols-[.8fr_1.2fr] lg:items-center lg:gap-14">
+            <div>
+              <p className="text-[19px] font-bold uppercase tracking-[.12em] text-[#E91A24] sm:text-[21px]">How we operate</p>
+              <p className="mt-4 max-w-lg text-[19px] leading-8 text-[#020d1f]/70 sm:text-[20px]">Behind every account is a disciplined operating layer — senior operators, an accountable cadence, and systems refined over 7+ years of marketplace work.</p>
+            </div>
+            <h2 className="max-w-4xl text-[clamp(1.9rem,4.2vw,3.6rem)] font-semibold uppercase leading-[.92] tracking-[-.045em]">Humans make the decisions. Technology makes us <span className="text-[#E91A24]">faster.</span></h2>
+          </div>
+          <OperatingPillars />
         </Reveal>
       </section>
 
