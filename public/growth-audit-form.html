@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Go Massive growth audit form</title>
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        background: #fff;
+        font-family: Arial, sans-serif;
+      }
+      body {
+        display: flow-root;
+      }
+      .hs-form-frame {
+        width: 100%;
+      }
+      iframe {
+        max-width: 100%;
+        border: 0;
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- A separate document gives HubSpot a fresh runtime on every Next.js visit. -->
+    <div
+      class="hs-form-frame"
+      data-region="na2"
+      data-form-id="00676a9a-1f88-4c56-8e4b-ef58ee7c2517"
+      data-portal-id="247020931"
+    ></div>
+    <script>
+      (() => {
+        const send = (type, extra = {}) =>
+          parent.postMessage({ type, ...extra }, location.origin);
+        let ready = false;
+        const report = () => {
+          const frame = document.querySelector(".hs-form-frame iframe");
+          if (frame) {
+            frame.title = "Go Massive growth audit enquiry fields";
+          }
+          const height = Math.ceil(Math.max(document.body.scrollHeight, document.body.getBoundingClientRect().height)) + 8;
+          send("gm-form:resize", { height });
+          // The embed expands only after it has received its rendered form dimensions.
+          if (!ready && frame && frame.getBoundingClientRect().height > 300) {
+            ready = true;
+            send("gm-form:ready");
+          }
+        };
+        new ResizeObserver(report).observe(document.body);
+        new MutationObserver(report).observe(
+          document.querySelector(".hs-form-frame"),
+          {
+            childList: true,
+            subtree: true,
+            attributes: true,
+            attributeFilter: ["style", "height"],
+          },
+        );
+        window.addEventListener("hs-form-event:on-ready", () => {
+          ready = true;
+          send("gm-form:ready");
+          report();
+        });
+        const script = document.createElement("script");
+        script.src = "https://js-na2.hsforms.net/forms/embed/247020931.js";
+        script.async = true;
+        script.onerror = () => send("gm-form:error");
+        document.body.appendChild(script);
+      })();
+    </script>
+  </body>
+</html>

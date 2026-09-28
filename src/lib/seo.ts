@@ -9,9 +9,18 @@ type PageMetadataInput = {
   path: string;
 };
 
-const OG_IMAGE = { url: "/opengraph-image", width: 1200, height: 630, alt: "Go Massive — the commercial operating layer for ambitious eCommerce brands" };
+const OG_IMAGE = {
+  url: "/opengraph-image",
+  width: 1200,
+  height: 630,
+  alt: "Go Massive — Amazon and ecommerce growth agency",
+};
 
-export function pageMetadata({ title, description, path }: PageMetadataInput): Metadata {
+export function pageMetadata({
+  title,
+  description,
+  path,
+}: PageMetadataInput): Metadata {
   const url = `${SITE_URL}${path}`;
   return {
     title,
@@ -49,7 +58,15 @@ export function breadcrumbJsonLd(items: BreadcrumbItem[]) {
   };
 }
 
-export function serviceJsonLd({ name, description, path }: { name: string; description: string; path: string }) {
+export function serviceJsonLd({
+  name,
+  description,
+  path,
+}: {
+  name: string;
+  description: string;
+  path: string;
+}) {
   return {
     "@context": "https://schema.org",
     "@type": "Service",

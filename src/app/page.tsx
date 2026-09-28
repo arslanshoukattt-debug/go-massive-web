@@ -1,356 +1,446 @@
+import Image from "next/image";
 import Link from "next/link";
-import { ViewTransition } from "react";
-import { ArrowRight, Check, CircleDollarSign, Mail, Package, PieChart, ShoppingCart, TrendingDown, Users } from "lucide-react";
-import { AlignedModel } from "../components/AlignedModel";
-import { ChannelGrid } from "../components/ChannelGrid";
-import { GrowthFlywheel } from "../components/GrowthFlywheel";
-import { HeroGrowthVisual } from "../components/HeroGrowthVisual";
-import { Reveal } from "../components/Reveal";
-import { RotatingWord } from "../components/RotatingWord";
-import { SiteFooter } from "../components/SiteFooter";
+import { ArrowRight, ArrowUpRight, Check } from "lucide-react";
 import { SiteHeader } from "../components/SiteHeader";
-import { StatCounter } from "../components/StatCounter";
-import { Testimonials } from "../components/Testimonials";
+import { SiteFooter } from "../components/SiteFooter";
+import {
+  CaseCard,
+  ClosingCTA,
+  SectionHeading,
+  StatsBand,
+} from "../components/Editorial";
+import { HeroGrowthDashboard } from "../components/HeroGrowthDashboard";
+import { HeroHeadline } from "../components/HeroHeadline";
 import { OperatingPillars } from "../components/OperatingPillars";
-import { TrackRecord } from "../components/TrackRecord";
-import { HeroRating, TrustBadges } from "../components/TrustSignals";
+import { GrowthSystem } from "../components/GrowthSystem";
 import { caseStudies } from "../lib/case-studies";
-import { ENGINE_NODES } from "../lib/engine-nodes";
 
-// Contact channels beyond email/audit render only once real links exist -
-// fill these in and the buttons appear in the closing section automatically.
-const WHATSAPP_URL = "";
-const MEETING_URL = "";
-
-// Owner-cleared client logos (Aug 2026) - two counter-scrolling marquee rows
-// in section 3. Per-logo heights equalise visual mass: wide wordmarks run
-// shorter, compact square marks taller, so no logo reads bigger than its
-// neighbours. New logos: process into /public/logos and add to a row here.
-const brandLogoRows = [
+const brands = [
+  ["Hallowood Furniture", "hallowood"],
+  ["Bigfoot Bushcraft", "bigfoot-bushcraft"],
+  ["Calzitaly", "calzitaly"],
+  ["Eatwater", "eatwater"],
+  ["Witt", "witt"],
+  ["Weymouth", "weymouth"],
+  ["Love & Peanut", "love-and-peanut"],
+  ["Bigg Golf", "bigg-golf"],
+  ["DBZ Beds", "dbz-beds"],
+  ["Hot Star Honey", "hot-star-honey"],
+  ["Welnesse", "welnesse"],
+  ["funSLINGER", "funslinger"],
+  ["Qnaturals", "qnaturals"],
+];
+const services = [
+  {
+    number: "01",
+    title: "Marketplace growth",
+    copy: "Amazon account management, listings, content and advertising, handled by one team.",
+    tags: "Account management · Listings & A+ · Amazon PPC",
+    href: "/services#amazon-growth",
+  },
+  {
+    number: "02",
+    title: "Performance marketing",
+    copy: "Google and Meta campaigns, with creative testing and budgets based on your margins.",
+    tags: "Google Ads · Meta Ads · Creative strategy",
+    href: "/services#performance-marketing",
+  },
+  {
+    number: "03",
+    title: "Commerce & expansion",
+    copy: "Shopify stores, email marketing and new marketplaces. Assess the costs and product fit before expanding.",
+    tags: "Shopify · Email & retention · Marketplace expansion",
+    href: "/services#commerce-expansion",
+  },
+];
+const faqs = [
   [
-    { name: "Hallowood Furniture", src: "/logos/hallowood.png", h: "h-9" },
-    { name: "Bigfoot Bushcraft", src: "/logos/bigfoot-bushcraft.png", h: "h-14" },
-    { name: "Calzitaly", src: "/logos/calzitaly.png", h: "h-9" },
-    { name: "Eatwater", src: "/logos/eatwater.png", h: "h-12" },
-    { name: "Witt", src: "/logos/witt.png", h: "h-11" },
-    { name: "Weymouth", src: "/logos/weymouth.png", h: "h-14" },
-    { name: "Love & Peanut", src: "/logos/love-and-peanut.png", h: "h-9" },
+    "What does Go Massive actually manage?",
+    "Marketplace operations, advertising, creative and the systems around them. Amazon is our flagship capability, with Google Ads, Meta Ads, Shopify and marketplace expansion brought in where they support the commercial plan.",
   ],
   [
-    { name: "Bigg Golf", src: "/logos/bigg-golf.png", h: "h-10" },
-    { name: "DBZ Beds", src: "/logos/dbz-beds.png", h: "h-11" },
-    { name: "Hot Star Honey", src: "/logos/hot-star-honey.png", h: "h-14" },
-    { name: "Welnesse", src: "/logos/welnesse.png", h: "h-12" },
-    { name: "funSLINGER", src: "/logos/funslinger.png", h: "h-10" },
-    { name: "Qnaturals", src: "/logos/qnaturals.png", h: "h-12" },
+    "Can we start with one service?",
+    "Yes. We start with the constraint that matters most to your business. That may be Amazon PPC, catalogue structure or a specific acquisition channel. Adjacent services are added when there is a clear reason to connect them.",
   ],
-];
-
-// Owner-provided certifications (Aug 2026), rendered in the strip under the hero.
-const certifications = [
-  { name: "Amazon Ads", label: "Verified Partner" },
-  { name: "Amazon SPN", label: "Verified Partner" },
-  { name: "Amazon SAS", label: "Core" },
-  { name: "Google Ads", label: "Partner" },
-  { name: "Clutch", label: "5.0-rated agency" },
-];
-
-const problems = [
-  { icon: CircleDollarSign, title: "Ads get more expensive, not more efficient", detail: "CPCs climb, TACoS creeps up, and the account starts buying the same sales for more money." },
-  { icon: ShoppingCart, title: "Traffic lands on listings that can't convert", detail: "Weak content and creative turn paid demand into browsing instead of buying." },
-  { icon: Package, title: "Operations quietly cap the growth", detail: "Stockouts, catalogue drift, and compliance issues put a ceiling on what advertising can scale." },
-  { icon: Users, title: "Fragmented partners, fragmented accountability", detail: "An ads agency, a listing freelancer, three tools — and nobody owning the outcome." },
-  { icon: TrendingDown, title: "Revenue up, margin down", detail: "Top-line growth that costs more than it returns isn't growth. It's expensive activity." },
-  { icon: PieChart, title: "No single commercial view", detail: "Decisions get made from channel reports instead of one honest picture of the business." },
-];
-
-const channels = [
-  { name: "Amazon", role: "The centre of gravity — operations, advertising, content, and growth run as one account system.", flagship: true },
-  { name: "Walmart", role: "The second engine. Expansion that leverages the catalogue and data you already have." },
-  { name: "TikTok Shop", role: "Where demand creation meets checkout — creative-led growth on the fastest-moving channel." },
-  { name: "eBay", role: "Wholesale and white-label volume that most brands leave unmanaged." },
-  { name: "Shopify / DTC", role: "Owned margin, retention, and the brand experience marketplaces can't give you." },
-  { name: "Temu & emerging", role: "New channels tested when the economics earn it — not because they're new." },
+  [
+    "How does the commercial model work?",
+    "Soft operating fees cover the team, tools and delivery. Profit share connects our upside to profitable growth. The baseline, measurement and commercial terms are agreed for your account before work begins.",
+  ],
+  [
+    "What happens during a growth audit?",
+    "You tell us about your brand, channels and current challenge. We review the commercial context and discuss where the opportunity may be, what needs attention first and whether we are a useful fit.",
+  ],
 ];
 
 export default function Home() {
   return (
-    <main id="main" className="overflow-hidden bg-[#f4f3ef] text-[#020d1f]">
+    <div className="site-shell">
       <SiteHeader />
-      <ViewTransition name="page-content" share="auto" enter="auto" default="none">
-
-      {/* 1 — HERO: experience -> problem -> promise -> system -> action, one viewport on desktop */}
-      <section className="gm-hero relative flex flex-col bg-white text-[#020d1f] lg:h-[calc(100svh-76px)] lg:max-h-[940px] lg:min-h-[600px]">
-        <div className="relative mx-auto grid w-full max-w-[1600px] flex-1 lg:min-h-0 lg:grid-cols-[1.06fr_.94fr]">
-          <div className="flex flex-col justify-center px-5 pb-8 pt-10 sm:px-8 lg:px-12 lg:py-10">
-            <p className="gm-text-red-safe font-mono text-[15px] font-bold uppercase tracking-[.14em]">7+ Years of Creating eCommerce Growth</p>
-            <HeroRating />
-            <h1 className="mt-5 max-w-4xl text-[clamp(3rem,5.6vw,6.5rem)] font-semibold uppercase leading-[.85] tracking-[-.06em]">
-              <span className="gm-hero-line">Build growth that&rsquo;s</span>
-              <span className="gm-hero-line text-[#e91a24]">
-                <span className="sr-only">Inevitable.</span>
-                <RotatingWord words={["Inevitable", "Predictable", "Repeatable", "Scalable"]} />
-              </span>
-            </h1>
-            <div className="gm-hero-copy mt-5 max-w-xl border-t border-[#020d1f]/20 pt-4">
-              <p className="text-lg leading-8 text-[#020d1f]/72 lg:text-[19px]">Fragmented partners get paid whether you grow or not. We run strategy, operations, advertising, creative, and technology as one system — with economics aligned to your growth.</p>
-            </div>
-            <div className="gm-hero-copy mt-6"><TrustBadges /></div>
-            <div className="gm-hero-ctas mt-5 flex flex-col gap-3 sm:flex-row">
-              <Link href="/growth-audit" className="gm-button gm-button--red whitespace-nowrap">Book a growth call <ArrowRight size={16} /></Link>
-              <a href="#growth-engine" className="gm-button gm-button--ghost whitespace-nowrap">See how we work</a>
-            </div>
-          </div>
-          <div className="relative hidden min-h-full border-l border-[#020d1f]/15 lg:block"><HeroGrowthVisual /></div>
-        </div>
-        <div className="px-5 pb-8 pt-2 sm:px-8 lg:hidden">
-          <p className="gm-eyebrow gm-text-red-safe">Go Massive — Operating Layer</p>
-          <div className="gm-engine-strip mt-4" aria-label="The six commercial functions Go Massive coordinates">
-            {ENGINE_NODES.map((node) => (
-              <article key={node.label}><b>{node.label}</b><p>{node.detail}</p></article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 2 — CREDIBILITY: brands + certifications, one section (consolidated Aug 2026 — answers "are you legit?" once) */}
-      <section className="border-b border-[#020d1f]/15 bg-white px-5 py-14 sm:px-8 lg:px-12 lg:py-16">
-        <Reveal className="mx-auto max-w-[1600px]">
-          <h2 className="text-center text-[clamp(1.5rem,2.6vw,2.3rem)] font-bold uppercase tracking-[-.03em]">Brands that went <span className="text-[#E91A24]">massive.</span></h2>
-          <div className="mt-10 space-y-9" aria-label="Logos of brands Go Massive has worked with">
-            {brandLogoRows.map((row, rowIndex) => (
-              <div key={rowIndex} className="gm-logo-marquee">
-                <div className={rowIndex === 1 ? "gm-logo-track gm-logo-track--reverse" : "gm-logo-track"}>
-                  {[0, 1, 2, 3].map((copy) => (
-                    <div key={copy} className="gm-logo-set" aria-hidden={copy > 0}>
-                      {row.map((brand) => (
-                        // eslint-disable-next-line @next/next/no-img-element -- marquee needs natural-width PNGs, no optimizer frame
-                        <img key={brand.name} src={brand.src} alt={copy === 0 ? brand.name : ""} loading="lazy" className={`${brand.h} w-auto opacity-60 grayscale transition duration-300 hover:opacity-100 hover:grayscale-0`} />
-                      ))}
-                    </div>
-                  ))}
-                </div>
+      <main id="main">
+        <section className="home-hero">
+          <div className="container hero-grid">
+            <div className="hero-message">
+              <p className="eyebrow">
+                <span className="signal-dot" /> Amazon, advertising and
+                ecommerce.
+              </p>
+              <HeroHeadline />
+              <p className="hero-description">
+                Your growth should fund our success. We connect strategy,
+                marketplaces, advertising and creative — with soft fees to keep
+                the work moving and profit share that gives us a stake in your
+                growth.
+              </p>
+              <div className="hero-actions">
+                <Link href="/growth-audit" className="gm-button gm-button--red">
+                  Let’s talk growth <ArrowUpRight size={18} />
+                </Link>
+                <Link href="/case-studies" className="quiet-link">
+                  Explore our work <ArrowRight size={17} />
+                </Link>
               </div>
-            ))}
+              <div className="hero-note">
+                <span>7+</span>
+                <p>
+                  Years in ecommerce.
+                  <br />
+                  Managing brands and accounts.
+                </p>
+              </div>
+            </div>
+            <HeroGrowthDashboard
+              evidence={{
+                slug: caseStudies[0].slug,
+                metrics: caseStudies[0].metrics,
+              }}
+            />
           </div>
-          <div className="mt-12 flex flex-col items-center gap-6 border-t border-[#020d1f]/10 pt-8 lg:flex-row lg:justify-between lg:gap-14">
-            <p className="gm-eyebrow gm-text-red-safe shrink-0">Recognitions &amp; certifications</p>
-            <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-5 lg:gap-x-12">
-              {certifications.map((cert) => (
-                <div key={cert.name}>
-                  <p className="text-[16px] font-semibold leading-5 tracking-[-.02em]">{cert.name}</p>
-                  <p className="mt-1 font-mono text-[10px] font-semibold uppercase tracking-[.08em] text-[#596475]">{cert.label}</p>
+          <div className="container">
+            <StatsBand />
+          </div>
+        </section>
+        <section className="brand-section">
+          <div className="container">
+            <div className="brand-heading">
+              <h2 className="brand-statement">
+                AMBITIOUS BRANDS.
+                <br />
+                <span>PROVEN PARTNERSHIP.</span>
+              </h2>
+              <p>Some of the brands we’ve worked with.</p>
+            </div>
+            <div className="brand-wall">
+              {brands.map(([name, file]) => (
+                <div key={file}>
+                  <Image
+                    src={`/logos/${file}.png`}
+                    alt={name}
+                    width={150}
+                    height={64}
+                    sizes="150px"
+                  />
                 </div>
               ))}
             </div>
-          </div>
-          <p className="mt-8 text-center text-xs leading-5 text-[#687385]">Logos shown with permission · 50+ brands and 200+ accounts managed across categories, marketplaces, and growth stages</p>
-        </Reveal>
-      </section>
-
-      {/* 3 — PROBLEM: centered kicker, description left / headline right, icon lattice on white with red accents */}
-      <section className="relative isolate overflow-hidden bg-white px-5 py-20 sm:px-8 lg:px-12 lg:py-28">
-        <div className="pointer-events-none absolute -right-40 -top-36 -z-10 h-[540px] w-[540px] rounded-full border border-[#E91A24]/15" aria-hidden="true" />
-        <div className="pointer-events-none absolute -left-28 bottom-10 -z-10 h-[340px] w-[340px] rounded-full border border-[#E91A24]/10" aria-hidden="true" />
-        <Reveal className="mx-auto max-w-[1600px]">
-          <p className="text-center text-[19px] font-bold uppercase tracking-[.12em] text-[#E91A24] sm:text-[21px]">Where brands get stuck</p>
-          <div className="mt-10 grid gap-8 pb-12 lg:grid-cols-[.8fr_1.2fr] lg:items-center lg:gap-14">
-            <p className="max-w-lg text-lg leading-8 text-[#020d1f]/70 sm:text-[19px] lg:justify-self-end lg:text-right">By the time revenue flattens, the cause is usually spread across the account — and no single-channel partner can see all of it.</p>
-            <h2 className="max-w-3xl text-[clamp(2.2rem,4.2vw,4.2rem)] font-bold uppercase leading-[.92] tracking-[-.045em] lg:border-l lg:border-[#020d1f]/15 lg:pl-14"><span className="text-[#E91A24]">Growth</span> rarely breaks in one place<span className="text-[#E91A24]">.</span></h2>
-          </div>
-          <div className="grid gap-px border-y border-[#020d1f]/15 bg-[#020d1f]/15 sm:grid-cols-2 lg:grid-cols-3">
-            {problems.map((problem, index) => {
-              const Icon = problem.icon;
-              return (
-                <Reveal key={problem.title} delay={index * 60} className="bg-white">
-                  <div className="group relative flex h-full items-start gap-5 px-6 py-9 lg:px-8 lg:py-10">
-                    <span className="grid h-14 w-14 shrink-0 place-items-center rounded-full bg-[#E91A24]/10 transition-colors duration-300 group-hover:bg-[#E91A24]"><Icon size={24} strokeWidth={1.8} className="text-[#E91A24] transition-colors duration-300 group-hover:text-white" aria-hidden="true" /></span>
-                    <div>
-                      <h3 className="max-w-[16rem] text-[19px] font-semibold leading-snug tracking-[-.02em]">{problem.title}</h3>
-                      <p className="mt-2 max-w-sm text-[14.5px] leading-6 text-[#596475]">{problem.detail}</p>
-                    </div>
-                    <span className="absolute bottom-0 left-0 h-[2px] w-full origin-left scale-x-0 bg-[#E91A24] transition-transform duration-500 ease-out group-hover:scale-x-100" aria-hidden="true" />
-                  </div>
-                </Reveal>
-              );
-            })}
-          </div>
-          <p className="mt-12 border-l-[3px] border-[#E91A24] pl-6 text-xl leading-8 tracking-[-.02em] sm:text-2xl"><span className="font-semibold">Every one of these is a system problem.</span> <span className="text-[#020d1f]/70">Fixing them one silo at a time is how brands stay stuck.</span></p>
-        </Reveal>
-      </section>
-
-      {/* 4 — THE GROWTH ENGINE: how the system actually works */}
-      <section id="growth-engine" className="relative isolate overflow-hidden bg-white px-5 py-20 text-[#020d1f] sm:px-8 lg:px-12 lg:py-28">
-        {/* quiet background geometry: orbital outlines echoing the flywheel + a soft dot grid */}
-        <div className="pointer-events-none absolute -left-44 -top-28 -z-10 h-[520px] w-[520px] rounded-full border border-[#020d1f]/[.07]" aria-hidden="true" />
-        <div className="pointer-events-none absolute -left-20 top-14 -z-10 h-[340px] w-[340px] rounded-full border border-[#E91A24]/10" aria-hidden="true" />
-        <div className="pointer-events-none absolute -bottom-16 -right-24 -z-10 h-[560px] w-[560px] rounded-full border border-[#020d1f]/[.06]" aria-hidden="true" />
-        <div className="gm-dotgrid pointer-events-none absolute bottom-8 right-0 -z-10 h-[400px] w-[420px]" aria-hidden="true" />
-        <div className="mx-auto grid max-w-[1600px] gap-14 lg:grid-cols-[.9fr_1.1fr]">
-          <Reveal>
-            <div className="lg:sticky lg:top-28">
-              <p className="text-[19px] font-bold uppercase tracking-[.12em] text-[#E91A24] sm:text-[21px]">The Growth Engine</p>
-              <h2 className="mt-6 max-w-xl text-[clamp(2.1rem,8.5vw,6rem)] font-semibold uppercase leading-[.87] tracking-[-.05em]">One <span className="text-[#E91A24]">system</span>. Every lever that moves <span className="text-[#E91A24]">revenue</span>.</h2>
-              <p className="mt-7 max-w-lg text-lg leading-8 text-[#020d1f]/70">Not an ads agency with add-ons. An operating engine where each stage feeds the next — so wins compound instead of leaking between vendors.</p>
-              {/* micro-proof weld: figures from the outdoor & leisure case in lib/case-studies.ts */}
-              <div className="mt-8 flex items-baseline gap-3.5">
-                <p className="text-[28px] font-semibold leading-none tracking-[-.03em]">+180%</p>
-                <p className="max-w-xs font-mono text-[11px] font-bold uppercase leading-5 tracking-[.1em] text-[#596475]">Non-branded sales in one engagement — ad cost of sale down 42%</p>
-              </div>
-              <Link href="/services" className="gm-text-link mt-8">Explore the services <ArrowRight size={16} /></Link>
+            <div className="credentials">
+              <span>RECOGNITIONS & CERTIFICATIONS</span>
+              <p>
+                Amazon Ads <small>Verified Partner</small>
+              </p>
+              <p>
+                Amazon SPN <small>Verified Partner</small>
+              </p>
+              <p>
+                Amazon SAS <small>Core</small>
+              </p>
+              <p>
+                Google Ads <small>Partner</small>
+              </p>
             </div>
-          </Reveal>
-          <GrowthFlywheel />
-        </div>
-      </section>
-
-      {/* 5 — PROOF: editorial results ledger, moved directly after the engine (Sep 2026) so the system claim is followed by its evidence */}
-      <section className="bg-[#f4f3ef] px-5 py-20 text-[#020d1f] sm:px-8 lg:px-12 lg:py-28">
-        <Reveal className="mx-auto max-w-[1600px]">
-          <div className="grid gap-8 pb-12 lg:grid-cols-[.8fr_1.2fr] lg:items-center lg:gap-14">
-            <div>
-              <p className="text-[19px] font-bold uppercase tracking-[.12em] text-[#E91A24] sm:text-[21px]">Proof</p>
-              <p className="mt-4 max-w-lg text-lg leading-8 text-[#020d1f]/70 sm:text-[19px]">Documented engagements with the mechanism behind every number. Identities stay confidential.</p>
-            </div>
-            <h2 className="max-w-4xl text-[clamp(2.1rem,5.5vw,4.6rem)] font-semibold uppercase leading-[.9] tracking-[-.05em]">The numbers matter. The <span className="text-[#E91A24]">mechanism</span> matters more.</h2>
           </div>
-          <div className="border-b border-[#020d1f]/15">
-            {caseStudies.map((caseStudy, index) => (
-              <Reveal key={caseStudy.slug} delay={index * 60}>
-                <Link href={`/case-studies/${caseStudy.slug}`} className="group grid gap-4 border-t border-[#020d1f]/15 py-9 lg:grid-cols-[.4fr_1fr] lg:items-center lg:gap-14 lg:py-11">
+        </section>
+        <section className="section problem-section">
+          <div className="container">
+            <SectionHeading
+              index="01"
+              label="The real growth problem"
+              title={
+                <>
+                  BUSY ACCOUNTS.
+                  <br />
+                  <span>STALLED GROWTH.</span>
+                </>
+              }
+            >
+              <p>
+                More activity should mean more progress. When these six things
+                go wrong, adding budget only makes the cracks bigger.
+              </p>
+            </SectionHeading>
+            <div className="problem-grid">
+              {[
+                [
+                  "Rising spend. Thinning returns.",
+                  "Acquisition gets more expensive while the same sales cost more to win.",
+                ],
+                [
+                  "Traffic without conversion.",
+                  "Weak listings and creative lose the demand you already paid for.",
+                ],
+                [
+                  "Operations that hold you back.",
+                  "Stockouts, catalogue issues and account health cap what ads can scale.",
+                ],
+                [
+                  "Too many partners. No owner.",
+                  "Everyone delivers their piece. Nobody owns the commercial outcome.",
+                ],
+                [
+                  "Revenue up. Profit down.",
+                  "A bigger top line means little if the margin disappears underneath it.",
+                ],
+                [
+                  "Reports without direction.",
+                  "Channel dashboards tell different stories. The next move stays unclear.",
+                ],
+              ].map(([title, copy], i) => (
+                <article key={title}>
+                  <span>0{i + 1}</span>
+                  <h3>{title}</h3>
+                  <p>{copy}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+        <section id="growth-engine" className="section section-navy">
+          <div className="container">
+            <SectionHeading
+              index="02"
+              label="The Growth Engine"
+              title={
+                <>
+                  EIGHT LEVERS.
+                  <br />
+                  <span>ONE PROFITABLE DIRECTION.</span>
+                </>
+              }
+            >
+              <p>
+                More ad spend is not a growth strategy. Research, operations,
+                creative and acquisition have to work together — with profit as
+                the point.
+              </p>
+              <p className="small-hint">
+                Select an area to see the work involved.
+              </p>
+            </SectionHeading>
+            <GrowthSystem />
+            <div className="engine-proof">
+              <strong>{caseStudies[0].metrics[1].value}</strong>
+              <p>
+                {caseStudies[0].metrics[1].label} for an outdoor brand over six
+                months. Listing improvements, campaign structure and commercial
+                reporting working together.
+              </p>
+              <Link href={`/case-studies/${caseStudies[0].slug}`}>
+                Read the case study <ArrowUpRight size={18} />
+              </Link>
+            </div>
+          </div>
+        </section>
+        <section id="selected-work" className="section section-tint">
+          <div className="container">
+            <SectionHeading
+              index="03"
+              label="The work speaks"
+              title={
+                <>
+                  GROWTH YOU CAN MEASURE.
+                  <br />
+                  <span>WORK YOU CAN TRACE.</span>
+                </>
+              }
+            >
+              <p>
+                Different brands. Different constraints. One commitment to
+                getting the commercial details right.
+              </p>
+              <Link href="/case-studies" className="quiet-link">
+                All case studies <ArrowUpRight size={18} />
+              </Link>
+            </SectionHeading>
+            <div className="case-grid">
+              <CaseCard study={caseStudies[0]} />
+              <CaseCard study={caseStudies[2]} index={1} />
+            </div>
+            <div className="more-results">
+              {[caseStudies[1], caseStudies[3], caseStudies[4]].map((study) => (
+                <Link key={study.slug} href={`/case-studies/${study.slug}`}>
+                  <strong>{study.metrics[0].value}</strong>
                   <div>
-                    <p className="text-[clamp(3rem,5.2vw,5rem)] font-semibold leading-none tracking-[-.05em] transition-colors duration-300 group-hover:text-[#E91A24]"><StatCounter value={caseStudy.metrics[0].value} /></p>
-                    <p className="mt-2.5 font-mono text-[10.5px] font-bold uppercase tracking-[.14em] text-[#596475]">{caseStudy.metrics[0].label}</p>
+                    <span>{study.category}</span>
+                    <p>{study.metrics[0].label}</p>
                   </div>
-                  <div className="flex items-end justify-between gap-8">
-                    <div>
-                      <p className="gm-text-red-safe font-mono text-[10.5px] font-bold uppercase tracking-[.14em]">{caseStudy.category} · {caseStudy.marketplace}</p>
-                      <p className="mt-3 max-w-2xl text-xl font-medium leading-7 tracking-[-.02em] sm:text-[22px] sm:leading-8">{caseStudy.title}</p>
-                      {caseStudy.metrics.length > 1 && (
-                        <p className="mt-3.5 font-mono text-[11px] font-semibold uppercase tracking-[.06em] text-[#687385]">{caseStudy.metrics.slice(1).map((metric) => `${metric.value} ${metric.label}`).join("  ·  ")}</p>
-                      )}
-                    </div>
-                    <ArrowRight className="mb-1 hidden shrink-0 text-[#020d1f]/30 transition duration-300 group-hover:translate-x-1.5 group-hover:text-[#E91A24] sm:block" size={22} />
-                  </div>
+                  <ArrowUpRight size={21} />
                 </Link>
-              </Reveal>
-            ))}
+              ))}
+            </div>
+            <p className="editorial-note">
+              Documented engagements. Client identities remain confidential.
+            </p>
           </div>
-          <div className="mt-9 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-            <p className="max-w-xl text-sm leading-6 text-[#596475]">Client identities stay confidential — every figure above is drawn from a documented engagement.</p>
-            <Link href="/case-studies" className="gm-text-link shrink-0">All five case studies <ArrowRight size={16} /></Link>
-          </div>
-        </Reveal>
-      </section>
-
-      {/* 6 — CHANNELS: where the engine runs (redesigned Aug 2026: numbered card grid, one-active interaction) */}
-      <section className="relative isolate overflow-hidden border-y border-[#020d1f]/15 bg-white px-5 py-20 text-[#020d1f] sm:px-8 lg:px-12 lg:py-28">
-        {/* quiet red connection paths in the background */}
-        <svg className="pointer-events-none absolute inset-0 -z-10 h-full w-full" viewBox="0 0 1600 900" fill="none" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-          <path d="M-100 710 C 300 530, 700 870, 1100 650 S 1700 430, 1760 470" stroke="#E91A24" strokeOpacity=".07" strokeWidth="1.5" />
-          <path d="M-80 240 C 350 100, 800 300, 1250 140 S 1650 50, 1720 110" stroke="#E91A24" strokeOpacity=".05" strokeWidth="1.5" />
-          <circle cx="1100" cy="650" r="4" fill="#E91A24" fillOpacity=".14" />
-          <circle cx="700" cy="700" r="3" fill="#E91A24" fillOpacity=".1" />
-          <circle cx="1250" cy="140" r="3.5" fill="#E91A24" fillOpacity=".1" />
-        </svg>
-        <Reveal className="mx-auto max-w-[1600px]">
-          <div className="grid gap-8 pb-12 lg:grid-cols-[.8fr_1.2fr] lg:items-center lg:gap-14">
-            <div>
-              <p className="text-[19px] font-bold uppercase tracking-[.12em] text-[#E91A24] sm:text-[21px]">Sales channels</p>
-              <p className="mt-4 max-w-lg text-lg leading-8 text-[#020d1f]/70 sm:text-[19px]">Brands shouldn&rsquo;t need five agencies for five channels. Priorities get set commercially — not per silo.</p>
-              <div className="mt-6 flex items-baseline gap-3.5">
-                <p className="text-[28px] font-semibold leading-none tracking-[-.03em]">200+</p>
-                <p className="font-mono text-[11px] font-bold uppercase leading-5 tracking-[.1em] text-[#596475]">Accounts managed across these channels</p>
+        </section>
+        <section className="section">
+          <div className="container">
+            <SectionHeading
+              index="04"
+              label="What we do"
+              title={
+                <>
+                  SIX CHANNELS.
+                  <br />
+                  <span>ONE ACCOUNTABLE TEAM.</span>
+                </>
+              }
+            >
+              <p>
+                One team across the work that drives your business. Start where
+                you need us. Connect the rest when it counts.
+              </p>
+            </SectionHeading>
+            <div className="service-list">
+              {services.map((service) => (
+                <Link
+                  href={service.href}
+                  className="service-row"
+                  key={service.number}
+                >
+                  <span className="row-index">{service.number}</span>
+                  <h3>{service.title}</h3>
+                  <div>
+                    <p>{service.copy}</p>
+                    <span className="service-tags">{service.tags}</span>
+                  </div>
+                  <ArrowUpRight className="service-arrow" size={27} />
+                </Link>
+              ))}
+            </div>
+            <div className="channel-line">
+              <span>ACROSS YOUR COMMERCIAL WORLD</span>
+              <div>
+                <b>amazon</b>
+                <b>Walmart</b>
+                <b>TikTok Shop</b>
+                <b>eBay</b>
+                <b>Shopify</b>
+                <b>Temu</b>
               </div>
             </div>
-            <h2 className="max-w-4xl text-[clamp(2.1rem,5.5vw,4.6rem)] font-semibold uppercase leading-[.9] tracking-[-.05em]">Every <span className="text-[#E91A24]">channel</span> that matters. One <span className="text-[#E91A24]">accountable</span> partner.</h2>
           </div>
-          <ChannelGrid channels={channels} />
-          <p className="mt-12 border-l-[3px] border-[#E91A24] pl-6 text-xl leading-8 tracking-[-.02em] sm:text-2xl"><span className="font-semibold">Six channels, one commercial system.</span> <span className="text-[#020d1f]/70">Every one of them runs on the same operating engine — and one partner stays accountable for the outcome.</span></p>
-        </Reveal>
-      </section>
-
-      {/* 7 — DIFFERENTIATION: the aligned model (redesigned Aug 2026: row-by-row comparison + risk visual) */}
-      <section className="relative isolate overflow-hidden bg-white px-5 py-20 sm:px-8 lg:px-12 lg:py-28">
-        {/* alignment linework: three paths converging behind the hero area */}
-        <svg className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[440px] w-full" viewBox="0 0 1600 440" fill="none" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-          <path d="M-60 90 C 400 60, 900 260, 1660 210" stroke="#E91A24" strokeOpacity=".06" strokeWidth="1.5" />
-          <path d="M-60 200 C 450 190, 950 265, 1660 225" stroke="#E91A24" strokeOpacity=".08" strokeWidth="1.5" />
-          <path d="M-60 330 C 420 340, 950 275, 1660 240" stroke="#E91A24" strokeOpacity=".06" strokeWidth="1.5" />
-          <circle cx="1245" cy="243" r="4" fill="#E91A24" fillOpacity=".14" />
-        </svg>
-        <Reveal className="mx-auto max-w-[1600px]">
-          <div className="grid gap-8 pb-12 lg:grid-cols-[.8fr_1.2fr] lg:items-center lg:gap-14">
+        </section>
+        <section className="section">
+          <div className="container model-grid">
             <div>
-              <p className="text-[19px] font-bold uppercase tracking-[.12em] text-[#E91A24] sm:text-[21px]">The Aligned Model</p>
-              <p className="mt-4 max-w-lg text-lg leading-8 text-[#020d1f]/70 sm:text-[19px]">The traditional agency stack gets paid whether you grow or not. We built the opposite.</p>
+              <p className="eyebrow">05 / A better kind of partnership</p>
+              <h2 className="display-heading">
+                SOFT FEES.
+                <br />
+                <span>SHARED UPSIDE.</span>
+              </h2>
+              <p className="large-copy">
+                We earn more when you grow profitably.
+                <br />
+                That is the point of profit share.
+              </p>
+              <Link href="/growth-audit" className="quiet-link">
+                Find out if we’re a fit <ArrowUpRight size={18} />
+              </Link>
             </div>
-            <h2 className="max-w-4xl text-[clamp(2.1rem,5.5vw,4.6rem)] font-semibold uppercase leading-[.9] tracking-[-.05em]">We win when you <span className="text-[#E91A24]">grow.</span> Literally.</h2>
+            <div className="model-principles">
+              {[
+                [
+                  "01",
+                  "Modest operating fees",
+                  "A modest operating fee supports the team, tools and delivery. Heavy retainers are not the foundation of our model.",
+                ],
+                [
+                  "02",
+                  "One accountable team",
+                  "Strategy, execution and reporting stay connected. No passing problems between suppliers.",
+                ],
+                [
+                  "03",
+                  "Profit share. Aligned incentives.",
+                  "Our upside comes from sharing in profitable growth. We agree the baseline, profit definition and share with you before work begins.",
+                ],
+              ].map(([number, title, copy]) => (
+                <article key={number}>
+                  <span>{number}</span>
+                  <div>
+                    <h3>{title}</h3>
+                    <p>{copy}</p>
+                  </div>
+                  <Check size={19} />
+                </article>
+              ))}
+            </div>
           </div>
-          <AlignedModel />
-          {/* mid-page exit ramp: quiet, typographic — the only conversion moment between hero and closing band */}
-          <div className="mt-12 flex flex-col gap-4 border-t border-[#020d1f]/10 pt-8 sm:flex-row sm:items-center sm:justify-between">
-            <p className="max-w-xl text-sm leading-6 text-[#596475]">Aligned economics start with one honest conversation about your account.</p>
-            <Link href="/growth-audit" className="gm-text-link shrink-0">Get your growth plan <ArrowRight size={16} /></Link>
+        </section>
+        <section className="section section-tint operating-section">
+          <div className="container">
+            <SectionHeading
+              index="06"
+              label="How we operate"
+              title={
+                <>
+                  SENIOR MINDS.
+                  <br />
+                  <span>DAILY OWNERSHIP.</span>
+                </>
+              }
+            >
+              <p>
+                Aligned fees matter. So does the team behind them. Six operating
+                principles keep strategy connected to the everyday work.
+              </p>
+            </SectionHeading>
+            <OperatingPillars />
           </div>
-        </Reveal>
-      </section>
-
-      {/* 7b — TRACK RECORD: compact navy proof-of-work divider strip */}
-      <section className="relative isolate overflow-hidden bg-[#020D1F] px-5 py-10 text-white sm:px-8 lg:px-12 lg:py-12">
-        {/* subtle red + white curved linework */}
-        <svg className="pointer-events-none absolute inset-0 -z-10 h-full w-full" viewBox="0 0 1600 260" fill="none" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-          <path d="M-80 200 C 340 120, 820 260, 1260 170 S 1700 90, 1760 120" stroke="white" strokeOpacity=".05" strokeWidth="1.5" />
-          <path d="M-80 90 C 380 170, 880 40, 1320 140 S 1700 210, 1760 180" stroke="#E91A24" strokeOpacity=".1" strokeWidth="1.5" />
-        </svg>
-        <Reveal className="mx-auto flex max-w-[1600px] flex-col gap-8 lg:flex-row lg:items-center lg:gap-16">
-          <div className="shrink-0 lg:max-w-[300px]">
-            <p className="font-mono text-[11px] font-bold uppercase tracking-[.14em] text-[#FF8A90]">The track record</p>
-            <h2 className="mt-2 text-[clamp(1.5rem,2.3vw,2.1rem)] font-bold uppercase leading-[1.05] tracking-[-.03em]">The work is the <span className="text-[#E91A24]">proof.</span></h2>
-          </div>
-          <TrackRecord />
-        </Reveal>
-      </section>
-
-      {/* 8 — HOW WE OPERATE: six trust pillars, asymmetric grid (final direction per owner — no diagrams, no AI focus) */}
-      <section className="border-y border-[#020d1f]/15 bg-white px-5 py-20 sm:px-8 lg:px-12 lg:py-28">
-        <Reveal className="mx-auto max-w-[1600px]">
-          <div className="grid gap-8 pb-14 lg:grid-cols-[.8fr_1.2fr] lg:items-center lg:gap-14">
+        </section>
+        <section className="section">
+          <div className="container faq-grid">
             <div>
-              <p className="text-[19px] font-bold uppercase tracking-[.12em] text-[#E91A24] sm:text-[21px]">How we operate</p>
-              <p className="mt-4 max-w-lg text-[19px] leading-8 text-[#020d1f]/70 sm:text-[20px]">Behind every account is a disciplined operating layer — senior operators, an accountable cadence, and systems refined over 7+ years of marketplace work.</p>
+              <p className="eyebrow">A few things worth knowing</p>
+              <h2 className="display-heading">
+                GOOD
+                <br />
+                <span>QUESTIONS.</span>
+              </h2>
+              <p className="section-intro">
+                Prefer a conversation?
+                <br />
+                <a href="mailto:info@go-massive.com" className="inline-link">
+                  We’re an email away.
+                </a>
+              </p>
             </div>
-            <h2 className="max-w-4xl text-[clamp(1.9rem,4.2vw,3.6rem)] font-semibold uppercase leading-[.92] tracking-[-.045em]">Humans make the decisions. Technology makes us <span className="text-[#E91A24]">faster.</span></h2>
-          </div>
-          <OperatingPillars />
-        </Reveal>
-      </section>
-
-      {/* 9 — TESTIMONIALS: renders once real quotes exist in lib/testimonials.ts */}
-      <Testimonials />
-
-      {/* 10 — CONVERSION */}
-      <section className="gm-closing bg-[#e91a24] px-5 py-20 text-white sm:px-8 lg:px-12 lg:py-28">
-        <Reveal className="mx-auto grid max-w-[1600px] gap-12 lg:grid-cols-[1.25fr_.75fr] lg:items-end">
-          <div>
-            <p className="gm-eyebrow text-white">Talk to an operator</p>
-            <h2 className="mt-7 max-w-5xl text-[clamp(2.2rem,9vw,7.4rem)] font-semibold uppercase leading-[.85] tracking-[-.06em]">You&rsquo;ve seen how we work. Let&rsquo;s talk about where you&rsquo;re stuck.</h2>
-          </div>
-          <div>
-            <p className="text-xl leading-8 text-white">A direct conversation about your account — constraints, opportunities, and whether the model fits. No pitch deck.</p>
-            <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-              <Link href="/growth-audit" className="gm-button gm-button--dark">Book a growth call <ArrowRight size={16} /></Link>
-              <a href="mailto:info@go-massive.com" className="gm-button gm-button--ghost-on-dark">Email us <Mail size={16} /></a>
-              {WHATSAPP_URL && <a href={WHATSAPP_URL} target="_blank" rel="noreferrer" className="gm-button gm-button--ghost-on-dark">WhatsApp</a>}
-              {MEETING_URL && <a href={MEETING_URL} target="_blank" rel="noreferrer" className="gm-button gm-button--ghost-on-dark">Book a meeting</a>}
+            <div className="faq-list">
+              {faqs.map(([question, answer]) => (
+                <details key={question}>
+                  <summary>
+                    {question}
+                    <span aria-hidden="true">+</span>
+                  </summary>
+                  <p>{answer}</p>
+                </details>
+              ))}
             </div>
-            <p className="mt-7 flex items-center gap-2 text-sm font-medium text-white"><Check size={16} strokeWidth={3} /> Clear next steps — even if we&rsquo;re not the right fit.</p>
           </div>
-        </Reveal>
-      </section>
-
-      </ViewTransition>
+        </section>
+        <ClosingCTA />
+      </main>
       <SiteFooter />
-    </main>
+    </div>
   );
 }

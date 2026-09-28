@@ -1,60 +1,150 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { ViewTransition } from "react";
-import { ArrowLeft, ArrowRight, Check } from "lucide-react";
-import { Reveal } from "../../../components/Reveal";
-import { SiteFooter } from "../../../components/SiteFooter";
+import { ArrowLeft, ArrowUpRight, Check } from "lucide-react";
 import { SiteHeader } from "../../../components/SiteHeader";
-import { StatCounter } from "../../../components/StatCounter";
+import { SiteFooter } from "../../../components/SiteFooter";
+import { CaseCard, ClosingCTA } from "../../../components/Editorial";
 import { caseStudies, getCaseStudy } from "../../../lib/case-studies";
 import { breadcrumbJsonLd, pageMetadata } from "../../../lib/seo";
 
 type PageProps = { params: Promise<{ slug: string }> };
-
 export function generateStaticParams() {
-  return caseStudies.map((caseStudy) => ({ slug: caseStudy.slug }));
+  return caseStudies.map((study) => ({ slug: study.slug }));
 }
-
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const caseStudy = getCaseStudy(slug);
-  if (!caseStudy) return {};
-  return pageMetadata({
-    title: `${caseStudy.label} Case Study | Go Massive`,
-    description: caseStudy.summary,
-    path: `/case-studies/${slug}`,
-  });
+  const study = getCaseStudy(slug);
+  return study
+    ? pageMetadata({
+        title: `${study.label} Case Study | Go Massive`,
+        description: study.summary,
+        path: `/case-studies/${slug}`,
+      })
+    : {};
 }
-
 export default async function CaseStudyDetailPage({ params }: PageProps) {
   const { slug } = await params;
-  const caseStudy = getCaseStudy(slug);
-  if (!caseStudy) notFound();
-
+  const study = getCaseStudy(slug);
+  if (!study) notFound();
+  const related = caseStudies.filter((item) => item.slug !== slug).slice(0, 2);
   return (
-    <main id="main" className="bg-[#F7F8FA] text-[#020D1F]">
+    <div>
       <SiteHeader />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd([{ name: "Case Studies", path: "/case-studies" }, { name: caseStudy!.label, path: `/case-studies/${slug}` }])) }} />
-      <ViewTransition name="page-content" share="auto" enter="auto" default="none">
-      <section className="bg-white py-20 sm:py-28">
-        <div className="mx-auto max-w-[1120px] px-6 lg:px-10">
-          <Link href="/case-studies" className="inline-flex items-center gap-2 text-sm font-semibold text-[#596475] transition hover:text-[#020D1F]"><ArrowLeft size={17} /> All case studies</Link>
-          <p className="mt-12 text-xs font-bold uppercase tracking-[.18em] gm-text-red-safe">{caseStudy.label}</p>
-          <h1 className="mt-6 max-w-5xl text-4xl font-semibold leading-[1.02] tracking-[-.055em] sm:text-6xl">{caseStudy.title}</h1>
-          <p className="mt-7 max-w-3xl text-lg leading-8 text-[#596475]">{caseStudy.summary}</p>
-          <div className={`mt-12 grid gap-px overflow-hidden rounded-2xl border border-[#020D1F]/10 bg-[#020D1F]/10 ${caseStudy.metrics.length === 1 ? "" : caseStudy.metrics.length === 2 ? "sm:grid-cols-2" : caseStudy.metrics.length === 3 ? "sm:grid-cols-3" : "sm:grid-cols-2 lg:grid-cols-4"}`}>{caseStudy.metrics.map((metric, index) => <Reveal key={metric.label} delay={index * 90}><div className="bg-white p-5"><p className="text-3xl font-semibold tracking-tight"><StatCounter value={metric.value} /></p><p className="mt-2 text-sm leading-5 text-[#687385]">{metric.label}</p></div></Reveal>)}</div>
-        </div>
-      </section>
-
-      <section className="py-20 sm:py-28"><div className="mx-auto max-w-[1120px] px-6 lg:px-10"><div className="grid gap-10 border-b border-[#020D1F]/10 pb-16 lg:grid-cols-[.7fr_1.3fr]"><p className="text-xs font-bold uppercase tracking-[.18em] gm-text-red-safe">Brand snapshot</p><dl className="grid gap-7 sm:grid-cols-2"><div><dt className="text-xs font-bold uppercase tracking-[.14em] text-[#687385]">Category</dt><dd className="mt-2 font-semibold">{caseStudy.category}</dd></div><div><dt className="text-xs font-bold uppercase tracking-[.14em] text-[#687385]">Marketplace</dt><dd className="mt-2 font-semibold">{caseStudy.marketplace}</dd></div><div><dt className="text-xs font-bold uppercase tracking-[.14em] text-[#687385]">Business stage</dt><dd className="mt-2 font-semibold">{caseStudy.businessStage}</dd></div><div><dt className="text-xs font-bold uppercase tracking-[.14em] text-[#687385]">Go Massive scope</dt><dd className="mt-2 font-semibold">{caseStudy.scope}</dd></div></dl></div>
-        <div className="grid gap-10 border-b border-[#020D1F]/10 py-16 lg:grid-cols-[.7fr_1.3fr]"><p className="text-xs font-bold uppercase tracking-[.18em] gm-text-red-safe">The challenge</p><div className="space-y-5 text-lg leading-8 text-[#4E5A6B]">{caseStudy.challenge.map(item=><p key={item}>{item}</p>)}</div></div>
-        <div className="grid gap-10 border-b border-[#020D1F]/10 py-16 lg:grid-cols-[.7fr_1.3fr]"><p className="text-xs font-bold uppercase tracking-[.18em] gm-text-red-safe">What Go Massive did</p><ul className="space-y-4">{caseStudy.execution.map(item=><li className="flex gap-4 text-lg leading-8 text-[#4E5A6B]" key={item}><Check size={19} className="mt-1.5 shrink-0 text-[#E91A24]" strokeWidth={3} />{item}</li>)}</ul></div>
-        <div className="grid gap-10 py-16 lg:grid-cols-[.7fr_1.3fr]"><p className="text-xs font-bold uppercase tracking-[.18em] gm-text-red-safe">The outcome</p><div className="rounded-3xl bg-white p-8 shadow-sm sm:p-10"><div className="space-y-5 text-lg leading-8 text-[#4E5A6B]">{caseStudy.result.map(item=><p key={item}>{item}</p>)}</div><div className="mt-10 border-t border-[#020D1F]/10 pt-7"><p className="text-sm font-bold uppercase tracking-[.14em] text-[#E91A24]">Takeaway</p><p className="mt-4 text-xl font-semibold leading-8 tracking-tight">{caseStudy.takeaway}</p></div></div></div></div>
-        <div className="mx-auto max-w-[1120px] border-t border-[#020D1F]/10 px-6 pt-10 lg:px-10"><p className="text-xs font-bold uppercase tracking-[.18em] gm-text-red-safe">The work behind this result</p><div className="mt-4 flex flex-wrap gap-x-10 gap-y-3"><Link href="/services/amazon-ppc" className="inline-flex items-center gap-2 font-semibold text-[#020D1F] transition hover:text-[#C9141D]">Amazon PPC Management <ArrowRight size={16} /></Link><Link href="/services" className="inline-flex items-center gap-2 font-semibold text-[#020D1F] transition hover:text-[#C9141D]">Full Amazon Growth services <ArrowRight size={16} /></Link></div></div></section>
-      <section className="bg-[#E91A24] py-20 text-white"><div className="mx-auto flex max-w-[1120px] flex-col gap-8 px-6 lg:flex-row lg:items-end lg:justify-between lg:px-10"><div><p className="text-xs font-bold uppercase tracking-[.18em] text-white">Your opportunity is different</p><h2 className="mt-5 max-w-2xl text-4xl font-semibold tracking-[-.055em]">Start with the facts in your own account.</h2></div><a href="/growth-audit" className="gm-button gm-button--dark">Get a Growth Audit <ArrowRight size={18} /></a></div></section>
-      </ViewTransition>
+      <main id="main">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(
+              breadcrumbJsonLd([
+                { name: "Case Studies", path: "/case-studies" },
+                { name: study.label, path: `/case-studies/${slug}` },
+              ]),
+            ),
+          }}
+        />
+        <section className="case-detail-intro">
+          <div className="container">
+            <Link href="/case-studies" className="breadcrumb-link">
+              <ArrowLeft size={16} />
+              All case studies
+            </Link>
+            <p className="eyebrow">
+              {study.category} / {study.marketplace}
+            </p>
+            <h1>{study.title}</h1>
+            <p className="lead">{study.summary}</p>
+            <div className="case-metrics">
+              {study.metrics.map((metric) => (
+                <div key={metric.label}>
+                  <strong>{metric.value}</strong>
+                  <span>{metric.label}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+        <section className="section section-tint">
+          <div className="container case-body">
+            <aside className="case-facts" aria-label="Engagement context">
+              <dl>
+                {[
+                  ["Category", study.category],
+                  ["Marketplace", study.marketplace],
+                  ["Business stage", study.businessStage],
+                  ["Our scope", study.scope],
+                ].map(([label, value]) => (
+                  <div key={label}>
+                    <dt>{label}</dt>
+                    <dd>{value}</dd>
+                  </div>
+                ))}
+              </dl>
+              <p className="editorial-note">
+                Client identity and underlying account data remain confidential.
+              </p>
+              <Link href="/services" className="quiet-link">
+                Explore our services <ArrowUpRight size={16} />
+              </Link>
+            </aside>
+            <div className="case-narrative">
+              <section>
+                <h2>The challenge.</h2>
+                {study.challenge.map((item) => (
+                  <p key={item}>{item}</p>
+                ))}
+              </section>
+              <section>
+                <h2>What we changed.</h2>
+                <ul>
+                  {study.execution.map((item) => (
+                    <li key={item}>
+                      <Check size={18} />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </section>
+              <section>
+                <h2>The outcome.</h2>
+                {study.result.map((item) => (
+                  <p key={item}>{item}</p>
+                ))}
+              </section>
+              <div className="case-takeaway">
+                <h2>The takeaway</h2>
+                <p>{study.takeaway}</p>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section className="section">
+          <div className="container">
+            <div className="section-heading">
+              <div>
+                <p className="eyebrow">More perspectives</p>
+                <h2>
+                  ANOTHER CHALLENGE.
+                  <br />
+                  <span>ANOTHER WAY FORWARD.</span>
+                </h2>
+              </div>
+              <Link href="/case-studies" className="quiet-link">
+                See all our work <ArrowUpRight size={18} />
+              </Link>
+            </div>
+            <div className="case-grid">
+              {related.map((item, i) => (
+                <CaseCard key={item.slug} study={item} index={i} />
+              ))}
+            </div>
+          </div>
+        </section>
+        <ClosingCTA />
+      </main>
       <SiteFooter />
-    </main>
+    </div>
   );
 }

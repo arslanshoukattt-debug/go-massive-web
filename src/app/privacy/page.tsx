@@ -7,7 +7,8 @@ import { pageMetadata } from "../../lib/seo";
 
 export const metadata: Metadata = pageMetadata({
   title: "Privacy Policy | Go Massive",
-  description: "How Go Massive collects, uses, and protects the information you share through go-massive.com.",
+  description:
+    "How Go Massive collects, uses, and protects the information you share through go-massive.com.",
   path: "/privacy",
 });
 
@@ -54,26 +55,60 @@ const sections = [
 
 export default function PrivacyPage() {
   return (
-    <main id="main" className="flex min-h-screen flex-col bg-[#F7F8FA] text-[#020D1F]">
+    <main
+      id="main"
+      className="flex min-h-screen flex-col bg-[#F7F8FA] text-[#020D1F]"
+    >
       <SiteHeader />
-      <ViewTransition name="page-content" share="auto" enter="auto" default="none">
-      <section className="bg-white py-16 sm:py-24">
-        <div className="mx-auto max-w-[880px] px-6">
-          <p className="text-xs font-bold uppercase tracking-[.2em] gm-text-red-safe">Legal</p>
-          <h1 className="mt-6 text-4xl font-semibold tracking-[-.045em] sm:text-5xl">Privacy Policy</h1>
-          <p className="mt-6 max-w-xl text-lg leading-8 text-[#596475]">A plain-language description of what this website collects and what happens to it.</p>
-        </div>
-      </section>
-
-      <section className="flex-1 py-16 sm:py-20"><div className="mx-auto max-w-[880px] px-6">
-        {sections.map((section, index) => (
-          <div key={section.heading} className={index === 0 ? "" : "mt-12 border-t border-[#020D1F]/10 pt-12"}>
-            <h2 className="text-2xl font-semibold tracking-tight">{section.heading}</h2>
-            {section.body.map((paragraph) => <p key={paragraph} className="mt-4 leading-8 text-[#4E5A6B]">{paragraph}</p>)}
+      <ViewTransition
+        name="page-content"
+        share="auto"
+        enter="auto"
+        default="none"
+      >
+        <section className="bg-white py-16 sm:py-24">
+          <div className="mx-auto max-w-[880px] px-6">
+            <p className="text-xs font-bold uppercase tracking-[.2em] gm-text-red-safe">
+              Legal
+            </p>
+            <h1 className="mt-6 text-4xl font-semibold tracking-[-.045em] sm:text-5xl">
+              Privacy Policy
+            </h1>
+            <p className="mt-6 max-w-xl text-lg leading-8 text-[#596475]">
+              A plain-language description of what this website collects and
+              what happens to it.
+            </p>
           </div>
-        ))}
-        <p className="mt-12 border-t border-[#020D1F]/10 pt-12 leading-8 text-[#4E5A6B]">Questions about this policy? <Link href="/contact" className="font-semibold gm-text-red-safe">Contact us</Link>.</p>
-      </div></section>
+        </section>
+
+        <section className="flex-1 py-16 sm:py-20">
+          <div className="mx-auto max-w-[880px] px-6">
+            {sections.map((section, index) => (
+              <div
+                key={section.heading}
+                className={
+                  index === 0 ? "" : "mt-12 border-t border-[#020D1F]/10 pt-12"
+                }
+              >
+                <h2 className="text-2xl font-semibold tracking-tight">
+                  {section.heading}
+                </h2>
+                {section.body.map((paragraph) => (
+                  <p key={paragraph} className="mt-4 leading-8 text-[#4E5A6B]">
+                    {paragraph}
+                  </p>
+                ))}
+              </div>
+            ))}
+            <p className="mt-12 border-t border-[#020D1F]/10 pt-12 leading-8 text-[#4E5A6B]">
+              Questions about this policy?{" "}
+              <Link href="/contact" className="font-semibold gm-text-red-safe">
+                Contact us
+              </Link>
+              .
+            </p>
+          </div>
+        </section>
       </ViewTransition>
       <SiteFooter />
     </main>

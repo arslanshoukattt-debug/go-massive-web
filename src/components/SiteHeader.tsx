@@ -1,72 +1,254 @@
 "use client";
-
 import Image from "next/image";
 import Link from "next/link";
-import { Menu, X } from "lucide-react";
+import { usePathname } from "next/navigation";
+import { ArrowUpRight, ChevronDown, Menu, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
+import { serviceGroups } from "../lib/service-navigation";
 
 const navItems = [
-  ["Services", "/services"],
-  ["Case Studies", "/case-studies"],
-  ["About", "/about"],
+  ["Our work", "/case-studies"],
+  ["About us", "/about"],
 ] as const;
-
-const MOBILE_NAV_ID = "mobile-nav";
-
 export function SiteHeader() {
+  const pathname = usePathname();
   const [open, setOpen] = useState(false);
-  const [hidden, setHidden] = useState(false);
+  const [servicesOpen, setServicesOpen] = useState(false);
   const triggerRef = useRef<HTMLButtonElement>(null);
-
+  const servicesRef = useRef<HTMLButtonElement>(null);
+  const headerRef = useRef<HTMLElement>(null);
+  const close = () => {
+    setOpen(false);
+    setServicesOpen(false);
+  };
   useEffect(() => {
     if (!open) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const desktop = window.matchMedia("(min-width: 851px)");
+    const onDesktop = () => {
+      if (desktop.matches) setOpen(false);
+    };
+    desktop.addEventListener("change", onDesktop);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      desktop.removeEventListener("change", onDesktop);
+    };
+  }, [open]);
+  useEffect(() => {
+    if (!open && !servicesOpen) return;
     function onKeyDown(event: KeyboardEvent) {
       if (event.key === "Escape") {
+        if (servicesOpen) {
+          setServicesOpen(false);
+          servicesRef.current?.focus();
+        } else {
+          setOpen(false);
+          triggerRef.current?.focus();
+        }
+      }
+    }
+    function onPointerDown(event: PointerEvent) {
+      if (
+        event.target instanceof Node &&
+        !headerRef.current?.contains(event.target)
+      ) {
         setOpen(false);
-        triggerRef.current?.focus();
+        setServicesOpen(false);
       }
     }
     document.addEventListener("keydown", onKeyDown);
-    return () => document.removeEventListener("keydown", onKeyDown);
-  }, [open]);
-
-  // Slides away while scrolling down (past the hero's header band), returns
-  // the moment the visitor scrolls up - the CTA is never more than a flick
-  // away. CSS also forces it visible on focus-within and while the menu is open.
-  useEffect(() => {
-    let lastY = window.scrollY;
-    let ticking = false;
-    function onScroll() {
-      if (ticking) return;
-      ticking = true;
-      requestAnimationFrame(() => {
-        const y = window.scrollY;
-        setHidden(y > 160 && y > lastY + 2);
-        lastY = y;
-        ticking = false;
-      });
-    }
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
+    document.addEventListener("pointerdown", onPointerDown);
+    return () => {
+      document.removeEventListener("keydown", onKeyDown);
+      document.removeEventListener("pointerdown", onPointerDown);
+    };
+  }, [open, servicesOpen]);
+  const isActive = (href: string) =>
+    pathname === href || pathname.startsWith(`${href}/`);
   return (
-    <header className={`gm-vt-header gm-header-anim sticky top-0 z-50 border-b border-white/20 bg-[#07090A]/95 text-white backdrop-blur ${hidden && !open ? "gm-header--hidden" : ""}`}>
-      <div className="mx-auto flex h-[76px] max-w-[1600px] items-center justify-between gap-2 px-4 sm:px-8 lg:px-12">
-        <Link href="/" className="inline-flex shrink-0" aria-label="Go Massive home">
-          <Image src="/go-massive-wordmark-transparent.png" alt="Go Massive" width={220} height={34} priority sizes="220px" className="h-6 w-auto brightness-0 invert sm:h-8" />
+    <header
+      className="site-header"
+      ref={headerRef}
+      onBlur={(event) => {
+        if (
+          event.relatedTarget instanceof Node &&
+          !event.currentTarget.contains(event.relatedTarget)
+        )
+          close();
+      }}
+    >
+      <div className="container header-inner">
+        <Link
+          href="/"
+          className="site-logo"
+          aria-label="Go Massive home"
+          onClick={close}
+        >
+          <Image
+            src="/go-massive-wordmark-transparent.png"
+            alt="Go Massive"
+            width={220}
+            height={34}
+            sizes="(max-width: 600px) 148px, 200px"
+            preload
+          />
         </Link>
-        <nav className="hidden items-center gap-8 text-[11px] font-medium uppercase tracking-[.1em] text-white/75 lg:flex" aria-label="Main navigation">
-          {navItems.map(([label, href]) => <Link key={label} href={href} className="transition hover:text-[#E91A24]">{label}</Link>)}
+        <nav className="desktop-nav" aria-label="Main navigation">
+          <div className="services-navigation">
+            <button
+              ref={servicesRef}
+              type="button"
+              className={`services-trigger ${isActive("/services") ? "is-current" : ""}`}
+              aria-expanded={servicesOpen}
+              aria-controls="services-dropdown"
+              onClick={() => setServicesOpen(!servicesOpen)}
+              onKeyDown={(event) => {
+                if (event.key === "ArrowDown") {
+                  event.preventDefault();
+                  setServicesOpen(true);
+                  requestAnimationFrame(() =>
+                    headerRef.current
+                      ?.querySelector<HTMLAnchorElement>("#services-dropdown a")
+                      ?.focus(),
+                  );
+                }
+              }}
+            >
+              Services <ChevronDown size={15} />
+            </button>
+            <div
+              id="services-dropdown"
+              className="services-dropdown"
+              hidden={!servicesOpen}
+            >
+              <div className="mega-heading">
+                <div>
+                  <span className="eyebrow">Go Massive services</span>
+                  <p>What do you need help with?</p>
+                </div>
+                <Link href="/services" onClick={close}>
+                  Explore all services <ArrowUpRight size={17} />
+                </Link>
+              </div>
+              <div className="mega-columns">
+                {serviceGroups.map((group) => (
+                  <div key={group.id}>
+                    <p className="mega-category">{group.name}</p>
+                    <ul>
+                      {group.items.map((item) => (
+                        <li key={item.slug}>
+                          <Link
+                            href={`/services/${item.slug}`}
+                            aria-current={
+                              pathname === `/services/${item.slug}`
+                                ? "page"
+                                : undefined
+                            }
+                            onClick={close}
+                          >
+                            {item.name}
+                            <ArrowUpRight size={13} />
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+              <div className="mega-bottom">
+                <span>Soft fees. Shared upside. One accountable team.</span>
+                <Link href="/growth-audit" onClick={close}>
+                  Find your starting point <ArrowUpRight size={16} />
+                </Link>
+              </div>
+            </div>
+          </div>
+          {navItems.map(([label, href]) => (
+            <Link
+              key={href}
+              href={href}
+              aria-current={isActive(href) ? "page" : undefined}
+              onClick={close}
+            >
+              {label}
+            </Link>
+          ))}
         </nav>
-        <div className="flex items-center gap-2 sm:gap-3">
-          <Link href="/growth-audit" className="inline-flex whitespace-nowrap bg-[#E91A24] px-3 py-2.5 text-[10px] font-semibold uppercase tracking-[.06em] transition hover:bg-white hover:text-[#07090A] sm:px-5 sm:py-3 sm:text-[11px] sm:tracking-[.08em]"><span className="sm:hidden">Audit ↗</span><span className="hidden sm:inline">Start an audit ↗</span></Link>
-          <button ref={triggerRef} type="button" onClick={() => setOpen(!open)} className="grid h-11 w-11 shrink-0 place-items-center border border-white/25 lg:hidden" aria-label={open ? "Close menu" : "Open menu"} aria-expanded={open} aria-controls={MOBILE_NAV_ID}>
-            {open ? <X size={21} /> : <Menu size={21} />}
+        <div className="header-actions">
+          <Link href="/growth-audit" className="header-cta" onClick={close}>
+            <span className="desktop-cta-label">Let’s talk growth</span>
+            <span className="mobile-cta-label">Let’s talk</span>
+            <ArrowUpRight size={16} />
+          </Link>
+          <button
+            ref={triggerRef}
+            className="menu-trigger"
+            type="button"
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+            aria-controls="mobile-nav"
+            onClick={() => {
+              setOpen(!open);
+              setServicesOpen(false);
+            }}
+          >
+            {open ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
       </div>
-      {open && <div id={MOBILE_NAV_ID} className="border-t border-white/15 bg-[#07090A] px-5 py-6 lg:hidden"><nav className="flex flex-col" aria-label="Mobile navigation">{navItems.map(([label, href]) => <Link key={label} href={href} onClick={() => setOpen(false)} className="border-b border-white/15 py-5 text-xl font-semibold uppercase tracking-[-.04em]">{label}</Link>)}<Link href="/growth-audit" onClick={() => setOpen(false)} className="mt-6 bg-[#E91A24] px-5 py-4 text-center text-[11px] font-semibold uppercase tracking-[.1em]">Start a Growth Audit ↗</Link></nav></div>}
+      <nav
+        id="mobile-nav"
+        className="mobile-nav"
+        hidden={!open}
+        aria-label="Mobile navigation"
+      >
+        <Link href="/services" onClick={close}>
+          All services <ArrowUpRight size={20} />
+        </Link>
+        <div className="mobile-service-groups">
+          {serviceGroups.map((group) => (
+            <details key={group.id}>
+              <summary>
+                {group.name}
+                <ChevronDown size={17} />
+              </summary>
+              <ul>
+                {group.items.map((item) => (
+                  <li key={item.slug}>
+                    <Link
+                      href={`/services/${item.slug}`}
+                      aria-current={
+                        pathname === `/services/${item.slug}`
+                          ? "page"
+                          : undefined
+                      }
+                      onClick={close}
+                    >
+                      {item.name}
+                      <ArrowUpRight size={14} />
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </details>
+          ))}
+        </div>
+        {navItems.map(([label, href]) => (
+          <Link
+            key={href}
+            href={href}
+            aria-current={isActive(href) ? "page" : undefined}
+            onClick={close}
+          >
+            {label}
+            <ArrowUpRight size={20} />
+          </Link>
+        ))}
+        <Link href="/contact" onClick={close}>
+          Contact <ArrowUpRight size={20} />
+        </Link>
+      </nav>
     </header>
   );
 }

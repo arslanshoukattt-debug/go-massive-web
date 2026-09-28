@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import "./redesign.css";
+import "./services.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -13,9 +15,9 @@ const geistMono = Geist_Mono({
 });
 
 const SITE_URL = "https://go-massive.com";
-const SITE_TITLE = "Go Massive | The Commercial Operating Layer for eCommerce Brands";
+const SITE_TITLE = "Go Massive | Amazon & Ecommerce Growth Agency";
 const SITE_DESCRIPTION =
-  "Go Massive connects marketplace operations, demand capture, conversion, and expansion into one accountable commercial system for ambitious eCommerce brands.";
+  "Amazon account management, paid advertising and ecommerce services. Go Massive combines soft operating fees with profit share to grow alongside your business.";
 
 export const viewport: Viewport = {
   themeColor: "#ffffff",
@@ -26,10 +28,6 @@ export const metadata: Metadata = {
   title: SITE_TITLE,
   description: SITE_DESCRIPTION,
   alternates: { canonical: SITE_URL },
-  icons: {
-    icon: "/favicon.ico",
-    apple: "/go-massive-logo.png",
-  },
   openGraph: {
     type: "website",
     url: SITE_URL,
@@ -53,8 +51,18 @@ const organizationJsonLd = {
   description: SITE_DESCRIPTION,
   sameAs: ["https://www.linkedin.com/company/go-massive/"],
   address: [
-    { "@type": "PostalAddress", addressLocality: "Austin", addressRegion: "TX", addressCountry: "US" },
-    { "@type": "PostalAddress", addressLocality: "Lahore", addressRegion: "Punjab", addressCountry: "PK" },
+    {
+      "@type": "PostalAddress",
+      addressLocality: "Austin",
+      addressRegion: "TX",
+      addressCountry: "US",
+    },
+    {
+      "@type": "PostalAddress",
+      addressLocality: "Lahore",
+      addressRegion: "Punjab",
+      addressCountry: "PK",
+    },
   ],
 };
 
@@ -69,10 +77,14 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <a href="#main" className="gm-skip-link">Skip to content</a>
+        <a href="#main" className="gm-skip-link">
+          Skip to content
+        </a>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationJsonLd),
+          }}
         />
         {children}
       </body>

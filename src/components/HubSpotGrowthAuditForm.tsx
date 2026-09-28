@@ -1,51 +1,96 @@
 "use client";
-
 import { useEffect, useRef, useState } from "react";
 
-const HUBSPOT_SRC = "https://js-na2.hsforms.net/forms/embed/247020931.js";
-
 export function HubSpotGrowthAuditForm() {
-  const ref = useRef<HTMLDivElement>(null);
-  const [load, setLoad] = useState(false);
-
-  // The HubSpot embed script costs ~1.2s of main-thread blocking time, so it
-  // only loads once the form container approaches the viewport - on mobile
-  // the form sits well below the fold and the page becomes interactive
-  // long before the visitor can see it. 600px of lead distance gives the
-  // script time to build the form before the container scrolls into view.
-  useEffect(() => {
-    const element = ref.current;
-    if (!element) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setLoad(true);
-          observer.disconnect();
-        }
-      },
-      { rootMargin: "600px 0px" }
-    );
-    observer.observe(element);
-    return () => observer.disconnect();
-  }, []);
+  const frame = useRef<HTMLIFrameElement>(null);
+  const [status, setStatus] = useState<"loading" | "ready" | "error">(
+    "loading",
+  );
+  const [height, setHeight] = useState(800);
+  const [attempt, setAttempt] = useState(0);
 
   useEffect(() => {
-    if (!load) return;
-    if (document.querySelector(`script[src="${HUBSPOT_SRC}"]`)) return;
-    const script = document.createElement("script");
-    script.src = HUBSPOT_SRC;
-    script.async = true;
-    document.body.appendChild(script);
-  }, [load]);
+    const timeout = setTimeout(() => setStatus("error"), 20000);
+    function onMessage(event: MessageEvent) {
+      // Only our own wrapper document can resize this frame or mark it ready.
+      if (
+        event.origin !== window.location.origin ||
+        event.source !== frame.current?.contentWindow ||
+        !event.data ||
+        typeof event.data !== "object"
+      )
+        return;
+      if (
+        event.data.type === "gm-form:resize" &&
+        typeof event.data.height === "number" &&
+        Number.isFinite(event.data.height)
+      ) {
+        setHeight(Math.min(4000, Math.max(300, event.data.height)));
+      }
+      if (event.data.type === "gm-form:ready") {
+        clearTimeout(timeout);
+        setStatus("ready");
+      }
+      if (event.data.type === "gm-form:error") {
+        clearTimeout(timeout);
+        setStatus("error");
+      }
+    }
+    window.addEventListener("message", onMessage);
+    return () => {
+      clearTimeout(timeout);
+      window.removeEventListener("message", onMessage);
+    };
+  }, [attempt]);
 
+  function retry() {
+    setStatus("loading");
+    setHeight(800);
+    setAttempt((value) => value + 1);
+  }
   return (
-    <div ref={ref} className="min-h-[700px] rounded-[1.5rem] border border-[#020D1F]/10 bg-[#F6F7F9] p-6 shadow-sm sm:p-9">
-      <div
-        className="hs-form-frame"
-        data-region="na2"
-        data-form-id="00676a9a-1f88-4c56-8e4b-ef58ee7c2517"
-        data-portal-id="247020931"
+    <div className="audit-embed">
+      <div role="status" aria-live="polite">
+        {status === "loading" && (
+          <p className="form-loading">Loading the secure enquiry form…</p>
+        )}
+        {status === "error" && (
+          <div className="form-error">
+            <p>
+              The enquiry form hasn’t loaded. Try again or email{" "}
+              <a className="inline-link" href="mailto:info@go-massive.com">
+                info@go-massive.com
+              </a>{" "}
+              with your brand, website and what you’d like to improve.
+            </p>
+            <button
+              type="button"
+              className="gm-button gm-button--red"
+              onClick={retry}
+            >
+              Try loading again
+            </button>
+          </div>
+        )}
+      </div>
+      <iframe
+        ref={frame}
+        key={attempt}
+        src="/growth-audit-form.html"
+        title="Go Massive growth audit enquiry form"
+        style={{
+          width: "100%",
+          height,
+          border: 0,
+          display: status === "error" ? "none" : "block",
+        }}
       />
+      <noscript>
+        <p>
+          Please enable JavaScript to use the form, or email{" "}
+          <a href="mailto:info@go-massive.com">info@go-massive.com</a>.
+        </p>
+      </noscript>
     </div>
   );
 }
