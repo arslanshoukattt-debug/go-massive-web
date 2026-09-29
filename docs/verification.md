@@ -76,3 +76,9 @@ Refined copy across the homepage, services, about, contact, audit and shared nav
 Validation: all 30 public pages passed 90 browser checks at 320/768/1440px for horizontal overflow, H1 count and completed images. The site verification script checked 2,098 internal references and image metadata endpoints. Service checks passed all 18 pages plus directory. Verified desktop keyboard dropdown, Escape focus restoration, mobile scroll locking, growth-engine selection and hero pause control.
 
 Known remaining issue: the HubSpot enquiry embed did not render in the local browser; a MutationObserver error was recorded during form initialization. The exact source is unconfirmed. Removed diagnostic code and an unsuccessful protocol workaround. The page retains retry and email fallback, and hides the blank iframe on failure. No enquiry was submitted; successful HubSpot submission remains unverified. Preview is local, not deployed to production.
+
+## Homepage refinements — 29 September 2026
+
+Replaced the eight-part engine explorer with three keyboard-accessible stages and a restrained orbit marker. Added a separate blue track-record section, centred brand heading, rotating six-logo showcase with pause and reduced-motion support, and outlined pale-blue credentials panel. Original achievement values and credential labels retained.
+
+Build and ESLint passed. The local site check passed all 30 public pages and 2,097 internal links/anchors. Growth-stage selection and keyboard navigation, logo changes and pause control verified. Responsive checks covered 320–1440px with no horizontal overflow. Final mobile credentials correction visually verified at 390px: full column widths and readable two-line heading. These refinements remain local and have not been deployed.

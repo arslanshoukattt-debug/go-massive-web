@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
-import { ArrowUpRight, ArrowDownRight, Pause, Play } from "lucide-react";
+
+import { ArrowUpRight, ArrowDownRight } from "lucide-react";
 
 type GrowthEvidence = {
   slug: string;
@@ -14,9 +14,9 @@ export function HeroGrowthDashboard({
 }: {
   evidence: GrowthEvidence;
 }) {
-  const [paused, setPaused] = useState(false);
+
   return (
-    <div className={`growth-art ${paused ? "growth-art--paused" : ""}`}>
+    <div className="growth-art">
       <div className="growth-art-heading">
         <span>GO MASSIVE / CLIENT RESULTS</span>
       </div>
@@ -129,17 +129,7 @@ export function HeroGrowthDashboard({
             <br />
             <strong>OUR SHARED UPSIDE.</strong>
           </span>
-          <button
-            type="button"
-            onClick={() => setPaused(!paused)}
-            aria-label={
-              paused
-                ? "Play growth visual animation"
-                : "Pause growth visual animation"
-            }
-          >
-            {paused ? <Play size={14} /> : <Pause size={14} />}
-          </button>
+
         </div>
       </div>
       <div className="growth-art-caption">

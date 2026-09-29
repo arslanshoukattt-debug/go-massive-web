@@ -1,3 +1,4 @@
+import { Reveal } from "./Reveal";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, Check, Mail } from "lucide-react";
@@ -16,7 +17,7 @@ export function SectionHeading({
   children?: ReactNode;
 }) {
   return (
-    <div className="section-heading">
+    <Reveal className="section-heading">
       <div>
         <p className="eyebrow">
           {index && <span>{index} / </span>}
@@ -25,7 +26,7 @@ export function SectionHeading({
         <h2>{title}</h2>
       </div>
       {children && <div className="section-intro">{children}</div>}
-    </div>
+    </Reveal>
   );
 }
 

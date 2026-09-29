@@ -1,6 +1,8 @@
 import Image from "next/image";
+import { Reveal } from "../components/Reveal";
+import { BrandShowcase } from "../components/BrandShowcase";
 import Link from "next/link";
-import { ArrowRight, ArrowUpRight, Check } from "lucide-react";
+import { TrendingUp, MousePointerClick, PackageX, Users, TrendingDown, ChartNoAxesCombined, ArrowRight, ArrowUpRight, Check } from "lucide-react";
 import { SiteHeader } from "../components/SiteHeader";
 import { SiteFooter } from "../components/SiteFooter";
 import {
@@ -102,9 +104,9 @@ export default function Home() {
               <div className="hero-note">
                 <span>7+</span>
                 <p>
-                  Years in ecommerce.
+                  Years of ecommerce experience.
                   <br />
-                  Managing brands and accounts.
+                  Strategy, advertising and hands-on account management.
                 </p>
               </div>
             </div>
@@ -115,10 +117,8 @@ export default function Home() {
               }}
             />
           </div>
-          <div className="container">
-            <StatsBand />
-          </div>
         </section>
+        <section className="home-track-record" aria-labelledby="track-record-title"><div className="container"><div className="track-record-heading"><h2 id="track-record-title">EXPERIENCE THAT EARNS YOUR <span className="trust-accent">TRUST.</span></h2><p>Our track record across brands, accounts and long-term partnerships.</p></div><StatsBand /></div></section>
         <section className="brand-section">
           <div className="container">
             <div className="brand-heading">
@@ -127,35 +127,14 @@ export default function Home() {
                 <br />
                 <span>PROVEN PARTNERSHIP.</span>
               </h2>
-              <p>Some of the brands we’ve worked with.</p>
             </div>
-            <div className="brand-wall">
-              {brands.map(([name, file]) => (
-                <div key={file}>
-                  <Image
-                    src={`/logos/${file}.png`}
-                    alt={name}
-                    width={150}
-                    height={64}
-                    sizes="150px"
-                  />
-                </div>
-              ))}
-            </div>
-            <div className="credentials">
-              <span>RECOGNITIONS & CERTIFICATIONS</span>
-              <p>
-                Amazon Ads <small>Verified Partner</small>
-              </p>
-              <p>
-                Amazon SPN <small>Verified Partner</small>
-              </p>
-              <p>
-                Amazon SAS <small>Core</small>
-              </p>
-              <p>
-                Google Ads <small>Partner</small>
-              </p>
+            <BrandShowcase brands={brands} />
+            <div className="credentials credential-panel">
+              <div className="credential-heading"><span>PLATFORM EXPERTISE</span><h3>Recognitions &amp;<br />certifications.</h3></div>
+              <div className="credential-item"><Image src="/platforms/amazonads.png" alt="Amazon Ads" width={110} height={58} /><p>Amazon Ads<small>Verified Partner</small></p></div>
+              <div className="credential-item"><Image src="/platforms/amazon.svg" alt="Amazon" width={110} height={46} /><p>Service Provider Network<small>Verified Partner</small></p></div>
+              <div className="credential-item"><Image src="/platforms/amazon.svg" alt="Amazon" width={110} height={46} /><p>Amazon SAS<small>Core</small></p></div>
+              <div className="credential-item"><Image src="/platforms/googleads.svg" alt="Google Ads" width={50} height={46} /><p>Google Ads<small>Partner</small></p></div>
             </div>
           </div>
         </section>
@@ -177,7 +156,7 @@ export default function Home() {
                 go wrong, adding budget only makes the cracks bigger.
               </p>
             </SectionHeading>
-            <div className="problem-grid">
+            <Reveal className="problem-grid">
               {[
                 [
                   "Rising spend. Thinning returns.",
@@ -205,12 +184,12 @@ export default function Home() {
                 ],
               ].map(([title, copy], i) => (
                 <article key={title}>
-                  <span>0{i + 1}</span>
+                  <div className="problem-card-top"><span>0{i + 1}</span>{(() => { const Icon = [TrendingUp, MousePointerClick, PackageX, Users, TrendingDown, ChartNoAxesCombined][i]; return <Icon size={28} strokeWidth={1.5} aria-hidden="true" />; })()}</div>
                   <h3>{title}</h3>
                   <p>{copy}</p>
                 </article>
               ))}
-            </div>
+            </Reveal>
           </div>
         </section>
         <section id="growth-engine" className="section section-navy">
@@ -220,19 +199,15 @@ export default function Home() {
               label="The Growth Engine"
               title={
                 <>
-                  EIGHT LEVERS.
+                  BUILT TO GROW.
                   <br />
-                  <span>ONE PROFITABLE DIRECTION.</span>
+                  <span>ALIGNED TO <em className="profit-emphasis">PROFIT.</em></span>
                 </>
               }
             >
               <p>
-                More ad spend is not a growth strategy. Research, operations,
-                creative and acquisition have to work together — with profit as
-                the point.
-              </p>
-              <p className="small-hint">
-                Select an area to see the work involved.
+                Find the opportunity. Build demand. Improve the return.
+                We bring the work together, with a stake in how your business grows.
               </p>
             </SectionHeading>
             <GrowthSystem />
@@ -309,7 +284,7 @@ export default function Home() {
                 you need us. Connect the rest when it counts.
               </p>
             </SectionHeading>
-            <div className="service-list">
+            <Reveal className="service-list">
               {services.map((service) => (
                 <Link
                   href={service.href}
@@ -325,16 +300,11 @@ export default function Home() {
                   <ArrowUpRight className="service-arrow" size={27} />
                 </Link>
               ))}
-            </div>
+            </Reveal>
             <div className="channel-line">
               <span>ACROSS YOUR COMMERCIAL WORLD</span>
               <div>
-                <b>amazon</b>
-                <b>Walmart</b>
-                <b>TikTok Shop</b>
-                <b>eBay</b>
-                <b>Shopify</b>
-                <b>Temu</b>
+                {[["Amazon", "amazon"], ["Walmart", "walmart"], ["TikTok Shop", "tiktok"], ["eBay", "ebay"], ["Shopify", "shopify"], ["Temu", "temu"]].map(([name, file]) => <div className={`marketplace-mark marketplace-mark--${file}`} key={file}><Image src={`/platforms/${file}.svg`} alt={name} width={180} height={80} /></div>)}
               </div>
             </div>
           </div>
