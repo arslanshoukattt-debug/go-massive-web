@@ -131,7 +131,7 @@ export default function Home() {
             <BrandShowcase brands={brands} />
             <div className="credentials credential-panel">
               <div className="credential-heading"><span>PLATFORM EXPERTISE</span><h3>Recognitions &amp;<br />certifications.</h3></div>
-              <div className="credential-item"><Image src="/platforms/amazonads.png" alt="Amazon Ads" width={110} height={58} /><p>Amazon Ads<small>Verified Partner</small></p></div>
+              <div className="credential-item"><Image src="/platforms/amazonads-transparent.png" alt="Amazon Ads" width={130} height={33} /><p>Amazon Ads<small>Verified Partner</small></p></div>
               <div className="credential-item"><Image src="/platforms/amazon.svg" alt="Amazon" width={110} height={46} /><p>Service Provider Network<small>Verified Partner</small></p></div>
               <div className="credential-item"><Image src="/platforms/amazon.svg" alt="Amazon" width={110} height={46} /><p>Amazon SAS<small>Core</small></p></div>
               <div className="credential-item"><Image src="/platforms/googleads.svg" alt="Google Ads" width={50} height={46} /><p>Google Ads<small>Partner</small></p></div>

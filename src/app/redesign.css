@@ -3593,7 +3593,7 @@ html {
 .trust-accent { color:#ff5262; }
 .home-track-record .stats-band > div { text-align:center; padding-inline:20px; }
 .client-showcase { margin-bottom:48px; }
-.credential-item img[src*="amazonads"] { filter:grayscale(1) invert(1) contrast(12); mix-blend-mode:multiply; width:130px; max-width:100%; height:68px; object-fit:cover; margin-top:-13px; margin-bottom:3px; }
+.credential-item img[src*="amazonads"] { filter:brightness(0); width:130px; max-width:100%; height:52px; object-fit:contain; object-position:left center; }
 .channel-line .marketplace-mark { height:84px; position:relative; overflow:hidden; }
 .marketplace-mark img { position:absolute; width:64px; height:64px; max-width:none; filter:grayscale(1) brightness(0); }
 .marketplace-mark--walmart img { width:190px; height:190px; }

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const stages = [
   { name: "Find the headroom", outcome: "Know where to grow.", copy: "We start with your margins, market and account. Then we put effort where it can make a commercial difference.", work: ["Research", "Strategy", "Operations"], note: "A clear plan. A stronger foundation." },
@@ -9,7 +9,17 @@ const stages = [
 ];
 
 export function GrowthSystem() {
-  const [active, setActive] = useState(0);
+  const [{ active, delay, revision }, setSelection] = useState({ active: 0, delay: 3000, revision: 0 });
+  useEffect(() => {
+    const timer = window.setTimeout(() => {
+      setSelection(current => ({ active: (current.active + 1) % stages.length, delay: 3000, revision: current.revision + 1 }));
+    }, delay);
+    return () => window.clearTimeout(timer);
+  }, [delay, revision]);
+
+  function selectStage(index: number) {
+    setSelection(current => ({ active: index, delay: 5000, revision: current.revision + 1 }));
+  }
   const stage = stages[active];
   return (
     <div className="gm-engine">
@@ -18,13 +28,13 @@ export function GrowthSystem() {
           <button key={item.name} id={`growth-stage-${index}`} type="button" role="tab"
             aria-selected={active === index} aria-controls="growth-stage-panel"
             tabIndex={active === index ? 0 : -1}
-            onClick={() => setActive(index)}
+            onClick={() => selectStage(index)}
             onKeyDown={(event) => {
               const keys = ["ArrowRight", "ArrowLeft", "ArrowDown", "ArrowUp", "Home", "End"];
               if (!keys.includes(event.key)) return;
               event.preventDefault();
               const next = event.key === "Home" ? 0 : event.key === "End" ? 2 : (index + (event.key === "ArrowLeft" || event.key === "ArrowUp" ? 2 : 1)) % 3;
-              setActive(next);
+              selectStage(next);
               document.getElementById(`growth-stage-${next}`)?.focus();
             }}>
             <span className="gm-engine-step">0{index + 1}</span>
