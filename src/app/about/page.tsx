@@ -31,34 +31,30 @@ export default function AboutPage() {
               <span>OUR RESPONSIBILITY.</span>
             </>
           }
-          description="We manage Amazon accounts, advertising and ecommerce stores for brands and manufacturers. Our fees combine day-to-day operating support with a share of profitable growth."
+          description="Go Massive is an ecommerce growth agency for brands and manufacturers. We bring marketplace operations, advertising and creative together, with soft operating fees and profit share that ties our success to yours."
         />
         <section className="section">
           <div className="container service-detail-grid">
-            <div className="about-image">
+            <div className="about-work-visual"><div className="about-work-photo">
               <Image
-                src="/images/commerce-editorial.webp"
-                alt="Conceptual ecommerce products arranged as a connected collection"
+                src="/images/commerce-operations.webp"
+                alt="Illustration of hands-on ecommerce planning with product packaging, creative materials and a laptop"
                 fill
                 sizes="(max-width: 850px) 100vw, 45vw"
               />
-            </div>
+            </div><div className="about-work-caption"><span>ONE CONNECTED TEAM</span><strong>Strategy. Creative. Operations.</strong><p>Working towards the same commercial goals.</p></div></div>
             <div className="service-description">
-              <p className="eyebrow">Our point of view</p>
+              <p className="eyebrow">Our vision</p>
               <h2 className="display-heading">
-                ONE TEAM.
+                GROWING BRANDS.
                 <br />
-                <span>FEWER HANDOVERS.</span>
+                <span>SHARING SUCCESS.</span>
               </h2>
               <p>
-                An ads agency, a listing freelancer, another dashboard. More
-                suppliers can mean more gaps — especially when nobody owns the
-                whole outcome.
+                Our vision is a better agency relationship: one where the brand’s profitable growth determines the agency’s success. We want ambitious businesses to have a team that treats their margins, customers and long-term potential as seriously as they do.
               </p>
               <p className="large-copy">
-                We coordinate account operations, advertising and creative so
-                decisions about one part of the business account for the others.
-                You know who owns the work and what happens next.
+                We put that belief into practice through soft operating fees, an agreed profit share and one team across strategy and delivery. We build the plan around your business, take responsibility for the work and make the results clear.
               </p>
               <Link href="/services" className="quiet-link">
                 Explore our services <ArrowUpRight size={18} />
@@ -72,7 +68,7 @@ export default function AboutPage() {
         <section className="section section-navy">
           <div className="container">
             <SectionHeading
-              label="What we stand for"
+              label="Our mission in practice"
               title={
                 <>
                   WHAT YOU CAN
@@ -85,18 +81,18 @@ export default function AboutPage() {
               {[
                 [
                   "01",
-                  "Start with the numbers",
-                  "Your goals, margins, market position and constraints determine the plan. We review those before recommending work.",
+                  "Build profitable growth",
+                  "Start with product margins, customer demand and operational capacity. Prioritise work that can improve the business, not simply increase activity.",
                 ],
                 [
                   "02",
-                  "Hands-on accountability",
-                  "Strategy, execution and reporting stay connected, with a clear owner behind every meaningful decision.",
+                  "Share the incentive",
+                  "Keep operating fees modest and agree how profitable growth is measured. Our profit share gives us a reason to care about the same outcome you do.",
                 ],
                 [
                   "03",
-                  "Progress you can understand",
-                  "We explain what changed, why it matters and what we do next — including the things that did not work.",
+                  "Own the work",
+                  "Connect strategy with daily execution. Explain what changed, what worked and what needs attention, with clear responsibility for the next step.",
                 ],
               ].map(([n, title, copy]) => (
                 <article key={n}>

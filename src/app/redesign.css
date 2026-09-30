@@ -3608,3 +3608,13 @@ html {
 .marketplace-mark img { max-width:100%; }
 }
 
+
+/* About: commerce work and an explicit company vision. */
+.about-work-visual { min-width:0; background:#020d1f; color:white; }
+.about-work-photo { position:relative; aspect-ratio:1.1; overflow:hidden; }
+.about-work-photo img { object-fit:cover; object-position:58% center; }
+.about-work-caption { padding:24px 28px; border-top:3px solid #ed1024; }
+.about-work-caption > span { display:block; color:#ff7b88; font-size:10px; letter-spacing:.1em; margin-bottom:10px; }
+.about-work-caption strong { font-size:clamp(18px,2vw,24px); font-weight:650; letter-spacing:-.025em; }
+.about-work-caption p { margin:8px 0 0; color:#c5ccd6; font-size:13px; line-height:1.5; }
+@media(max-width:600px) { .about-work-photo { aspect-ratio:1.3; } .about-work-caption { padding:20px; } }
