@@ -1,29 +1,11 @@
-"use client";
+import { ScrollReveal } from "./ScrollReveal";
+import type { ReactNode } from "react";
 
-import { useEffect, useRef, useState, type ReactNode } from "react";
-
-type RevealProps = {
+// Preserve the existing millisecond-based API across the site's sections.
+export function Reveal({ children, className, delay = 0 }: {
   children: ReactNode;
   className?: string;
   delay?: number;
-};
-
-export function Reveal({ children, className = "", delay = 0 }: RevealProps) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const element = ref.current;
-    if (!element) return;
-    const observer = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) {
-        setVisible(true);
-        observer.unobserve(element);
-      }
-    }, { threshold: 0.12 });
-    observer.observe(element);
-    return () => observer.disconnect();
-  }, []);
-
-  return <div ref={ref} style={{ animationDelay: `${delay}ms` }} className={`gm-reveal ${visible ? "gm-reveal--visible" : ""} ${className}`}>{children}</div>;
+}) {
+  return <ScrollReveal className={className} delay={delay / 1000}>{children}</ScrollReveal>;
 }
