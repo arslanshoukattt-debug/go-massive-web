@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
+import { ReviewBadges } from "./ReviewBadges";
 export function SiteFooter() {
   return (
     <footer className="site-footer">
@@ -9,10 +10,10 @@ export function SiteFooter() {
           <div className="footer-brand">
             <Link href="/" aria-label="Go Massive home">
               <Image
-                src="/go-massive-wordmark-transparent.png"
+                src="/brand/go-massive.webp"
                 alt="Go Massive"
                 width={240}
-                height={38}
+                height={34}
                 sizes="240px"
               />
             </Link>
@@ -81,6 +82,7 @@ export function SiteFooter() {
             </a>
           </div>
         </div>
+        <ReviewBadges footer />
         <div className="footer-bottom">
           <span>
             © {new Date().getFullYear()} Go Massive. All rights reserved.

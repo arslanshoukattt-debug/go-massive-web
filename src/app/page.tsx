@@ -1,4 +1,6 @@
 import Image from "next/image";
+import { StatCounter } from "../components/StatCounter";
+import { ReviewBadges } from "../components/ReviewBadges";
 import { Reveal } from "../components/Reveal";
 import { BrandShowcase } from "../components/BrandShowcase";
 import Link from "next/link";
@@ -101,8 +103,9 @@ export default function Home() {
                   Explore our work <ArrowRight size={17} />
                 </Link>
               </div>
+              <ReviewBadges />
               <div className="hero-note">
-                <span>7+</span>
+                <StatCounter value="7+" />
                 <p>
                   Years of ecommerce experience.
                   <br />

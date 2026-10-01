@@ -3,6 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import "./redesign.css";
 import "./services.css";
+import "./typography.css";
+import "./commerce.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -47,7 +49,7 @@ const organizationJsonLd = {
   "@type": "Organization",
   name: "Go Massive",
   url: SITE_URL,
-  logo: `${SITE_URL}/go-massive-logo.png`,
+  logo: `${SITE_URL}/brand/go-massive.webp`,
   description: SITE_DESCRIPTION,
   sameAs: ["https://www.linkedin.com/company/go-massive/"],
   address: [

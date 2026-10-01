@@ -86,10 +86,10 @@ export function SiteHeader() {
           onClick={close}
         >
           <Image
-            src="/go-massive-wordmark-transparent.png"
+            src="/brand/go-massive.webp"
             alt="Go Massive"
             width={220}
-            height={34}
+            height={31}
             sizes="(max-width: 600px) 148px, 200px"
             preload
           />

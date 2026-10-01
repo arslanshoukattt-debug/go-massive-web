@@ -1,0 +1,31 @@
+.review-proof { margin-top:24px; }
+.review-badges { display:flex; flex-wrap:wrap; gap:14px; }
+.review-badge { display:grid; gap:7px; flex:1 1 155px; padding:16px; border:1px solid #d7dce3; background:#fff; color:#020d1f; transition:border-color .2s; }
+.review-badge:hover { border-color:#ed1024; }
+.review-brand { display:flex; align-items:center; gap:8px; font-size:18px; font-weight:650; }
+.review-brand img { width:24px; height:24px; }
+.review-brand img[alt="Clutch"] { width:92px; height:32px; object-fit:cover; }
+.review-brand { min-height:32px; }
+.review-stars { position:relative; width:max-content; line-height:1; font-size:20px; letter-spacing:2px; }
+.review-stars > span:first-child { color:#d7dce3; }
+.review-stars > span:last-child { position:absolute; top:0; left:0; overflow:hidden; white-space:nowrap; color:#c81b29; }
+.review-score { font-size:var(--text-small); }
+.review-date { font-size:var(--text-label); color:#596477; line-height:1.5; margin-top:10px; }
+.review-proof--footer { padding-top:30px; border-top:1px solid #ffffff25; margin-top:30px; }
+.review-proof--footer .review-badges { max-width:550px; }
+.review-proof--footer .review-date { color:#bdc6d3; }
+.private-page { min-height:100svh; padding:60px 24px; display:grid; place-items:center; background:#020d1f; color:white; }
+.private-card { width:min(100%,650px); border-top:4px solid #ed1024; padding:40px; background:#101d30; }
+.private-card > img { max-width:100%; height:auto; margin-bottom:48px; }
+.private-card h1 { font-size:clamp(2rem,5vw,3.25rem); line-height:1.1; letter-spacing:-.04em; margin:14px 0 24px; }
+.private-card p { font-size:var(--text-body); line-height:1.65; color:#c5ceda; }
+.private-card .eyebrow { color:#ff5262; font-size:var(--text-label); }
+.private-card .gm-button { margin-top:28px; }
+.private-card button:disabled { opacity:.5; cursor:not-allowed; }
+.private-card .private-note { margin-top:16px; font-size:var(--text-small); }
+.review-request { border-top:1px solid #ffffff30; margin-top:36px; padding-top:28px; }
+.review-request h2 { font-size:var(--text-card-title); margin-bottom:12px; }
+.review-request-links { display:grid; gap:12px; margin-top:24px; }
+.review-request-links a { padding:14px 18px; border:1px solid #ffffff40; font-size:var(--text-small); }
+.review-request-links a:hover { border-color:#ed1024; }
+@media(max-width:600px) { .private-card { padding:28px 22px; } .review-badge { padding:12px; } }

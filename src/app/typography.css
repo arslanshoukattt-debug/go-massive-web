@@ -1,0 +1,82 @@
+/* Shared type roles. All page families use the same responsive values. */
+:root {
+  --text-label: clamp(.75rem, .7rem + .15vw, .8125rem);
+  --text-small: clamp(.875rem, .83rem + .15vw, .9375rem);
+  --text-body: clamp(1rem, .94rem + .2vw, 1.125rem);
+  --text-lead: clamp(1.125rem, 1.05rem + .25vw, 1.25rem);
+  --text-step: clamp(1.5rem, 1.3rem + .6vw, 1.75rem);
+  --text-stat: clamp(2.125rem, 1.65rem + 1.8vw, 3.25rem);
+  --text-card-title: clamp(1.25rem, 1.1rem + .5vw, 1.5rem);
+  --leading-body: 1.65;
+}
+body { font-size:var(--text-body); }
+.eyebrow, .service-page .eyebrow, .page-intro .eyebrow, .case-category, .sp-model-note,
+.sp-breadcrumb, .sp-section-nav a, .art-chrome, .location-card > span,
+.directory-map-top, .about-work-caption > span {
+  font-size:var(--text-label); line-height:1.5;
+}
+.hero-description, .page-intro p, .sp-lead, .case-detail-intro .lead {
+  font-size:var(--text-lead); line-height:var(--leading-body);
+}
+.section-intro, .section-intro p, .problem-card p, .sp-scope-grid article p,
+.sp-process article p, .sp-proof-summary, .directory-cards > a > p,
+.service-description > p, .principle-grid article p, .case-narrative p,
+.case-narrative li, .faq-list details p, .sp-related-grid > a > p,
+.operating-principles p, .service-row p, .case-summary {
+  font-size:var(--text-body); line-height:var(--leading-body);
+}
+.editorial-note, .sp-proof-context, .sp-scope-note, .sp-benefits li,
+.case-result > span, .case-metrics span, .sp-proof-metrics span,
+.case-facts dd, .case-facts dt, .result-count, .case-filters button,
+.sp-related-grid .quiet-link, .directory-cards > a > span,
+.hero-note p, .about-work-caption p, .directory-map small,
+.site-footer p, .site-footer li, .footer-bottom, .credential-item small {
+  font-size:var(--text-small); line-height:var(--leading-body);
+}
+.stats-band > div > span, .home-track-record .stats-band > div > span,
+.sp-trust .stats-band > div > span { font-size:var(--text-small); line-height:1.5; }
+.stats-band strong, .home-track-record .stats-band strong, .sp-trust .stats-band strong,
+.case-result strong, .case-metrics strong, .sp-proof-metrics strong {
+  font-size:var(--text-stat); line-height:1.08; font-weight:700; font-variant-numeric:tabular-nums;
+}
+.problem-number, .service-row .row-index, .operating-principles article > span,
+.sp-card-top > span, .sp-process article > div > span, .sp-audiences > div > span,
+.principle-grid article > span { font-size:var(--text-step); line-height:1.2; }
+.sp-scope-grid h3, .sp-process h3, .principle-grid h3,
+.operating-principles h3, .directory-cards h3 { font-size:var(--text-card-title); line-height:1.3; }
+.service-page .gm-button, .service-page .quiet-link, .gm-button, .quiet-link { font-size:var(--text-small); }
+.stats-band strong .stat-counter, .stats-band strong .stat-counter span {
+  font:inherit; color:inherit; letter-spacing:inherit; margin:0;
+}
+.stat-counter { display:inline-grid; font-variant-numeric:tabular-nums; }
+.stats-band strong .stat-counter { display:inline-grid; }
+.stat-counter > span { grid-area:1 / 1; }
+.stat-counter .stat-counter-size { visibility:hidden; }
+.stat-counter .stat-counter-value { font:inherit; color:inherit; }
+.service-diagram { width:100%; background:#f5f6f8; border:1px solid #d7dce3; }
+.service-diagram img { display:block; width:100%; height:auto; }
+.service-diagram--compact { max-height:300px; overflow:hidden; }
+.sp-related-image { height:auto; min-height:0; }
+.sp-proof-art--ledger { background:#111f31; border:1px solid #ffffff30; border-top:4px solid #ed1024; }
+.sp-proof-art--ledger::after { display:none; }
+.sp-proof-art--ledger .proof-scope { margin-top:30px; padding-top:22px; border-top:1px solid #ffffff30; color:#bdc6d3; font-size:var(--text-small); }
+.sp-trust > .container { display:block; }
+.sp-trust > .container > p { font-size:var(--text-label); margin-bottom:22px; }
+.sp-trust .stats-band { flex:1; min-width:0; }
+.site-logo img, .footer-brand img { filter:none; height:auto; }
+.site-footer .eyebrow, .sp-proof-art > div > span, .credential-heading > span,
+.gm-engine-centre > span, .gm-engine-alignment > span, .channel-line > span,
+.sp-related-image > span { font-size:var(--text-label); line-height:1.5; }
+.footer-locations span, .more-results p, .more-results span, .service-tags,
+.growth-art-caption span { font-size:var(--text-small); line-height:1.5; }
+.growth-art-heading span, .growth-platform span, .growth-period,
+.growth-dashboard-total > span, .growth-baseline, .growth-chart-axis span,
+.growth-dashboard-foot span, .growth-float > div > span, .growth-float small,
+.growth-scene-bottom > span { font-size:var(--text-label); }
+.model-principles article > span { font-size:var(--text-step); }
+@media(max-width:850px) {
+  .sp-trust > .container { display:block; }
+  .sp-trust .stats-band { margin-top:24px; }
+  .case-info { grid-template-columns:1fr; gap:16px; }
+  .case-result { padding:0; border:0; }
+}

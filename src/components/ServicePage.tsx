@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight, Check, Plus } from "lucide-react";
 import { SiteHeader } from "./SiteHeader";
@@ -182,21 +181,12 @@ export function ServicePage({ service }: { service: ServiceContent }) {
             className="section section-navy sp-results"
           >
             <div className="container sp-proof-grid">
-              <div className="sp-proof-art">
-                <Image
-                  src={
-                    proof.category === "Consumer goods"
-                      ? "/images/commerce-editorial.webp"
-                      : "/images/outdoor-editorial.webp"
-                  }
-                  alt=""
-                  fill
-                  sizes="(max-width:850px) 90vw, 45vw"
-                />
+              <div className="sp-proof-art sp-proof-art--ledger">
                 <div>
-                  <span>THE WORK IS THE PROOF.</span>
+                  <span>{proof.category} / {proof.marketplace}</span>
                   <strong>{proof.metrics[0].value}</strong>
                   <p>{proof.metrics[0].label}</p>
+                  <p className="proof-scope">{proof.scope}</p>
                 </div>
               </div>
               <div>

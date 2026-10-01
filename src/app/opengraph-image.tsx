@@ -1,9 +1,12 @@
 import { ImageResponse } from "next/og";
+import { readFile } from "node:fs/promises";
+import path from "node:path";
 
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-export default function OpengraphImage() {
+export default async function OpengraphImage() {
+  const logo = await readFile(path.join(process.cwd(), "public/brand/go-massive-source.png"));
   return new ImageResponse(
     <div
       style={{
@@ -17,20 +20,9 @@ export default function OpengraphImage() {
         fontFamily: "sans-serif",
       }}
     >
-      <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
-        <div style={{ width: 16, height: 16, background: "#E91A24" }} />
-        <div
-          style={{
-            fontSize: 28,
-            fontWeight: 700,
-            letterSpacing: 6,
-            color: "#FFFFFF",
-            textTransform: "uppercase",
-          }}
-        >
-          Go Massive
-        </div>
-      </div>
+      {/* ImageResponse requires a native image element. */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src={`data:image/png;base64,${logo.toString("base64")}`} alt="Go Massive" width={430} height={104} style={{ objectFit: "contain", marginLeft: -18 }} />
       <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
         <div
           style={{

@@ -1,4 +1,5 @@
 import { Reveal } from "./Reveal";
+import { StatCounter } from "./StatCounter";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, Check, Mail } from "lucide-react";
@@ -64,7 +65,7 @@ export function StatsBand() {
     <div className="stats-band">
       {agencyStats.map((stat) => (
         <div key={stat.label}>
-          <strong>{stat.value}</strong>
+          <strong><StatCounter value={stat.value} /></strong>
           <span>{stat.label}</span>
         </div>
       ))}
