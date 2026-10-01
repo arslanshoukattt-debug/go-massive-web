@@ -74,6 +74,13 @@ body { font-size:var(--text-body); }
 .growth-dashboard-foot span, .growth-float > div > span, .growth-float small,
 .growth-scene-bottom > span { font-size:var(--text-label); }
 .model-principles article > span { font-size:var(--text-step); }
+@media(min-width:851px) and (max-width:1050px) {
+  .header-inner { gap:16px; }
+  .site-logo img { width:160px; }
+  .desktop-nav { gap:18px; }
+  .desktop-nav > a, .header-actions > a { white-space:nowrap; }
+  .header-actions .gm-button { padding-inline:18px; }
+}
 @media(max-width:850px) {
   .sp-trust > .container { display:block; }
   .sp-trust .stats-band { margin-top:24px; }

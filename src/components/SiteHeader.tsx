@@ -9,6 +9,7 @@ import { serviceGroups } from "../lib/service-navigation";
 const navItems = [
   ["Our work", "/case-studies"],
   ["About us", "/about"],
+  ["Insights", "/blog"],
 ] as const;
 export function SiteHeader() {
   const pathname = usePathname();

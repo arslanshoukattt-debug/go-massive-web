@@ -51,6 +51,7 @@ export function SiteFooter() {
               {[
                 ["Our work", "/case-studies"],
                 ["About us", "/about"],
+                ["Insights", "/blog"],
                 ["Growth audit", "/growth-audit"],
                 ["Contact", "/contact"],
               ].map(([label, href]) => (

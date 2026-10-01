@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-const SITE_URL = "https://go-massive.com";
+import { SITE_URL } from "./site";
 const SITE_NAME = "Go Massive";
 
 type PageMetadataInput = {

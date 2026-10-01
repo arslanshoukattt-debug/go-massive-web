@@ -32,7 +32,46 @@ References:
 - https://supabase.com/pricing
 - https://help.clutch.co/en/knowledge/add-clutch-widget-to-site
 
-## Assets and typography
+## Expanded dashboard scope: business overview and CRM
+
+The dashboard is a business operations workspace, not a checkout console. Recommended navigation: Overview, Traffic, Leads, Content & SEO, Site health, Payments, Reviews, Settings.
+
+| Area | What the owner sees | Source of truth |
+| --- | --- | --- |
+| Overview | Visitors, confirmed enquiries, qualified leads, conversion rate, open issues; date comparison and last-sync time | Aggregated sources below |
+| Traffic | Users, sessions, landing pages, acquisition channels, campaign source, device and country | GA4 Data API; distinguish users from sessions |
+| Leads / CRM | New → contacted → qualified → proposal → won/lost; owner, notes, next action and response time | HubSpot contact/form records synced with stable IDs |
+| Content & SEO | Blog drafts, approval/publish workflow, organic clicks/impressions/CTR/position, top queries/pages | Content store plus Search Console API |
+| Site health | 404/500 responses, failed forms, JS errors, uptime incidents, broken links, Core Web Vitals | Sentry or equivalent, uptime probes, scheduled crawl, CrUX/Search Console and lab tests |
+| Payments / Reviews | Paid/refunded invoices, reconciliation, review invitations and delivery status | Stripe verified events and email provider |
+
+Use Next.js on Vercel with Supabase Auth/Postgres as the protected aggregation layer. Keep HubSpot as the CRM record system initially instead of rebuilding its contact management. GA4's Data API supports custom reporting; Search Console's API provides search-performance and inspection data. Do not assume all reports in their UIs are available through their APIs. For metrics unavailable through an API, show a clearly labelled link to the original report.
+
+### Measurement rules
+
+- Count a lead only after a confirmed HubSpot submission or server acknowledgement, never from a button click. Separate form starts, errors and submissions. Deduplicate by submission ID.
+- Keep attribution fields (landing page, campaign, source/medium) separate from contact details. Do not send names, emails or free-text enquiries to analytics.
+- Label each metric with its source, time zone, definition, date range and last successful sync. Show unavailable/stale data as such, not zero. Show trend gaps when measurement changes.
+- Record qualified and won lead stages so organic content can be evaluated on business outcomes, not pageviews alone.
+- Add consent-aware analytics instrumentation after confirming the property and consent setup. Existing HubSpot embeds do not establish a verified site-wide analytics setup.
+- Review errors with URL, device, timestamp and severity; redact personal data and avoid session replay by default.
+
+### Build sequence and required access
+
+Owner confirmed on 2 October 2026 that both GA4 and Search Console are already set up. Reuse those properties; do not create duplicates. Their IDs and authorised integration access are still needed in this workspace.
+
+1. Connect existing GA4 and Search Console properties (or establish them), HubSpot read scopes, error monitoring and uptime checks. Validate a test enquiry without sending marketing messages.
+2. Build invite-only `/admin` with Overview, Traffic, Leads and Site health first. Include source health/last-sync states and staff permissions.
+3. Add the blog editor: drafts, previews, source verification, review, publish, revision history and redirects for changed URLs. Repository-backed publishing is available now in `src/lib/blog.ts`; no browser editor is deployed yet.
+4. Add payments and review requests to the same workspace once Stripe and review-profile configuration is supplied.
+
+Additional tables: `lead_activities`, `metric_snapshots`, `source_syncs`, `site_incidents`, `content_posts`, `content_revisions`. Keep aggregated analytics separate from restricted contact records. Use scheduled server-side API syncs with scoped credentials, retry/backoff and audit logs; never place integration secrets in public environment variables.
+
+Access needed: GA4 property ID/access, verified Search Console domain property, HubSpot private-app scoped access, Supabase project, approved monitoring provider, Stripe payment link/webhook credentials when that phase begins. The dashboard is a specification at this stage; no dummy visitor counts or unsecured admin screen have been published.
+
+Current documentation: https://developers.google.com/analytics/devguides/reporting/data/v1, https://developers.google.com/webmaster-tools/about, https://supabase.com/docs/guides/auth.
+
+## Assets and typography (implementation)
 
 - Original supplied logo: `public/brand/go-massive-source.png`. `scripts/prepare-brand.cjs` derives the lossless WebP wordmark and square arrow icons without redrawing the brand.
 - `scripts/generate-service-diagrams.cjs` creates all 18 WebP diagrams from actual service steps. Re-run after editing steps in `src/lib/services.ts`. These are process illustrations, not client screenshots or performance evidence.

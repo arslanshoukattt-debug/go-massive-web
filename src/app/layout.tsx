@@ -5,6 +5,7 @@ import "./redesign.css";
 import "./services.css";
 import "./typography.css";
 import "./commerce.css";
+import { SITE_URL } from "../lib/site";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -16,7 +17,6 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const SITE_URL = "https://go-massive.com";
 const SITE_TITLE = "Go Massive | Amazon & Ecommerce Growth Agency";
 const SITE_DESCRIPTION =
   "Amazon account management, paid advertising and ecommerce services. Go Massive combines soft operating fees with profit share to grow alongside your business.";
