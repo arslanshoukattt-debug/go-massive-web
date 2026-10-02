@@ -17,7 +17,7 @@ const sections = [
     heading: "What we collect",
     body: [
       "When you submit the Growth Audit form, we collect the details you provide: your name, email address, company name, phone number (optional), your primary growth channel, and anything you write about what you would like to improve.",
-      "We do not collect payment details through this website.",
+      "Payments are completed on Stripe’s hosted checkout. We do not collect or store your full card details on this website.",
     ],
   },
   {
@@ -36,7 +36,7 @@ const sections = [
   {
     heading: "Third-party services",
     body: [
-      "The Growth Audit form is served by HubSpot and protected by Google reCAPTCHA, which may set cookies and collect device information to distinguish people from bots. These services operate under their own privacy policies.",
+      "The Growth Audit form is served by HubSpot and protected by Google reCAPTCHA, which may set cookies and collect device information to distinguish people from bots. These services operate under their own privacy policies. We use Google Analytics to understand website visits, page usage and traffic sources. Google Analytics may use cookies and process device and interaction data. Stripe processes payment information when you proceed to its hosted checkout.",
     ],
   },
   {
@@ -48,7 +48,7 @@ const sections = [
   {
     heading: "Changes to this policy",
     body: [
-      "If our data practices change, this page will be updated to reflect them. This policy was last updated in August 2026.",
+      "If our data practices change, this page will be updated to reflect them. This policy was last updated on 2 October 2026.",
     ],
   },
 ];

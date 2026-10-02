@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import Script from "next/script";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import "./redesign.css";
@@ -89,6 +90,14 @@ export default function RootLayout({
           }}
         />
         {children}
+        <Script id="google-analytics-config" strategy="afterInteractive">
+          {`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-F2825SYPBX');`}
+        </Script>
+        <Script src="https://www.googletagmanager.com/gtag/js?id=G-F2825SYPBX" strategy="afterInteractive" />
+
       </body>
     </html>
   );

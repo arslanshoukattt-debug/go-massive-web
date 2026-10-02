@@ -2,7 +2,7 @@
 
 ## Activation requirements
 
-- Set `STRIPE_PAYMENT_LINK` to the company's real `https://buy.stripe.com/...` URL in Vercel, then redeploy. Missing or invalid configuration keeps Checkout disabled.
+- Owner supplied the Stripe Payment Link on 2 October 2026. It is now the public default in `src/lib/payment.ts`; `STRIPE_PAYMENT_LINK` can override it. An empty or invalid override disables checkout.
 - In Stripe Payment Links, select the link → After payment → redirect to `https://go-massive.com/pay/thank-you`. Save in Stripe. No payment link or charge has been created by this repository.
 - `/pay` and `/pay/thank-you` are absent from navigation and the sitemap. Both have `noindex, nofollow, noarchive` metadata and HTTP `X-Robots-Tag`, with no site header/footer. Noindex is not access control: anyone with the URL can open it.
 - The thank-you page is not proof of payment. Reconcile in Stripe or implement the signed webhook below before recording payment status.
@@ -77,3 +77,7 @@ Current documentation: https://developers.google.com/analytics/devguides/reporti
 - `scripts/generate-service-diagrams.cjs` creates all 18 WebP diagrams from actual service steps. Re-run after editing steps in `src/lib/services.ts`. These are process illustrations, not client screenshots or performance evidence.
 - Shared responsive typography roles are in `src/app/typography.css`: label, small, body, lead, step number, stat number and card title.
 - Review logos: official Clutch help-centre PNG; Trustpilot/Google from Simple Icons v11. The Google asset is not displayed before its profile is verified.
+
+## Analytics activation — 2 October 2026
+
+Owner supplied GA4 Measurement ID `G-F2825SYPBX`. The root layout loads the Google tag once after hydration. Enhanced measurement should track browser-history navigation; confirm this setting and Realtime reception in GA4. Do not duplicate the tag through Google Tag Manager. Numeric property ID and authorised reporting access are still needed for the dashboard. Stripe after-payment redirect remains an account-side setting, not verified by the public Payment Link.

@@ -17,5 +17,5 @@ for(const path of Object.keys(manifest.routes).filter(p=>!p.startsWith('/pay') &
   assert.ok(!/href="(?:https:\/\/go-massive.com)?\/pay(?:["/#?])/.test(html),`${path} links to checkout`);
 }
 const payment=(await (await fetch(base+'/pay')).text());
-if(!process.env.STRIPE_PAYMENT_LINK) assert.match(payment,/<button[^>]*disabled/,'Unconfigured checkout stays disabled');
-console.log('PASS: private-page headers, metadata, no navigation, sitemap exclusion, no public internal links, and unconfigured checkout.');
+if(!process.env.STRIPE_PAYMENT_LINK) assert.ok(payment.includes('href="https://buy.stripe.com/9B6eVcb8k71Bb7l8kp9R60v"'),'Configured Stripe checkout');
+console.log('PASS: private-page headers, metadata, no navigation, sitemap exclusion, no public internal links, and configured checkout.');
