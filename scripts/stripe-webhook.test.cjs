@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-require-imports -- CommonJS test loader compiles TypeScript without an extra runtime dependency. */
 const fs = require('node:fs');
 const ts = require('typescript');
 const test = require('node:test');
