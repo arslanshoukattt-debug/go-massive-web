@@ -5,7 +5,7 @@ import { getPaymentLink } from "./payment";
 export const reviewDestinations = [
   { name: "Google", reviewUrl: "https://g.page/r/CY6FI_FFy6a8EBM/review" },
   { name: "Trustpilot", reviewUrl: "https://www.trustpilot.com/evaluate/go-massive.com" },
-  { name: "Clutch", reviewUrl: "https://review.clutch.co/review/?provider_id=2513026" },
+  { name: "Clutch", reviewUrl: "https://review.clutch.co/review?provider_id=53265bc9-6df4-4a81-b442-8e9b7b349203" },
 ];
 
 export function reviewEmail(to: string) {
