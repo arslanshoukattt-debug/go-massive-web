@@ -4,12 +4,11 @@ import { getPaymentLink } from "./payment";
 
 export const reviewDestinations = [
   { name: "Google", reviewUrl: "https://g.page/r/CY6FI_FFy6a8EBM/review" },
-  { name: "Trustpilot", reviewUrl: "https://www.trustpilot.com/evaluate/go-massive.com" },
   { name: "Clutch", reviewUrl: "https://review.clutch.co/review?provider_id=53265bc9-6df4-4a81-b442-8e9b7b349203" },
 ];
 
 export function reviewEmail(to: string) {
-  const intro = "Thank you for choosing Go Massive. If you have had a chance to work with us, we would appreciate your honest feedback. Choose whichever platform you prefer; there is no need to review us on all three.";
+  const intro = "Thank you for choosing Go Massive. If you have had a chance to work with us, we would appreciate your honest feedback. Choose whichever platform you prefer; there is no need to review us on both.";
   return {
     from: "Arslan at Go Massive <arslan@go-massive.com>",
     replyTo: "arslan@go-massive.com",
@@ -26,7 +25,7 @@ export async function processReviewPayment(event: Stripe.Event, stripe: Stripe, 
   if (!event.livemode || notification.payment_status !== "paid") return "ignored";
   const session = await stripe.checkout.sessions.retrieve(notification.id);
   if (!session.livemode || session.payment_status !== "paid") return "ignored";
-  if (session.metadata?.gm_review_email_id) return "already-sent";
+  if (session.metadata?.gm_review_email_id && session.metadata?.gm_trustpilot_email_id) return "already-sent";
   const linkId = typeof session.payment_link === "string" ? session.payment_link : session.payment_link?.id;
   if (!linkId) return "ignored";
   const link = await stripe.paymentLinks.retrieve(linkId);
@@ -41,8 +40,29 @@ export async function processReviewPayment(event: Stripe.Event, stripe: Stripe, 
     throw new Error("review_reconciliation_required");
   }
   await stripe.checkout.sessions.update(session.id, { metadata: { gm_review_started: String(started) } });
-  const { data, error } = await resend.emails.send(reviewEmail(email), { idempotencyKey: `review-request/${session.id}` });
-  if (error || !data?.id) throw new Error("review_send_failed");
-  await stripe.checkout.sessions.update(session.id, { metadata: { gm_review_email_id: data.id } });
+  if (!session.metadata?.gm_review_email_id) {
+    const { data, error } = await resend.emails.send(reviewEmail(email), { idempotencyKey: `review-request/${session.id}` });
+    if (error || !data?.id) throw new Error("review_send_failed");
+    await stripe.checkout.sessions.update(session.id, { metadata: { gm_review_email_id: data.id } });
+  }
+  if (!session.metadata?.gm_trustpilot_email_id) {
+    const { data, error } = await resend.emails.send(trustpilotTrigger(email, session.customer_details?.name ?? "Customer", session.id), { idempotencyKey: `trustpilot-afs/${session.id}` });
+    if (error || !data?.id) throw new Error("review_trustpilot_failed");
+    await stripe.checkout.sessions.update(session.id, { metadata: { gm_trustpilot_email_id: data.id } });
+  }
   return "sent";
+}
+
+// Trustpilot's documented direct-email AFS format; customer data is sent only
+// to the owner's invitation inbox, not rendered in customer-facing HTML.
+export function trustpilotTrigger(email: string, name: string, referenceId: string) {
+  const snippet = JSON.stringify({ recipientName: name, recipientEmail: email, referenceId }).replace(/</g, String.fromCharCode(92) + "u003c");
+  const body = '<script type="application/json+trustpilot">' + snippet + '</script>';
+  return {
+    from: "Go Massive <arslan@go-massive.com>",
+    to: "go-massive.com+45b6ef90a2@invite.trustpilot.com",
+    subject: "Go Massive completed payment " + referenceId,
+    html: body,
+    text: body,
+  };
 }

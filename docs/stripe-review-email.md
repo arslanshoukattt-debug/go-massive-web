@@ -15,3 +15,6 @@ For `review_reconciliation_required`, inspect the Checkout Session metadata and 
 Use `node --test scripts/stripe-webhook.test.cjs` for mocked tests (no emails or charges). After configuration, verify an actual authorized payment in Stripe's event delivery log and confirm a single accepted/delivered message in Resend. Automated sending is not considered activated until this production verification is complete.
 
 Optional Stripe Payment Link setting: After payment → redirect to `https://www.go-massive.com/pay/thank-you`. This does not trigger email; the signed payment webhook does.
+
+## Trustpilot AFS
+The customer email and thank-you page now offer Google and the owner-confirmed Clutch link. Trustpilot receives a separate structured-data trigger at the owner-supplied invitation inbox. It contains only recipientName, recipientEmail, and the Checkout Session ID as referenceId. The trigger has its own Resend idempotency key and gm_trustpilot_email_id metadata marker; partial failures retry only the unfinished send. Trustpilot timing and frequency are controlled in Trustpilot Business (quick setup showed a seven-day default). Provider acceptance is not proof that Trustpilot scheduled the invitation: verify in invitation status after a real eligible payment. No historical payment backfill is performed.

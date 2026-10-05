@@ -4,7 +4,7 @@ const ts = require('typescript');
 const test = require('node:test');
 const assert = require('node:assert/strict');
 require.extensions['.ts'] = (module, filename) => module._compile(ts.transpileModule(fs.readFileSync(filename, 'utf8'), { compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2020, esModuleInterop: true } }).outputText, filename);
-const { processReviewPayment, reviewEmail } = require('../src/lib/review-request.ts');
+const { processReviewPayment, reviewEmail, trustpilotTrigger } = require('../src/lib/review-request.ts');
 const { POST } = require('../src/app/api/webhooks/stripe/route.ts');
 const Stripe = require('stripe');
 const now = Date.now();
@@ -16,13 +16,13 @@ function fixture() {
   const resend = { emails:{send:async(body,options)=>{sends.push({body,options});return {data:{id:'email_example'}};}} };
   return {session,event,stripe,resend,sends};
 }
-test('paid checkout sends once with all three links and durable marker', async()=>{
+test('paid checkout sends once with two links plus AFS and durable marker', async()=>{
   const f=fixture();
   assert.equal(await processReviewPayment(f.event,f.stripe,f.resend,now),'sent');
   assert.equal(await processReviewPayment(f.event,f.stripe,f.resend,now),'already-sent');
-  assert.equal(f.sends.length,1);
+  assert.equal(f.sends.length,2);
   assert.equal(f.sends[0].options.idempotencyKey,'review-request/cs_example');
-  for(const name of ['Google','Clutch','Trustpilot']) assert.ok(f.sends[0].body.text.includes(name));
+  for(const name of ['Google','Clutch']) assert.ok(f.sends[0].body.text.includes(name));
 });
 test('unpaid, test, unrelated events and payment links never send',async()=>{
   for(const change of [f=>f.event.livemode=false,f=>f.event.data.object.payment_status='unpaid',f=>f.event.type='invoice.paid',f=>f.stripe.paymentLinks.retrieve=async()=>({url:'https://buy.stripe.com/another'})]){
@@ -40,7 +40,7 @@ test('send errors remain retryable; expired ambiguous attempts require reconcili
 });
 test('concurrent attempts share a Resend key',async()=>{
   const f=fixture();await Promise.all([processReviewPayment(f.event,f.stripe,f.resend,now),processReviewPayment(f.event,f.stripe,f.resend,now)]);
-  assert.equal(new Set(f.sends.map(x=>x.options.idempotencyKey)).size,1);
+  assert.equal(new Set(f.sends.map(x=>x.options.idempotencyKey)).size,2);
 });
 test('missing signature, invalid signature and stale signatures rejected without network calls',async()=>{
   assert.equal((await POST(new Request('http://localhost/api/webhooks/stripe',{method:'POST'}))).status,400);
@@ -54,4 +54,23 @@ test('missing signature, invalid signature and stale signatures rejected without
 });
 test('sender and reply address use the verified domain',()=>{
   assert.equal(reviewEmail('customer@example.com').replyTo,'arslan@go-massive.com');
+});
+
+test('AFS encodes customer data safely and uses owner inbox',()=>{
+ const m=trustpilotTrigger('client@example.com','</script>','cs_example');
+ assert.equal(m.to,'go-massive.com+45b6ef90a2@invite.trustpilot.com');
+ const raw=m.html.slice(m.html.indexOf('>')+1,m.html.lastIndexOf('</script>'));
+ assert.ok(!raw.includes('<'));
+ assert.deepEqual(JSON.parse(raw),{recipientName:'</script>',recipientEmail:'client@example.com',referenceId:'cs_example'});
+ assert.ok(!reviewEmail('client@example.com').html.includes('trustpilot.com/evaluate'));
+});
+test('AFS failure retries only unfinished trigger',async()=>{
+ const f=fixture();const send=f.resend.emails.send;
+ f.resend.emails.send=async(body,options)=>options.idempotencyKey.startsWith('trustpilot')?{error:{message:'temporary'}}:send(body,options);
+ await assert.rejects(processReviewPayment(f.event,f.stripe,f.resend,now),/review_trustpilot_failed/);
+ assert.ok(f.session.metadata.gm_review_email_id);
+ f.resend.emails.send=send;
+ assert.equal(await processReviewPayment(f.event,f.stripe,f.resend,now),'sent');
+ assert.equal(f.sends.length,2);
+ assert.equal(f.sends[1].options.idempotencyKey,'trustpilot-afs/cs_example');
 });
