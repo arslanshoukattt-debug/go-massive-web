@@ -94,7 +94,7 @@ export default function RootLayout({
           {`window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
-gtag('config', 'G-F2825SYPBX');`}
+if (!window.location.pathname.startsWith('/admin')) { gtag('config', 'G-F2825SYPBX'); } else { window['ga-disable-G-F2825SYPBX'] = true; }`}
         </Script>
         <Script src="https://www.googletagmanager.com/gtag/js?id=G-F2825SYPBX" strategy="afterInteractive" />
 
