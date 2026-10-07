@@ -14,7 +14,7 @@ function fixture(allowed=true, rpcError=null, failGoogle=false, loggedIn=true) {
   if(name==='@vercel/oidc') return {getVercelOidcToken:async()=>'private-token'};
   if(name==='next/navigation') return {notFound(){throw new Error('denied')}};
   if(name==='./supabase/server') return {requireMember:async()=>{if(!loggedIn)throw new Error('login');return {db:{rpc:async()=>({data:allowed,error:rpcError})}}}};
-  if(name==='google-auth-library') return {ExternalAccountClient:{fromJSON(config){calls.push(config);return {request:async(options)=>{calls.push(options);if(failGoogle&&options.url.includes('analyticsdata')) throw {response:{status:403},message:'private-token'};return {data:{rows:[]}}}}}}};
+  if(name==='google-auth-library') return {ExternalAccountClient:{fromJSON(config){calls.push(config);return {request:async(options)=>{calls.push(options);if(failGoogle&&options.url.includes('analyticsdata')) throw (failGoogle === true ? {response:{status:403},message:'private-token'} : failGoogle);return {data:{rows:[]}}}}}}};
   throw new Error(name);
  }});
  return {run:exports.getGoogleReports,calls,env};
@@ -34,4 +34,15 @@ test('source failures are independent and credentials never enter the result',as
 });
 test('missing configuration is unavailable, not zero data',async()=>{
  const f=fixture();delete f.env.GCP_PROJECT_NUMBER;const r=await f.run();assert.ok(r.analytics.error);assert.ok(r.search.error);assert.equal(f.calls.length,0);
+});
+
+test('diagnostics identify missing config and rejected provider without echoing responses',async()=>{
+ const missing=fixture();delete missing.env.GCP_PROJECT_NUMBER;
+ assert.match((await missing.run()).analytics.error,/GCP_PROJECT_NUMBER/);
+ for(const [error,expected] of [['invalid_target',/identity provider/],['invalid_grant',/rejected the Vercel identity/]]){
+  const r=await fixture(true,null,{response:{status:400,data:{error,error_description:'private-token'}}}).run();
+  assert.match(r.analytics.error,expected);assert.ok(!JSON.stringify(r).includes('private-token'));
+ }
+ const r=await fixture(true,null,{response:{status:403,data:{error:{details:[{reason:'SERVICE_DISABLED'}]}}}}).run();
+ assert.match(r.analytics.error,/API is disabled/);
 });

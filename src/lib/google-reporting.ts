@@ -4,9 +4,11 @@ import { ExternalAccountClient } from "google-auth-library";
 import { notFound } from "next/navigation";
 import { requireMember } from "./supabase/server";
 
+class ReportingSetupError extends Error {}
+
 function setting(name: string) {
   const value = process.env[name]?.trim();
-  if (!value) throw new Error("Reporting configuration is incomplete");
+  if (!value) throw new ReportingSetupError(`Missing production variable: ${name}. Save it in Vercel and redeploy.`);
   return value;
 }
 
@@ -18,8 +20,16 @@ async function result<T>(run: () => Promise<T>): Promise<ReportResult<T>> {
   try { return { data: await run() }; }
   catch (error) {
     // Never log the Google client error: it can contain authorization headers.
+    if (error instanceof ReportingSetupError) return { error: error.message };
+    const failure = error as { response?: { status?: number; data?: { error?: unknown; error_description?: unknown } } };
+    const payload = failure?.response?.data;
+    const detail = typeof payload?.error === "object" && payload.error !== null ? payload.error as { details?: { reason?: string }[] } : undefined;
+    if (detail?.details?.some(item => item.reason === "SERVICE_DISABLED")) return { error: "A required Google API is disabled. Enable IAM Service Account Credentials, Analytics Data and Search Console APIs in Go Massive Dashboard." };
+    if (payload?.error === "invalid_target") return { error: "Google could not find the configured identity provider. Check the project number, pool ID and provider ID in Vercel." };
+    if (payload?.error === "invalid_grant") return { error: "Google rejected the Vercel identity. Check the provider issuer, allowed audience and production subject condition." };
     const status = (error as { response?: { status?: number } })?.response?.status;
-    return { error: status === 403 ? "Google denied access. Check API enablement and the reporting account’s permissions." : status === 429 ? "Google’s reporting quota was reached. Please try again later." : "Google reporting is unavailable. Check the connection settings and try again." };
+    const code = typeof status === "number" && status >= 400 && status <= 599 ? ` (HTTP ${status})` : "";
+    return { error: status === 403 ? "Google denied access. Check API enablement and the reporting account’s permissions." : status === 429 ? "Google’s reporting quota was reached. Please try again later." : `Google reporting is unavailable${code}. Check the connection settings and try again.` };
   }
 }
 
@@ -40,7 +50,10 @@ export async function getGoogleReports() {
       subject_token_type: "urn:ietf:params:oauth:token-type:jwt",
       token_url: "https://sts.googleapis.com/v1/token",
       service_account_impersonation_url: `https://iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/${encodeURIComponent(email)}:generateAccessToken`,
-      subject_token_supplier: { getSubjectToken: () => getVercelOidcToken() },
+      subject_token_supplier: { getSubjectToken: async () => {
+        try { return await getVercelOidcToken(); }
+        catch { throw new ReportingSetupError("Vercel could not provide a workload identity token. Check OIDC federation in this project’s Security settings, then redeploy."); }
+      } },
     });
     if (!client) throw new Error("Google authentication is unavailable");
     client.scopes = ["https://www.googleapis.com/auth/analytics.readonly", "https://www.googleapis.com/auth/webmasters.readonly"];
