@@ -4,12 +4,15 @@ import { SiteHeader } from "../../components/SiteHeader";
 import { SiteFooter } from "../../components/SiteFooter";
 import { ClosingCTA, PageIntro } from "../../components/Editorial";
 import { pageMetadata } from "../../lib/seo";
-import { publishedPosts, formatPostDate, readingMinutes } from "../../lib/blog";
+import { getPublishedPosts, formatPostDate, readingMinutes } from "../../lib/blog";
+import { connection } from "next/server";
 import "./blog.css";
 
 export const metadata = pageMetadata({ title: "Ecommerce & Marketplace Insights | Go Massive", description: "Platform changes explained for ecommerce brands. Practical analysis of marketplace updates, advertising and profitable growth from Go Massive.", path: "/blog" });
 
-export default function BlogPage() {
+export default async function BlogPage() {
+  await connection();
+  const publishedPosts = getPublishedPosts();
   return <><SiteHeader /><main id="main">
     <PageIntro label="The Go Massive journal" title={<>COMMERCE CHANGES.<br /><span>STAY AHEAD.</span></>} description="What changed. What it means for your business. What to do next. Practical analysis for brands building profitable growth." />
     <section className="section blog-list"><div className="container">

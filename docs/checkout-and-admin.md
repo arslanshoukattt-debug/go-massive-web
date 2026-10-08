@@ -1,5 +1,7 @@
 # Checkout and dashboard handover
 
+Current status as of 7 October 2026: owner authentication and live GA4/Search Console reporting are implemented and verified. CRM integration is paused while growth automation is prioritized. See [the current handover](growth-automation-handover.md) for completed work and remaining tasks. Older planning sections below describe earlier stages and are not the current completion checklist.
+
 ## Activation requirements
 
 - Owner supplied the Stripe Payment Link on 2 October 2026. It is now the public default in `src/lib/payment.ts`; `STRIPE_PAYMENT_LINK` can override it. An empty or invalid override disables checkout.

@@ -1,0 +1,54 @@
+[
+  {
+    "file": "02-amazon-launch", "category": "Amazon · Launch planning",
+    "title": "Amazon product launch checklist for brands entering the marketplace",
+    "description": "Prepare your Amazon launch with four readiness gates covering product, economics, customer experience, and operations before increasing investment.",
+    "keyword": "Amazon product launch checklist",
+    "related": ["launch a brand on Amazon", "Amazon launch strategy", "Amazon launch preparation"],
+    "audience": "Established US brands and manufacturers entering Amazon",
+    "intent": "Plan a controlled launch and identify blockers before spending",
+    "visual": "Interactive launch-readiness checklist: four gates, completion count, explicit unresolved blockers; no invented readiness score or promise of approval.",
+    "competitor": "https://mikebegg.me/blog/amazon-product-launch-playbook-2026",
+    "coverage": "Agency founder covers Amazon launch sequencing and a 90-day checklist. Our angle is accountable launch gates for established brands; no competitor results reused.",
+    "source": "https://sell.amazon.com/blog/product-launch"
+  },
+  {
+    "file": "03-walmart-listing", "category": "Walmart · Listing optimization",
+    "title": "Walmart listing optimization: what to fix before buying more traffic",
+    "description": "Diagnose Walmart listing problems before increasing ad spend. Prioritize accurate content, a clear offer, and changes you can measure.",
+    "keyword": "Walmart listing optimization",
+    "related": ["Walmart Listing Quality", "improve Walmart product listings", "Walmart listing not converting"],
+    "audience": "US Walmart sellers with underperforming listings",
+    "intent": "Prioritize listing corrections rather than increase traffic blindly",
+    "visual": "Symptom selector revealing a tailored first check and evidence to collect; presented as a diagnostic aid, not an automated account audit.",
+    "competitor": "https://www.adverio.io/walmart-lqs-page/",
+    "coverage": "Agency page targets Walmart Listing Quality optimization. Our article focuses on choosing the next correction and evaluating it without claiming score changes cause sales.",
+    "source": "https://marketplace.walmart.com/listing-quality/"
+  },
+  {
+    "file": "04-ebay-pricing", "category": "eBay · Pricing",
+    "title": "How to price eBay products using sold listings and your margin floor",
+    "description": "Use comparable sold listings, shipping costs, and your contribution floor to make an eBay pricing decision you can defend.",
+    "keyword": "how to price eBay products",
+    "related": ["eBay pricing strategy", "eBay sold listings research", "eBay Product Research"],
+    "audience": "US eBay sellers and brands pricing comparable inventory",
+    "intent": "Choose a defensible price using comparable transactions and costs",
+    "visual": "Original comparison chart toggles item-only versus item-plus-shipping amounts, with calculated median and clearly hypothetical sample.",
+    "competitor": "https://shopappy.com/ecommerce/ebay/ebay-pricing",
+    "coverage": "Commerce publisher covers eBay pricing and margins; not verified as an agency. Used as topic-coverage evidence only. Our example explains normalizing shipping before evaluating the margin floor.",
+    "source": "https://www.ebay.com/help/selling/selling-tools/research?id=4853"
+  },
+  {
+    "file": "05-amazon-negative-keywords", "category": "Amazon · Advertising decisions",
+    "title": "Amazon negative keywords: what to exclude and what to investigate first",
+    "description": "Separate irrelevant traffic from inconclusive performance before adding Amazon negative keywords. Use relevance, economics, and a clear decision log.",
+    "keyword": "Amazon negative keywords",
+    "related": ["Amazon PPC search term report", "negative exact vs negative phrase", "reduce wasted Amazon ad spend"],
+    "audience": "Existing Amazon advertisers reviewing Sponsored Products traffic",
+    "intent": "Decide which traffic to exclude without suppressing useful demand",
+    "visual": "Three-scenario decision explorer with explicit reasons and next checks; no campaign changes and no universal click-based exclusion rule.",
+    "competitor": "https://amzbase.com/guides/amazon-ppc-negative-keywords/",
+    "coverage": "Specialist publisher covers search-term-based negative keyword selection. Our angle separates incompatibility from uncertain performance; not a second ACoS definition article.",
+    "source": "https://advertising.amazon.com/library/guides/targeting-with-sponsored-products"
+  }
+]

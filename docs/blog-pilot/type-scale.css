@@ -1,0 +1,39 @@
+/* Readable supporting type, including chart axes and numbered sections. */
+.kicker{font-size:12px;letter-spacing:.08em}
+.preview-notice{font-size:11px}
+.byline{font-size:14px}.byline small,.readtime{font-size:12px}
+.avatar{font-size:13px;width:42px;height:42px}
+.reading-layout nav a{font-size:14px;gap:14px}
+.reading-layout nav a span,.section-heading>span{font-size:15px;font-variant-numeric:tabular-nums}
+.section-heading{gap:18px}
+.aside-note{font-size:12px;letter-spacing:.05em}
+.section-checklist li:before{font-size:16px;line-height:1.4}
+.section-checklist li{font-size:15px}.section-checklist li strong{font-size:17px}
+.live-label{font-size:12px}.explorer>p{font-size:14px}
+.control-head label{font-size:15px;max-width:190px}
+.range-labels{font-size:13px}.explorer .control-help{font-size:13px;line-height:1.6;margin-top:12px}
+.axis-text{font-size:14px}
+.explorer-results span{font-size:14px}.explorer-results small{font-size:13px;line-height:1.5}
+.explorer-results strong{font-size:36px}
+.explorer-bottom{font-size:12px;line-height:1.6;align-items:flex-start}
+.explorer-bottom button{font-size:13px}
+.comparison figcaption>p{font-size:15px}
+.product-top{font-size:12px;line-height:1.5}
+.bar{font-size:14px;height:42px;line-height:42px}
+.legend{font-size:11px;line-height:1.6;gap:6px 12px}
+.ad-deduction{font-size:13px;gap:12px;line-height:1.6}
+.result>span{font-size:13px}.target-note{font-size:13px}.target-note b{font-size:16px;margin-top:4px}
+.figure-note{font-size:12px!important;line-height:1.7!important}
+.data summary{font-size:15px}table{font-size:14px}caption{font-size:12px}
+.formula small{font-size:13px;line-height:1.6}.formula>div{font-size:16px}
+.sources p{font-size:14px}.site-foot{font-size:13px}
+@media(max-width:950px){.explorer-results strong{font-size:30px}.products{gap:20px}}
+@media(max-width:650px){
+ .kicker{font-size:11px}.preview-notice{font-size:10px;letter-spacing:.05em}
+ .byline small{font-size:12px}.reading-layout nav a{font-size:14px}
+ .reading-layout nav a span,.section-heading>span{font-size:15px}
+ .explorer-results strong{font-size:30px}.control-head label{font-size:14px;max-width:170px}
+ .explorer-bottom{flex-direction:column;gap:7px}
+ .formula>div{font-size:14px}.section-checklist li{font-size:15px}
+ .product-top{font-size:13px}.legend{font-size:12px}
+}

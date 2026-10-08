@@ -3,7 +3,9 @@ import { serviceList } from "../lib/services";
 import { caseStudies } from "../lib/case-studies";
 
 import { SITE_URL as BASE_URL } from "../lib/site";
-import { publishedPosts } from "../lib/blog";
+import { getPublishedPosts } from "../lib/blog";
+
+export const dynamic = "force-dynamic";
 
 const staticRoutes = [
   { path: "", priority: 1 },
@@ -34,7 +36,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     changeFrequency: "monthly" as const,
     priority: 0.7,
   }));
-  return [...staticEntries, ...serviceEntries, ...caseStudyEntries, ...publishedPosts.map(post => ({
+  return [...staticEntries, ...serviceEntries, ...caseStudyEntries, ...getPublishedPosts().map(post => ({
     url: `${BASE_URL}/blog/${post.slug}`,
     lastModified: post.updatedAt,
   }))];

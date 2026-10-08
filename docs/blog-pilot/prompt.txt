@@ -1,0 +1,15 @@
+Write one unpublished blog article for Go Massive, author Go Massive, targeting established US brands advertising on Amazon. Return only Markdown article with title, author, body, original comparison table and a separate short SEO metadata section. 800–1000 words. Do not use tools, inspect files, publish, deploy, or contact anyone. This is a bounded drafting test based on supplied research, not a research assignment.
+
+Title: What is a good Amazon ACoS? Start with your product margin.
+Voice: experienced practical advisor, confident, approachable, American English. No hype, desperate pitching, fabricated client results or claimed personal experience. Give a complete useful answer. At most one discreet contextual link to /services/amazon-ppc near the end.
+Keywords: what is a good Amazon ACoS, break-even ACoS, target ACoS, Amazon PPC profitability, contribution margin. Use naturally, no density target. No measured search volumes or ranking predictions.
+
+Primary sources checked October 7, 2026:
+https://advertising.amazon.com/library/guides/acos-advertising-cost-of-sales
+Amazon defines ACoS as ad spend/ad revenue x100, ROAS as ad revenue/ad spend; says there is no universal good ACoS and connects break-even to margin. Use these limited facts with a source link. No copied examples, quotations or case studies. Keep paraphrase from this source below 150 words; write original practical application elsewhere.
+https://sell.amazon.com/pricing/estimate
+Amazon provides product selling and fulfillment cost estimation tools. Link as a starting point; estimates are not actual total business costs. Do not quote current fee rates. Keep derived wording below 100 words.
+
+Original example, clearly labeled hypothetical before the table (not real client results or Amazon fee quotes): two products each have $40 revenue/unit on the same basis excluding tax. Variable non-ad costs A=$24, B=$32. Pre-ad contribution A=$16/40%, B=$8/20%. At 25% ACoS ads cost $10/unit: remaining contribution A=$6, B=-$2. Target to retain $4/unit gives target ACoS A=30%, B=10%. Fixed overhead excluded: contribution is not net profit. Simplified one attributed unit per modeled order, matched revenue/cost bases; actual attributed product mix must be reconciled. Explain discounts/refunds must not be double counted. Attribution is not proof of incremental sales.
+
+Structure: direct answer first, short definitions, original table and explanation, setting a profit-aware target, useful weekly decision checklist, restrained ending. A deliberate launch investment requires a capped budget and review date, never a promise losses reverse. No arbitrary universal targets. Avoid describing TACoS as proof of organic lift. Include alt-text wording for a future original chart; the table is the accessible visual for this first draft.

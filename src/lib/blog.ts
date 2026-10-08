@@ -1,4 +1,8 @@
+import scheduledPosts from "./scheduled-blog-posts.json";
+
 export type BlogPost = {
+  editorialHtml?: string;
+  wordCount?: number;
   slug: string;
   title: string;
   seoTitle: string;
@@ -54,10 +58,12 @@ const posts: BlogPost[] = [{
   service: { title: "Shopify management", href: "/services/shopify-management" },
 }];
 
-export const publishedPosts = posts.filter(post => post.published).sort((a, b) => b.publishedAt.localeCompare(a.publishedAt));
-export const findPost = (slug: string) => publishedPosts.find(post => post.slug === slug);
+// Evaluate at request time: a warm server must not retain yesterday's publication list.
+const allPosts: BlogPost[] = [...posts, ...scheduledPosts.map(post => ({ ...post, visualHeadline: post.visualHeadline as [string, string] }))];
+export const getPublishedPosts = (now = Date.now()) => allPosts.filter(post => post.published && Date.parse(post.publishedAt) <= now).sort((a, b) => Date.parse(b.publishedAt) - Date.parse(a.publishedAt));
+export const findPost = (slug: string, now = Date.now()) => getPublishedPosts(now).find(post => post.slug === slug);
 export const formatPostDate = (date: string) => new Intl.DateTimeFormat("en-GB", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" }).format(new Date(date));
 export function readingMinutes(post: BlogPost) {
   const text = post.sections.flatMap(section => [...section.paragraphs, ...(section.checklist ?? [])]).join(" ");
-  return Math.max(1, Math.ceil(text.split(/\s+/).length / 220));
+  return Math.max(1, Math.ceil((post.wordCount ?? text.split(/\s+/).length) / 220));
 }
